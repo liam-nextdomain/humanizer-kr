@@ -3,6 +3,8 @@
 Detailed treatment rules and Before/After examples for each of the 10 patterns in essay/blog style.
 For pattern detection signals, see the main `SKILL.md`.
 
+> **Speech level reminder:** The examples below are written in specific speech levels for illustration purposes. When rewriting, you **must** preserve the original text's politeness tier (높임말 or 반말). Never convert 높임말 text to 해라체.
+
 ---
 
 ## Pattern 1. Comma Overuse — Essay Treatment
@@ -14,6 +16,12 @@ For pattern detection signals, see the main `SKILL.md`.
 
 **After:**
 > 현대 사회에서 기술의 발전은 인간의 삶을 편리하게 만드는 동시에 소외 현상을 초래하기도 한다. 따라서 이에 대한 대책이 시급하다.
+
+**Before (높임말 — 하십시오체+해요체 혼용):**
+> 현대 사회에서, 기술의 발전은, 우리의 삶을 편리하게 만들어 주고 있지만, 동시에 소외 현상도 심각해지고 있어요. 따라서, 이에 대한 대책 마련이 시급합니다.
+
+**After (높임말 유지):**
+> 현대 사회에서 기술의 발전은 우리의 삶을 편리하게 만들어 주고 있지만 동시에 소외 현상도 심각해지고 있어요. 이에 대한 대책 마련이 시급합니다.
 
 ---
 
@@ -64,6 +72,12 @@ For pattern detection signals, see the main `SKILL.md`.
 
 **After:**
 > 인공지능은 교실 안팎에서 학생 개개인의 학습 속도를 세심하게 살피는 조력자가 되었습니다. 학생의 취약한 문제를 실시간으로 분석해 맞춤형 복습 과제를 제시해 주기도 합니다. 이러한 개별 맞춤형 피드백은 아이들이 배움을 포기하지 않고 실력을 차근차근 쌓아 올리도록 돕습니다.
+
+**Before (높임말 — 해요체):**
+> 특히 인공지능은 다양한 분야에서 중요한 역할을 하고 있고요, 교육 현장에서도 효과적으로 활용되고 있어요. 뿐만 아니라, 이를 통해 학생들에게 긍정적인 영향을 주고 있고요, 결과적으로 학습 성과도 지속적으로 좋아지고 있어요.
+
+**After (해요체 유지):**
+> 인공지능은 교실 안팎에서 학생 개개인의 학습 속도를 세심하게 살피는 조력자가 되었어요. 학생의 취약한 문제를 실시간으로 분석해서 맞춤형 복습 과제를 제시해 주기도 하고요. 이런 개별 맞춤형 피드백 덕분에 아이들이 배움을 포기하지 않고 실력을 차근차근 쌓아 올릴 수 있게 돼요.
 
 ---
 
