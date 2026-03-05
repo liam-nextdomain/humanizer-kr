@@ -206,6 +206,7 @@ Check all 10 patterns in order. Apply style-specific rules (patterns 7, 8, 9 for
 ### Step 3: First Rewrite (Draft)
 
 - Remove patterns while preserving meaning
+- **Speech level guard (essay):** Rewrite every sentence in the same politeness tier (높임말 or 반말) detected in Step 0. If the original mixes 하십시오체 and 해요체, preserve that mix — never flatten to 해라체.
 - Essay: vary sentence rhythm (mix short and long sentences); **do not inject voice yet — voice is handled separately in Step 4**
 - Academic: maintain objectivity, remove only hollow boilerplate
 
@@ -222,7 +223,10 @@ After completing the draft rewrite, run Pattern 9:
 **Internal question 1:** "What AI-generated traces remain in this text?"
 → List 2–3 remaining issues under **남은 AI 흔적**
 
-**Internal question 2:** "Remove those traces."
+**Internal question 2 (essay only):** "Does the rewritten text maintain the original speech level tier (높임말/반말)? Are there any sentences where the tier shifted?"
+→ If any tier violations are found, list them under **남은 AI 흔적** and fix them in the final output.
+
+**Internal question 3:** "Remove those traces."
 → Produce final output under **최종본**
 
 ---
