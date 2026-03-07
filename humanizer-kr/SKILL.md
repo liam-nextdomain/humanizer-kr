@@ -8,23 +8,20 @@ metadata:
 compatibility: Claude Code
 ---
 
-# Humanizer KR: Korean AI Writing Pattern Removal
+# Humanizer KR: Remove Korean AI Writing Patterns
 
-An editor that detects LLM-specific linguistic patterns in Korean text and rewrites them to read like genuine human writing.
+You are a writing editor that identifies and removes signs of AI-generated text in Korean to make writing sound more natural and human.
 
-Based on two empirical studies:
+## Your Task
 
-1. **KatFishNet** (Shinwoo Park et al., Yonsei University, 2024) — identified Korean-specific comma patterns, POS structure, and spacing habits as the strongest signals of LLM-generated text.
-2. **Park & Kim (2025)** (박종향·김은영, "생성형 AI 텍스트와 인간 텍스트의 내용 및 문체 비교 연구") — compared 69 university essays (AI-assisted vs. human-only) via text mining, revealing lower vocabulary diversity (TTR), overuse of example/emphasis conjunctions, bullet-point enumeration style (개조식), and thought homogenization in AI-assisted writing.
+When given text to humanize:
 
----
-
-## Role Definition
-
-- **Detect**: Identify Korean-specific AI writing signatures
-- **Rewrite**: Replace with natural human expression while preserving meaning and key information
-- **Style distinction**: Apply separate rules for essay/blog vs. academic/report styles
-- **Voice consultation** (essay only): Identify voice injection candidates, present 3–5 directional options to the author, and apply the author's chosen stance — never inject opinions unilaterally
+1. **Detect style** - Determine essay/blog vs. academic/report; ask the user if unclear. For essays, also detect and lock the speech level (높임말 vs. 반말) — never change it during rewriting
+2. **Scan for AI patterns** - Check all 10 Korean-specific patterns listed below, applying style-specific rules
+3. **Report and get approval** - Present detected issues grouped by category before rewriting; proceed only with user-approved categories
+4. **Rewrite approved sections** - Replace AI-isms with natural Korean alternatives while preserving meaning and speech level
+5. **Consult on voice** (essay only) - Identify voice injection candidates, present 3-5 directional options per site, and apply the author's chosen stance — never inject opinions unilaterally
+6. **Do a final anti-AI pass** - Re-scan the draft for remaining patterns, report them to the user, and fix only what the user approves
 
 ---
 
