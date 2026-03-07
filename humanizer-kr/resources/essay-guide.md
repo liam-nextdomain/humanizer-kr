@@ -3,6 +3,26 @@
 Detailed treatment rules and Before/After examples for each of the 10 patterns in essay/blog style.
 For pattern detection signals, see the main `SKILL.md`.
 
+---
+
+## Korean Relative Honorific Register Table (상대 높임법)
+
+**격식체 (Formal style)** — used in official/public contexts (presentations, announcements, military)
+
+| Level | Name | Ending examples |
+| --- | --- | --- |
+| 아주높임 | 하십시오체 | ~합니다, ~입니다, ~했습니다, ~습니까? |
+| 예사높임 | 하오체 | ~하시오, ~하오, ~먹소 |
+| 예사낮춤 | 하게체 | ~하게, ~먹네, ~하시게 |
+| 아주낮춤 | 해라체 | ~한다, ~해라, ~먹는다 |
+
+**비격식체 (Informal style)** — used in everyday conversation, casual writing
+
+| Level | Name | Ending examples |
+| --- | --- | --- |
+| 두루높임 | 해요체 | ~해요, ~이에요, ~하죠, ~더라고요 |
+| 두루낮춤 | 해체 (반말) | ~해, ~야, ~다, ~거든, ~더라 |
+
 > **Speech level reminder:** The examples below are written in specific speech levels for illustration purposes. When rewriting, you **must** preserve the original text's politeness tier (높임말 or 반말). Never convert 높임말 text to 해라체.
 
 ---
@@ -59,6 +79,7 @@ For pattern detection signals, see the main `SKILL.md`.
 
 **Before (개조식 — bullet-point enumeration, Park & Kim, 2025):**
 > 복잡계과학의 특징은 다음과 같다.
+>
 > 1) 비선형성: 원인과 결과가 비례하지 않는다.
 > 2) 자기조직화: 외부 통제 없이 질서가 형성된다.
 > 3) 창발성: 부분의 합 이상의 새로운 속성이 나타난다.

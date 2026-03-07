@@ -53,31 +53,14 @@ Before anything else, determine the style of the input text.
 
 After identifying the essay style, detect and lock the **politeness tier** of the original text. **Never change it during rewriting.**
 
-Korean relative honorifics (상대 높임법) divide into two tiers:
-
-**격식체 (Formal style)** — used in official/public contexts (presentations, announcements, military)
-
-| Level | Name | Ending examples |
-|---|---|---|
-| 아주높임 | 하십시오체 | ~합니다, ~입니다, ~했습니다, ~습니까? |
-| 예사높임 | 하오체 | ~하시오, ~하오, ~먹소 |
-| 예사낮춤 | 하게체 | ~하게, ~먹네, ~하시게 |
-| 아주낮춤 | 해라체 | ~한다, ~해라, ~먹는다 |
-
-**비격식체 (Informal style)** — used in everyday conversation, casual writing
-
-| Level | Name | Ending examples |
-|---|---|---|
-| 두루높임 | 해요체 | ~해요, ~이에요, ~하죠, ~더라고요 |
-| 두루낮춤 | 해체 (반말) | ~해, ~야, ~다, ~거든, ~더라 |
+Detect the dominant tier from the original: **높임말** (any polite form — 하십시오체, 하오체, 하게체, 해요체) vs. **반말** (해체/해라체).
+For the full register table with ending examples, see `resources/essay-guide.md`.
 
 **Lock rule — two boundaries only:**
 
-1. **높임말 ↔ 반말 boundary is absolute.** If the original uses any polite form (하십시오체, 해요체, etc.), every rewritten sentence must stay polite. Never drop to 반말 (해체/해라체) just because it sounds more casual.
+1. **높임말 ↔ 반말 boundary is absolute.** If the original uses any polite form, every rewritten sentence must stay polite. Never drop to 반말 just because it sounds more casual.
 
 2. **Within 높임말, mixing 하십시오체 and 해요체 is natural and allowed.** A single essay may freely contain both (e.g., "진지하게 생각해야 합니다. 어떻게 생각하시나요?"). Do not force uniformity between these two polite levels.
-
-**Detect the dominant tier** (높임말 vs. 반말) from the original, then preserve it throughout all rewrites.
 
 ---
 
@@ -220,14 +203,32 @@ Identify essay/blog or academic/report. Ask the user if unclear.
 
 ### Step 2: Pattern Scan
 
-Check all 10 patterns in order. Apply style-specific rules (patterns 7, 8, 9 for essay only). Internally list detected patterns.
+Check all 10 patterns in order. Apply style-specific rules (patterns 7, 8, 9 for essay only). Internally list all detected patterns with counts and example sentences. Refer to `resources/patterns-kr.md` for quantitative thresholds (e.g., comma inclusion rate >40%, TTR benchmarks) and the post-rewrite audit checklist.
+
+### Step 2.5: Pre-Draft Report & Approval
+
+Present detected issues to the user **before writing any draft**. Group by pattern category [A]–[E]:
+
+- For each category, list detected pattern names, instance counts, and one representative example sentence
+- End with an approval request: "전체 수정을 진행할까요? 특정 유형만 선택하실 수도 있고, 거부하실 수도 있습니다."
+- **Wait for the user's response before proceeding.**
+- Apply only the categories the user approves. If the user rejects all, stop here.
 
 ### Step 3: First Rewrite (Draft)
 
-- Remove patterns while preserving meaning
+**Prerequisite:** User has approved at least one category in Step 2.5.
+
+- Remove only the patterns from approved categories while preserving meaning
 - **Speech level guard (essay):** Rewrite every sentence in the same politeness tier (높임말 or 반말) detected in Step 0. If the original mixes 하십시오체 and 해요체, preserve that mix — never flatten to 해라체.
 - Essay: vary sentence rhythm (mix short and long sentences); **do not inject voice yet — voice is handled separately in Step 4**
 - Academic: maintain objectivity, remove only hollow boilerplate
+
+### Step 3.5: Draft Change Brief
+
+Immediately after the draft, output a concise change summary grouped by category:
+
+- List what was changed per category (e.g., "[A] 쉼표 5개 제거, 문장 2개 분리")
+- Keep it brief — bullet points only
 
 ### Step 4: Voice Consultation (Essay Only)
 
@@ -237,24 +238,66 @@ After completing the draft rewrite, run Pattern 9:
 3. Apply the author's chosen direction to produce the voice-integrated draft
 4. If the author skips or declines, proceed to Step 5 without any voice injection
 
-### Step 5: AI Audit and Final Rewrite
+### Step 5: Re-Validation Report & Approval
+
+Internally re-scan the draft for remaining AI patterns. Then:
 
 **Internal question 1:** "What AI-generated traces remain in this text?"
-→ List 2–3 remaining issues under **남은 AI 흔적**
 
 **Internal question 2 (essay only):** "Does the rewritten text maintain the original speech level tier (높임말/반말)? Are there any sentences where the tier shifted?"
-→ If any tier violations are found, list them under **남은 AI 흔적** and fix them in the final output.
 
-**Internal question 3:** "Remove those traces."
-→ Produce final output under **최종본**
+**Report remaining issues to the user** grouped by pattern category, with instance counts and example sentences. Ask for approval to fix them:
+- "아래 패턴이 아직 남아 있습니다. 추가 수정을 진행할까요?"
+- **Wait for the user's response before producing the final output.**
+- Apply only the items the user approves. If the user rejects all, present the current draft as the final output without further changes.
+
+### Step 5.5: Final Change Brief
+
+Immediately after the final output, produce a brief summary of what was fixed in this final pass — grouped by category, bullet points only.
 
 ---
 
 ## Output Format
 
 ```
+**[패턴 감지 결과]**
+
+발견된 AI 패턴을 유형별로 정리했습니다. 수정할 항목을 선택해 주세요.
+
+**[A] 구두점 패턴**
+- Pattern 1 (쉼표 남용): N건 발견
+  예시: "..."
+
+**[B] 구조/어순 패턴**
+- Pattern 3 (삼단 나열·개조식 구조): N건 발견
+  예시: "..."
+
+**[C] 어휘/표현 패턴**
+- Pattern 5 (AI 상투 표현): N건 발견
+  예시: "..."
+
+**[D] 띄어쓰기 패턴** *(에세이 전용)*
+- Pattern 7 (의존명사 띄어쓰기): N건 발견
+  예시: "..."
+
+**[E] 소통 패턴**
+- Pattern 10 (소통 부산물): N건 발견
+  예시: "..."
+
+전체 수정을 진행할까요? 특정 유형만 선택하실 수도 있고, 거부하실 수도 있습니다.
+
+---
+
+(사용자 승인 후 아래 단계 진행)
+
 **1차 재작성본 (Draft)**
-[rewritten text — patterns removed, no voice injection yet]
+[rewritten text — approved patterns removed, no voice injection yet]
+
+---
+
+**[1차 수정 브리핑]**
+- [A] ...
+- [C] ...
 
 ---
 
@@ -277,15 +320,25 @@ After completing the draft rewrite, run Pattern 9:
 
 ---
 
-**남은 AI 흔적**
-- [issue 1]
-- [issue 2]
+**[재검증 결과]**
+
+아래 패턴이 아직 남아 있습니다. 추가 수정을 진행할까요?
+
+- Pattern X (설명): N건
+  예시: "..."
+
+---
+
+(사용자 승인 후 아래 단계 진행)
 
 **최종본**
-[final rewritten text — includes author's chosen voice direction]
-```
+[final rewritten text — includes author's chosen voice direction and final fixes]
 
-A change summary is available on request.
+---
+
+**[최종 수정 브리핑]**
+- [category] ...
+```
 
 ---
 
