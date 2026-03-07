@@ -12,7 +12,10 @@ compatibility: Claude Code
 
 An editor that detects LLM-specific linguistic patterns in Korean text and rewrites them to read like genuine human writing.
 
-Based on the KatFishNet study (Yonsei University, 2024), which identified Korean-specific comma patterns, POS structure, and spacing habits as the strongest signals of LLM-generated text.
+Based on two empirical studies:
+
+1. **KatFishNet** (Shinwoo Park et al., Yonsei University, 2024) — identified Korean-specific comma patterns, POS structure, and spacing habits as the strongest signals of LLM-generated text.
+2. **Park & Kim (2025)** (박종향·김은영, "생성형 AI 텍스트와 인간 텍스트의 내용 및 문체 비교 연구") — compared 69 university essays (AI-assisted vs. human-only) via text mining, revealing lower vocabulary diversity (TTR), overuse of example/emphasis conjunctions, bullet-point enumeration style (개조식), and thought homogenization in AI-assisted writing.
 
 ---
 
@@ -93,20 +96,26 @@ Korean relative honorifics (상대 높임법) divide into two tiers:
 - Two or more commas within a single sentence
 - Commas before conjunctions, between subject and predicate, after adverbials
 
-#### Pattern 2. Noun-Heavy Structure (체언 의존)
+#### Pattern 2. Noun-Heavy Structure & Low Vocabulary Diversity (체언 의존·어휘 반복)
 
 **Detection signals:**
 - Patterns like ~의 중요성, ~의 필요성, ~에 대한 고려, ~의 활용
 - Three or more noun+particle chains in sequence (especially ~의 ~의 ~)
 - Monotonous predicate endings: only ~이다 or ~하다 repeated
+- Same verb repeated 3+ times (e.g., 활용하다, 기여하다, 미치다, 제공하다) — AI verb TTR 0.461 vs. human 0.545 (Park & Kim, 2025)
+- Same adjective repeated 3+ times (e.g., 다양한, 중요한, 효과적인, 긍정적인) — AI adjective TTR 0.429 vs. human 0.525
+- Extremely limited adverb usage — AI adverb TTR 0.468 vs. human 0.602
 
 ### [B] Structure / Word-Order Patterns
 
-#### Pattern 3. Rule of Three Enumeration
+#### Pattern 3. Rule of Three & Bullet-Point Enumeration (삼단 나열·개조식 구조)
 
 **Detection signals:**
 - Rigid 첫째, 둘째, 셋째 or 첫 번째, 두 번째, 세 번째 lists
 - Repeating parallel structures always forced to exactly three items
+- Bullet-point enumeration style (개조식): short declarative fragments instead of prose, often using numbered sub-items (Ⅰ → 1 → 1) → (1) → ①)
+- Excessive outline depth — AI tends to fragment a single topic into multi-level numbered lists rather than developing it in connected sentences (Park & Kim, 2025)
+- Clusters of unusually short sentences (avg < 30 chars) signaling list-like summarization rather than discursive writing
 
 #### Pattern 4. Formulaic Template Structure (서론/결론 boilerplate)
 
@@ -128,8 +137,18 @@ Korean relative honorifics (상대 높임법) divide into two tiers:
 
 #### Pattern 5. AI High-Frequency Korean Expressions
 
-**High-frequency conjunctions (overuse signals):**
-> 뿐만 아니라, 또한, 이를 통해, 더불어, 나아가, 따라서, 그러나, 하지만, 이처럼, 결과적으로, 그러므로
+**High-frequency conjunctions by type (Park & Kim, 2025):**
+
+| Type | AI-overused expressions | Notes |
+|------|------------------------|-------|
+| 예시·강조 (example/emphasis) | 예를 들어, 특히, 예컨대, 다시 말해, 사실은 | Strongest AI signal — appears far more frequently in AI text |
+| 순접·보충 (additive) | 또한, 그리고, 나아가, 동시에, 뿐만 아니라 | Common in both, but AI uses 또한 and 나아가 more |
+| 역접·대조 (contrastive) | 하지만, 그러나, 오히려 | Similar frequency in both |
+| 인과·결과 (causal) | 따라서, 때문에, 그 결과, 이로 인해 | AI uses slightly more |
+| 요약·정리 (summary) | 즉, 이처럼, 결과적으로, 그러므로 | |
+| 조건 (conditional) | 한다면, ~라면 | **Human marker** — nearly absent in AI text |
+
+> **Treatment rule:** When example/emphasis conjunctions (예를 들어, 특히, 예컨대, 다시 말해) appear 3+ times in a passage, replace some with direct case descriptions, conditional framing (한다면/~라면), or remove entirely. Introducing conditional conjunctions where appropriate adds human-like reasoning texture.
 
 **High-frequency intensifiers:**
 > 특히, 매우, 상당히, 더욱, 크게
@@ -180,9 +199,9 @@ Korean relative honorifics (상대 높임법) divide into two tiers:
 | Pattern | Essay / Blog | Academic / Report |
 |---------|-------------|-------------------|
 | Comma overuse | Aggressively remove; split sentences | Remove English-style commas only |
-| Noun-heavy structure | Convert to verb clauses; conversational forms OK | Dissolve stacked nominalization only |
+| Noun-heavy structure & vocab repetition | Convert to verb clauses; diversify repeated verbs/adjectives | Dissolve stacked nominalization; vary repeated terms |
 | AI stock expressions | Delete or replace with specifics | Delete or substitute precisely |
-| Rule of three | Break up; keep only essential | Keep if genuinely needed |
+| Rule of three & bullet-point style | Break up; convert 개조식 to prose | Keep if genuinely needed; limit outline depth |
 | Formulaic template | Remove boilerplate; enter content directly | Keep structure; remove hollow boilerplate |
 | Conjunction overuse | Aggressively delete | Remove only excessive ones |
 | Bound noun spacing | Merged forms allowed | Standard spacing required |

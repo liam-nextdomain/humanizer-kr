@@ -37,15 +37,36 @@ For pattern detection signals, see the main `SKILL.md`.
 
 ---
 
-## Pattern 3. Rule of Three Enumeration — Essay Treatment
+**Before (어휘 반복 — Park & Kim, 2025):**
+> 인공지능은 의료 분야에서 활용되고 있다. 교육에서도 활용되며, 산업 현장에서도 활용된다.
 
-**Before:**
+**Treatment:** Replace repeated verbs/adjectives with synonyms or specific descriptions. Refer to the vocabulary diversification table in `resources/patterns-kr.md`.
+
+**After:**
+> 인공지능은 의료 분야에서 진단 보조로 쓰이고 있다. 교육에서는 맞춤형 학습 설계에 도입되었고, 산업 현장에서는 공정 자동화를 이끌고 있다.
+
+---
+
+## Pattern 3. Rule of Three & Bullet-Point Enumeration — Essay Treatment
+
+**Before (Rule of Three):**
 > 성공적인 프로젝트 수행을 위해서는 세 가지 요소가 중요하다. 첫째, 팀원들 간의 원활한 소통이 이루어져야 한다. 둘째, 명확한 목표 설정과 일정 관리가 필요하다. 셋째, 예상치 못한 변수에 대응할 수 있는 유연한 태도를 갖추어야 한다.
 
 **Treatment:** Break the rule-of-three. Keep only the most important point or merge into natural flow.
 
 **After:**
 > 프로젝트를 성공적으로 완수하려면 무엇보다 팀원 간의 원활한 소통이 뒷받침되어야 한다. 여기에 명확한 목표 설정과 일정 관리가 유기적으로 맞물릴 때 예상치 못한 변수에도 흔들리지 않는 유연한 대응 능력이 생긴다.
+
+**Before (개조식 — bullet-point enumeration, Park & Kim, 2025):**
+> 복잡계과학의 특징은 다음과 같다.
+> 1) 비선형성: 원인과 결과가 비례하지 않는다.
+> 2) 자기조직화: 외부 통제 없이 질서가 형성된다.
+> 3) 창발성: 부분의 합 이상의 새로운 속성이 나타난다.
+
+**Treatment:** Convert bullet-point fragments into connected prose. Develop each point with reasoning or examples instead of one-line declarations.
+
+**After:**
+> 복잡계과학의 핵심은 비선형성에 있다. 원인과 결과가 단순히 비례하지 않기 때문에 작은 변화가 거대한 결과를 낳기도 한다. 이런 비선형적 상호작용 속에서 외부의 통제 없이도 스스로 질서가 만들어지는 자기조직화 현상이 일어나며, 개별 요소만으로는 설명할 수 없는 새로운 속성이 전체 수준에서 드러나기도 한다.
 
 ---
 
@@ -78,6 +99,16 @@ For pattern detection signals, see the main `SKILL.md`.
 
 **After (해요체 유지):**
 > 인공지능은 교실 안팎에서 학생 개개인의 학습 속도를 세심하게 살피는 조력자가 되었어요. 학생의 취약한 문제를 실시간으로 분석해서 맞춤형 복습 과제를 제시해 주기도 하고요. 이런 개별 맞춤형 피드백 덕분에 아이들이 배움을 포기하지 않고 실력을 차근차근 쌓아 올릴 수 있게 돼요.
+
+---
+
+**Before (예시·강조형 접속사 과다 — Park & Kim, 2025):**
+> 생태학은 생물과 환경의 관계를 연구하는 학문이다. 특히 종 간 상호작용이 핵심 주제이다. 예를 들어 포식자-피식자 관계가 대표적이다. 다시 말해 한 종의 변화가 전체 생태계에 영향을 미친다.
+
+**Treatment:** When example/emphasis conjunctions (특히, 예를 들어, 예컨대, 다시 말해) cluster 3+ times, remove redundant ones and convert some to direct case description or conditional framing.
+
+**After:**
+> 생태학은 생물과 환경의 관계를 연구하는 학문으로, 종 간 상호작용이 핵심 주제다. 포식자-피식자 관계에서 보듯 한 종의 개체수가 변하면 먹이사슬 전체가 흔들린다.
 
 ---
 
