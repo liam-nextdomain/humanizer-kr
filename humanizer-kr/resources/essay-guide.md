@@ -3,11 +3,26 @@
 Detailed treatment rules and Before/After examples for each of the 10 patterns in essay/blog style.
 For pattern detection signals, see the main `SKILL.md`.
 
+## Table of Contents
+
+1. [Korean Relative Honorific Register Table](#korean-relative-honorific-register-table-상대-높임법)
+2. [Pattern 1. Comma Overuse](#pattern-1-comma-overuse--essay-treatment)
+3. [Pattern 2. Noun-Heavy Structure](#pattern-2-noun-heavy-structure--essay-treatment)
+4. [Pattern 3. Rule of Three & Bullet-Point Enumeration](#pattern-3-rule-of-three--bullet-point-enumeration--essay-treatment)
+5. [Pattern 4. Formulaic Template Structure](#pattern-4-formulaic-template-structure--essay-treatment)
+6. [Pattern 5. AI High-Frequency Expressions](#pattern-5-ai-high-frequency-expressions--essay-treatment)
+7. [Pattern 6. Conjunction Overuse](#pattern-6-conjunction-overuse--essay-treatment)
+8. [Pattern 7. Bound Noun Spacing](#pattern-7-bound-noun-spacing-의존명사-띄어쓰기--essay-only)
+9. [Pattern 8. Auxiliary Verb Spacing](#pattern-8-auxiliary-verb-spacing-보조용언-띄어쓰기--essay-only)
+10. [Pattern 9. Absence of Voice / Personality](#pattern-9-absence-of-voice--personality--essay-only)
+11. [Pattern 10. Communication Artifacts](#pattern-10-communication-artifacts--essay-treatment)
+12. [Example 1: Full Worked Example](#example-1-essay-style-full-worked-example)
+
 ---
 
 ## Korean Relative Honorific Register Table (상대 높임법)
 
-**격식체 (Formal style)** — used in official/public contexts (presentations, announcements, military)
+**격식체 (Formal style)** — used in official/public contexts
 
 | Level | Name | Ending examples |
 | --- | --- | --- |
@@ -158,7 +173,7 @@ For pattern detection signals, see the main `SKILL.md`.
 | ~는 것 같다 | ~는것 같다 |
 | ~ㄹ 뿐이다 | ~ㄹ뿐이다 |
 
-**Treatment:** Do not enforce standard spacing. Choose whichever form sounds natural in context.
+**Treatment:** MUST NOT enforce standard spacing. Choose whichever form sounds natural in context.
 
 ---
 
@@ -175,7 +190,7 @@ For pattern detection signals, see the main `SKILL.md`.
 | 이루어 지다 | 이루어지다 |
 | 만들어 지다 | 만들어지다 |
 
-**Treatment:** Allow merged forms wherever they feel natural. Do not normalize back to standard spacing.
+**Treatment:** Allow merged forms wherever they feel natural. MUST NOT normalize back to standard spacing.
 
 ---
 
@@ -197,7 +212,7 @@ Criteria for a good candidate:
 - A fact or finding that warrants an emotional or evaluative reaction
 - A turning point in the argument where the author's commitment matters
 
-### Step B — Present options to the author**
+### Step B — Present options to the author
 
 For each candidate, present **3–5 possible viewpoints** the author could adopt. Options must:
 
@@ -215,7 +230,7 @@ Format:
 > 4. (열린 물음 제기) 예시 문장
 > 5. (직접 의견 입력) 원하시는 관점을 직접 말씀해 주세요.
 
-### Step C — Apply the chosen direction**
+### Step C — Apply the chosen direction
 
 - If the author selects one of the numbered options → weave that viewpoint into the sentence naturally, matching the surrounding tone and speech level.
 - If the author provides their own opinion → apply it directly, adjusting only for natural flow (no AI rewording that dilutes the author's words).
