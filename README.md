@@ -202,12 +202,12 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 - **[references/KatFishNet_Detecting_LLM-Generated_Korean_Text.md](references/KatFishNet_Detecting_LLM-Generated_Korean_Text.md)**: KatFishNet 논문
 - **[references/생성형_AI_텍스트와_인간_텍스트의_내용_및_문체_비교_연구.md](references/생성형_AI_텍스트와_인간_텍스트의_내용_및_문체_비교_연구.md)**: Park & Kim (2025) 논문
 
-
 ## 🔄 버전 히스토리
 
 ### v1.0 (현재) — 2025년 3월
 
 **주요 기능:**
+
 - 10가지 AI 패턴 감지 및 자동 식별
 - 에세이/블로그 vs. 학술/보고서 스타일 구분
 - 6단계 워크플로: 감지 → 승인 → 수정 → 목소리 주입 → 재검증 → 최종본
@@ -215,11 +215,13 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 - 대화형 검증 프로세스 (승인 게이트 포함)
 
 **포함 내용:**
+
 - KatFishNet 연구 통합: 쉼표, 띄어쓰기, 품사 패턴 분석
 - Park & Kim (2025) 연구 통합: 어휘 다양성, 접속사 유형, 개조식 문장, 사고 획일화 감지
 - 스타일별 상세 처리 가이드 및 예제
 
 **최근 업데이트 (2025-03-17):**
+
 - 스킬 문서 및 리소스 최종 정비
 - README 구조 개선 및 문서화 완성
 - 페르소나 및 태스크 구조 명확화
