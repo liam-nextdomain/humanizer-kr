@@ -19,3 +19,7 @@ humanizer_report.md
 main.py
 pyproject.toml
 humanizer-kr.zip
+
+# Local configuration
+CLAUDE.md
+references/5RulesForClaudeSkill.md
