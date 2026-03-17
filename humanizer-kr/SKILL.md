@@ -33,7 +33,7 @@ When given text to humanize:
 
 ### Speech Level Lock (essay only)
 
-Detect dominant tier: **높임말** vs. **반말**. For the full register table → `resources/essay-guide.md`
+Detect dominant tier: **높임말** vs. **반말**. For speech level rules → `resources/essay-guide.md`
 
 - MUST preserve original tier throughout. MUST NOT cross 높임말 ↔ 반말 boundary.
 - Within 높임말, mixing 하십시오체 and 해요체 is allowed.

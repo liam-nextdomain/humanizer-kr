@@ -60,9 +60,9 @@ LLM과 사람의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요
 ### 주요 파일 설명
 
 - **`humanizer-kr/SKILL.md`**: 에이전트 페르소나 및 6단계 태스크 정의, 10가지 AI 패턴의 감지 신호, 스타일 판단 기준, 처리 워크플로(감지 리포트 → 승인 → 초안 → 재검증 → 최종본), 출력 형식 정의
-- **`humanizer-kr/resources/essay-guide.md`**: 상대 높임법 등급표, 에세이/블로그 스타일의 각 패턴별 상세 처리 규칙 및 Before/After 예제
-- **`humanizer-kr/resources/academic-guide.md`**: 학술/보고서 스타일의 각 패턴별 상세 처리 규칙 및 Before/After 예제
-- **`humanizer-kr/resources/patterns-kr.md`**: KatFishNet + Park & Kim 연구 데이터, 쉼표 제거/유지 판단 기준, 명사구↔동사절 변환 패턴표, 감사 체크리스트
+- **`humanizer-kr/resources/essay-guide.md`**: 에세이/블로그 스타일의 각 패턴별 상세 처리 규칙, 존대법 유지 방법, Before/After 예제
+- **`humanizer-kr/resources/academic-guide.md`**: 학술/보고서 스타일의 각 패턴별 상세 처리 규칙, 기술 용어 보존 방법, Before/After 예제
+- **`humanizer-kr/resources/patterns-kr.md`**: KatFishNet + Park & Kim 연구 데이터, 쉼표 제거/유지 판단 기준, 어휘 다양성 참고표, 감사 체크리스트
 
 ## 참고 문서
 
@@ -220,18 +220,25 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 - Park & Kim (2025) 연구 통합: 어휘 다양성, 접속사 유형, 개조식 문장, 사고 획일화 감지
 - 스타일별 상세 처리 가이드 및 예제
 
-**최근 업데이트 (2025-03-17):**
+**최근 업데이트:**
 
-- 스킬 문서 및 리소스 최종 정비
-- README 구조 개선 및 문서화 완성
-- 페르소나 및 태스크 구조 명확화
-- 처리 워크플로 최적화
+- **2025-03-17 (현재)**: 토큰 효율화 리팩토링
+  - 불필요한 설명 제거 (상대높임법 테이블, 명사구→동사절 변환 패턴표, 중복된 Pattern 10 설명)
+  - essay-guide.md: 24줄 감소 (266줄)
+  - academic-guide.md: 1줄 감소 (182줄)
+  - patterns-kr.md: 49줄 감소 (344줄)
+  - 총 74줄 절감 (5RulesForClaudeSkill 지침 준수)
+
+- **2025-03-17**: 스킬 문서 및 리소스 최종 정비
+  - README 구조 개선 및 문서화 완성
+  - 페르소나 및 태스크 구조 명확화
+  - 처리 워크플로 최적화
 
 ### 개발 히스토리
 
 **주요 마일스톤:**
 
-- **2025-03-17**: README 및 문서화 완성 (`657087a`, `4bdd045`)
+- **2025-03-17**: 토큰 효율화 및 README 갱신
 - **2025-03-16**: 페르소나 및 태스크 구조 명확화 (`255f53f`)
 - **2025-03-15**: 스킬 구조 재설계 (`8c0333a`)
 - **2025-03-13**: Park & Kim (2025) 연구 통합 (`ad7e4b6`, `d4342ab`)

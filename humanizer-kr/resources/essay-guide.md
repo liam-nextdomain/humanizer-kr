@@ -5,7 +5,7 @@ For pattern detection signals, see the main `SKILL.md`.
 
 ## Table of Contents
 
-1. [Korean Relative Honorific Register Table](#korean-relative-honorific-register-table-상대-높임법)
+1. [Speech Level Rule](#speech-level-rule)
 2. [Pattern 1. Comma Overuse](#pattern-1-comma-overuse--essay-treatment)
 3. [Pattern 2. Noun-Heavy Structure](#pattern-2-noun-heavy-structure--essay-treatment)
 4. [Pattern 3. Rule of Three & Bullet-Point Enumeration](#pattern-3-rule-of-three--bullet-point-enumeration--essay-treatment)
@@ -20,25 +20,11 @@ For pattern detection signals, see the main `SKILL.md`.
 
 ---
 
-## Korean Relative Honorific Register Table (상대 높임법)
+## Speech Level Rule
 
-**격식체 (Formal style)** — used in official/public contexts
-
-| Level | Name | Ending examples |
-| --- | --- | --- |
-| 아주높임 | 하십시오체 | ~합니다, ~입니다, ~했습니다, ~습니까? |
-| 예사높임 | 하오체 | ~하시오, ~하오, ~먹소 |
-| 예사낮춤 | 하게체 | ~하게, ~먹네, ~하시게 |
-| 아주낮춤 | 해라체 | ~한다, ~해라, ~먹는다 |
-
-**비격식체 (Informal style)** — used in everyday conversation, casual writing
-
-| Level | Name | Ending examples |
-| --- | --- | --- |
-| 두루높임 | 해요체 | ~해요, ~이에요, ~하죠, ~더라고요 |
-| 두루낮춤 | 해체 (반말) | ~해, ~야, ~다, ~거든, ~더라 |
-
-> **Speech level reminder:** The examples below are written in specific speech levels for illustration purposes. When rewriting, you **must** preserve the original text's politeness tier (높임말 or 반말). Never convert 높임말 text to 해라체.
+- MUST preserve the original tier (높임말 or 반말) throughout. MUST NOT cross the boundary.
+- Within 높임말, mixing 하십시오체 and 해요체 is allowed.
+- The examples below are written in specific speech levels for illustration. When rewriting, always match the original.
 
 ---
 
@@ -153,7 +139,7 @@ For pattern detection signals, see the main `SKILL.md`.
 **Before:**
 > 하지만 규칙적인 운동은 신체 건강만을 위한 것이 아니다. 왜냐하면 운동은 뇌의 엔도르핀 분비를 촉진하여 정신적 스트레스를 완화해 주기 때문이다. 그래서 많은 전문가들은 현대인들에게 매일 짧게라도 운동할 것을 권장한다. 또한 이를 통해 업무 효율성까지 함께 높일 수 있다.
 
-**Treatment:** Delete conjunctions where the flow is natural without them. Merge causal relationships into a single clause using -므로 or -서.
+**Treatment:** Delete conjunctions where the flow is natural without them. Merge causal relationships into a single clause using -므로 or -서. MUST NOT merge two originally separate sentences using clause connectors that generate new commas (-ㄴ데,/-지만,/-으나,). When removing a sentence-initial conjunction (하지만, 그래서, 그런데 등), keep the sentences separate — delete only the conjunction.
 
 **After:**
 > 규칙적인 운동은 신체 건강만을 위한 것이 아니다. 뇌의 엔도르핀 분비를 촉진해 정신적 스트레스를 다독여 주는 활동인 까닭이다. 전문가들이 바쁜 현대인에게 매일 짧게라도 몸을 움직이라고 입을 모으는 이유이기도 하다. 운동 습관은 지친 일상에 활력을 불어넣어 업무 효율성까지 기분 좋게 끌어올려 준다.
@@ -179,18 +165,9 @@ For pattern detection signals, see the main `SKILL.md`.
 
 ## Pattern 8. Auxiliary Verb Spacing (보조용언 띄어쓰기) — Essay Only
 
-**Acceptable merged forms in essay:**
+Allow merged forms wherever they feel natural. MUST NOT normalize back to standard spacing.
 
-| LLM standard form | Essay natural form |
-| --- | --- |
-| 되어 있다 | 되어있다 |
-| 해 주다 | 해주다 |
-| 해 왔다 | 해왔다 |
-| 알아 보다 | 알아보다 |
-| 이루어 지다 | 이루어지다 |
-| 만들어 지다 | 만들어지다 |
-
-**Treatment:** Allow merged forms wherever they feel natural. MUST NOT normalize back to standard spacing.
+→ Full allowlist: `resources/patterns-kr.md` Section 5
 
 ---
 
@@ -240,7 +217,7 @@ Format:
 
 ## Pattern 10. Communication Artifacts — Essay Treatment
 
-**Treatment:** Remove all. Delete greeting phrases. Remove emojis. Convert inline bold headers to natural paragraph prose. Convert bullet-only content into flowing prose.
+Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 
 ---
 
@@ -258,7 +235,7 @@ Format:
 - Pattern 6: Consecutive conjunctions (뿐만 아니라 → 따라서 → 이처럼)
 - Speech level detected: **하십시오체** (~합니다 / ~입니다) → must be preserved throughout
 
-### 1차 재작성본 (Draft)
+### First Draft
 
 > 인공지능은 현대 사회의 핵심 동력으로서 여러 산업 현장에 깊숙이 자리 잡았습니다. 이는 사회 전반의 생산성을 높이고 새로운 가치를 창출하는 기반이 되기에, 관련 기술의 지속적인 고도화가 요구됩니다. 구체적으로는 정밀한 진단을 돕는 의료 서비스와 개인별 맞춤형 교육, 그리고 지능형 산업 자동화가 그 혁신의 흐름을 주도하고 있습니다. 이렇듯 인공지능은 우리 삶의 질을 한 단계 높이는 결정적인 역할을 수행합니다.
 
@@ -279,11 +256,11 @@ Format:
 
 ---
 
-### 남은 AI 흔적
+### Remaining AI Traces
 
 - 의료, 교육, 자동화 three-item list still echoes rule-of-three
 - "지속적인 고도화가 요구됩니다" — vague necessity claim with no specific agent or scope
 
-### 최종본 (작가 선택: Option 2 — 회의/비판 반영)
+### Final Version (Author's choice: Option 2 — skeptical/critical)
 
 > 인공지능은 현대 사회의 핵심 동력으로서 여러 산업 현장에 깊숙이 자리 잡았습니다. 의료·교육·산업 자동화에서 분명한 성과를 내고 있고, 기술 고도화도 빠른 속도로 진행 중입니다. 다만 그 혜택이 모두에게 고르게 닿고 있는지는 아직 확신하기 어렵습니다. 기술의 진보만큼이나, 그 과실을 나누는 방식에 대한 사회적 논의가 함께 따라와야 할 때입니다.

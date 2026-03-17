@@ -149,7 +149,7 @@ MUST NOT apply Pattern 9. MUST maintain objectivity throughout. No author's pers
 
 ## Pattern 10. Communication Artifacts — Academic Treatment
 
-**Treatment:** Remove all. Delete greeting phrases. Remove emojis. Convert inline bold headers to natural paragraph prose. Convert bullet-only content into flowing prose.
+Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 
 ---
 
