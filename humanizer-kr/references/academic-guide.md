@@ -1,6 +1,6 @@
 # Academic / Report Style Guide
 
-Detailed treatment rules and Before/After examples for each of the 10 patterns in academic/report style.
+Detailed treatment rules and Before/After examples for each of the 14 patterns in academic/report style.
 For pattern definitions and detection signals, see `patterns-kr.md`.
 
 ## Table of Contents
@@ -14,7 +14,11 @@ For pattern definitions and detection signals, see `patterns-kr.md`.
 7. [Patterns 7 & 8: Word Spacing](#patterns-7--8-word-spacing--not-applicable)
 8. [Pattern 9: Voice Consultation](#pattern-9-voice-consultation--not-applicable)
 9. [Pattern 10. Communication Artifacts](#pattern-10-communication-artifacts--academic-treatment)
-10. [Example 2: Full Worked Example](#example-2-academic--report-style-full-worked-example)
+10. [Pattern 11. Inanimate Subject Personification](#pattern-11-inanimate-subject-personification--academic-treatment)
+11. [Pattern 12. Unnecessary Passive / Relative Clause Overuse](#pattern-12-unnecessary-passive--relative-clause-overuse--academic-treatment)
+12. [Pattern 13. Empty Subject & ~는 것이다 Construction](#pattern-13-empty-subject--는-것이다-construction--academic-treatment)
+13. [Pattern 14. Causative 만들다 Direct Translation](#pattern-14-causative-만들다-direct-translation--academic-treatment)
+14. [Example 2: Full Worked Example](#example-2-academic--report-style-full-worked-example)
 
 ---
 
@@ -150,6 +154,54 @@ MUST NOT apply Pattern 9. MUST maintain objectivity throughout. No author's pers
 ## Pattern 10. Communication Artifacts — Academic Treatment
 
 Remove all (greetings, emojis, bold headers, bullet-only content → prose).
+
+---
+
+## Pattern 11. Inanimate Subject Personification — Academic Treatment
+
+**Before:**
+> 본 연구가 이 문제를 잘 보여준다. 해당 분석에서 핵심 변인을 직접 짚었다.
+
+**Treatment:** Restructure so the inanimate noun becomes an adverbial or instrumental phrase. In academic writing, constructions like "본 연구에서는 ~을 확인하였다" are standard and should be preserved; only flag cases where the inanimate subject performs a clearly human action verb (보여주다, 짚다, 말하다, 증명하다). See `patterns-kr.md` Section 10, P11 for detection criteria.
+
+**After:**
+> 본 연구 결과에 이 문제가 잘 나타나 있다. 해당 분석 결과, 핵심 변인이 드러났다.
+
+---
+
+## Pattern 12. Unnecessary Passive / Relative Clause Overuse — Academic Treatment
+
+**Before:**
+> 서양 중심으로 학습된 모델이 생성한 텍스트에서 선택되는 표현은 제한적이며, 공유된 알고리즘에 의해 편향이 재생산된다.
+
+**Treatment:** Convert passive constructions to active voice where clarity improves. Academic passive ("~된 바 있다", "~으로 확인되었다") is acceptable when it serves objectivity. Only flag passives that obscure the actual agent or add unnecessary complexity. See `patterns-kr.md` Section 10, P12 for detection criteria.
+
+**After:**
+> 서양 위주의 데이터를 학습한 모델이 생성한 텍스트에서 자주 쓰는 표현은 제한적이며, 범용 알고리즘이 편향을 재생산하는 구조이다.
+
+---
+
+## Pattern 13. Empty Subject & '~는 것이다' Construction — Academic Treatment
+
+**Before:**
+> 이 현상이 까다로운 이유가 있다. 추가적인 분석을 수행할 필요가 있다. 이는 방법론적 한계를 극복하는 과정이기도 한 것이다.
+
+**Treatment:** Remove dummy frame constructions ('이유가 있다', '필요가 있다', '~는 것이다'). State the content directly. Academic convention permits "~할 필요가 있다" when genuinely signaling a research gap; only flag when it functions as empty filler. See `patterns-kr.md` Section 10, P13 for detection criteria.
+
+**After:**
+> 이 현상은 다음과 같은 이유로 까다롭다. 추가적인 분석을 수행해야 한다. 이는 방법론적 한계를 극복하는 과정이기도 하다.
+
+---
+
+## Pattern 14. Causative '만들다' Direct Translation — Academic Treatment
+
+**Before:**
+> 이 결과는 해당 변인의 역할을 더 선명하게 만들어 준다. 특정 조건이 반응 속도를 빠르게 만든다.
+
+**Treatment:** Replace ~하게 만들다 with state-change expressions (~해지다) or precise causal descriptions. See `patterns-kr.md` Section 10, P14 for detection criteria.
+
+**After:**
+> 이 결과를 통해 해당 변인의 역할이 더욱 선명해진다. 특정 조건에서 반응 속도가 빨라진다.
 
 ---
 

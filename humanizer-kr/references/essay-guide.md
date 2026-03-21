@@ -1,6 +1,6 @@
 # Essay / Blog Style Guide
 
-Detailed treatment rules and Before/After examples for each of the 10 patterns in essay/blog style.
+Detailed treatment rules and Before/After examples for each of the 14 patterns in essay/blog style.
 For pattern definitions and detection signals, see `patterns-kr.md`.
 
 ## Table of Contents
@@ -16,7 +16,11 @@ For pattern definitions and detection signals, see `patterns-kr.md`.
 9. [Pattern 8. Auxiliary Verb Spacing](#pattern-8-auxiliary-verb-spacing-보조용언-띄어쓰기--essay-only)
 10. [Pattern 9. Absence of Voice / Personality](#pattern-9-absence-of-voice--personality--essay-only)
 11. [Pattern 10. Communication Artifacts](#pattern-10-communication-artifacts--essay-treatment)
-12. [Example 1: Full Worked Example](#example-1-essay-style-full-worked-example)
+12. [Pattern 11. Inanimate Subject Personification](#pattern-11-inanimate-subject-personification--essay-treatment)
+13. [Pattern 12. Unnecessary Passive / Relative Clause Overuse](#pattern-12-unnecessary-passive--relative-clause-overuse--essay-treatment)
+14. [Pattern 13. Empty Subject & ~는 것이다 Construction](#pattern-13-empty-subject--는-것이다-construction--essay-treatment)
+15. [Pattern 14. Causative 만들다 Direct Translation](#pattern-14-causative-만들다-direct-translation--essay-treatment)
+16. [Example 1: Full Worked Example](#example-1-essay-style-full-worked-example)
 
 ---
 
@@ -218,6 +222,78 @@ Format:
 ## Pattern 10. Communication Artifacts — Essay Treatment
 
 Remove all (greetings, emojis, bold headers, bullet-only content → prose).
+
+---
+
+## Pattern 11. Inanimate Subject Personification — Essay Treatment
+
+**Before:**
+> 연구 하나가 이걸 잘 보여줍니다. 환경이 사람의 생각을 만든다는 사실은 이미 여러 차례 증명되었습니다.
+
+**Treatment:** Rewrite so that the inanimate noun becomes an adverbial or instrumental phrase, and a human subject or natural process takes the agent role. See `patterns-kr.md` Section 10, P11 for detection criteria.
+
+**After:**
+> 이 연구를 보면 다음과 같은 사실을 알 수 있습니다. 사람의 생각은 환경의 영향을 받는다는 점이 이미 여러 차례 확인되었습니다.
+
+**Before (높임말 — 해요체):**
+> 이 분석에서 문제를 직접 짚었어요. 데이터가 우리에게 답을 알려줘요.
+
+**After (해요체 유지):**
+> 분석 결과를 보면 이 문제가 바로 드러나요. 데이터를 살펴보면 답을 찾을 수 있어요.
+
+---
+
+## Pattern 12. Unnecessary Passive / Relative Clause Overuse — Essay Treatment
+
+**Before:**
+> 서양 중심으로 학습된 모델이 자주 선택되는 표현을 사용하면서 공유된 알고리즘이 문제를 일으키고 있습니다.
+
+**Treatment:** Convert passive constructions (되다/어지다) to active voice. Replace passive modifiers with direct verb phrases. See `patterns-kr.md` Section 10, P12 for detection criteria.
+
+**After:**
+> 서양 위주의 데이터를 학습한 모델이 자주 쓰는 표현을 사용하면서 함께 사용하는 알고리즘이 문제를 일으키고 있습니다.
+
+**Before (높임말 — 하십시오체):**
+> 최근 발표된 연구에서 제안된 방법론이 적용되었습니다.
+
+**After (하십시오체 유지):**
+> 최근 발표한 연구에서 제안한 방법론을 적용했습니다.
+
+---
+
+## Pattern 13. Empty Subject & '~는 것이다' Construction — Essay Treatment
+
+**Before:**
+> 이 현상이 까다로운 이유가 있습니다. 물어볼 필요가 있습니다. 결국 이것은 씨름하는 과정이기도 했습니다.
+
+**Treatment:** Remove the dummy frame ('이유가 있다', '필요가 있다', '~는 것이다'). State the content directly without the empty subject construction. See `patterns-kr.md` Section 10, P13 for detection criteria.
+
+**After:**
+> 이 현상은 다음과 같은 이유로 까다롭습니다. 질문해 보아야 합니다. 결국 씨름하며 배우는 단계였습니다.
+
+**Before (높임말 — 해요체):**
+> 이게 중요한 이유가 있어요. 다시 생각해 볼 필요가 있어요.
+
+**After (해요체 유지):**
+> 이게 왜 중요한지 살펴볼게요. 다시 한번 생각해 봐야 해요.
+
+---
+
+## Pattern 14. Causative '만들다' Direct Translation — Essay Treatment
+
+**Before:**
+> 이 지점을 더 선명하게 만들어줍니다. 언어는 어떤 사고방식을 쉽게 만들고 다른 사고방식은 어렵게 만듭니다.
+
+**Treatment:** Replace ~하게 만들다 with state-change expressions (~해지다), adverbs, or indirect cause-effect descriptions. See `patterns-kr.md` Section 10, P14 for detection criteria. Note: P1 essay example ("편리하게 만들고") also contains a P14 instance.
+
+**After:**
+> 덕분에 이 지점이 더 선명해집니다. 언어는 어떤 사고방식에 익숙해지게 하고 다른 사고방식은 낯설게 느끼도록 유도합니다.
+
+**Before (높임말 — 하십시오체):**
+> 이 도구는 작업을 효율적으로 만들어 줍니다.
+
+**After (하십시오체 유지):**
+> 이 도구 덕분에 작업이 훨씬 효율적으로 바뀝니다.
 
 ---
 

@@ -4,12 +4,12 @@
 
 ---
 
-## 10 Korean AI Patterns — Index
+## 14 Korean AI Patterns — Index
 
 ### [A] Punctuation
 
 - **P1 Comma Overuse** — comma inclusion rate >40%; strongest AI identifier
-- **P2 Noun-Heavy / Low Vocab Diversity** — ~의 chains, same verb/adj 3+ times (AI verb TTR 0.461 vs. human 0.545)
+- **P2 Noun-Heavy / Low Vocab Diversity** — ~의 chains, same verb/adj 3+ times (AI verb TTR 0.461 vs. human 0.545) *(for English-style syntactic translation, see [F] P11–P14)*
 
 ### [B] Structure / Word-Order
 
@@ -18,7 +18,7 @@
 
 ### [C] Vocabulary / Expression
 
-- **P5 AI High-Frequency Expressions** — 특히/예를 들어 clustering, 다양한/중요한/효과적인 repetition
+- **P5 AI High-Frequency Expressions** — 특히/예를 들어 clustering, 다양한/중요한/효과적인 repetition *(for structural translation issues, see [F] P11–P14)*
 - **P6 Conjunction Overuse** — 3+ consecutive sentences starting with conjunctions
 
 ### [D] Word Spacing — Essay Only
@@ -30,6 +30,13 @@
 
 - **P9 Absence of Voice** — essay only; neutral statements without author personality
 - **P10 Communication Artifacts** — greetings, AI handover language, emoji, bold headers → remove all
+
+### [F] English Direct Translation (영어 직역투)
+
+- **P11 Inanimate Subject Personification** — English S+V+O structure where inanimate nouns act as agents (연구가 보여준다, 분석이 짚었다); Korean naturally uses human subjects or adverbial constructions
+- **P12 Unnecessary Passive / Relative Clause Overuse** — English passive (P.P.) translated as 되다/어지다 (학습된, 선택되는, 공유된); Korean reads better in active voice
+- **P13 Empty Subject & '~는 것이다' Construction** — 'It is ~ that' / 'There is a reason ~' / 'There is a need to ~' structures making sentences unnecessarily long and unfocused
+- **P14 Causative '만들다' Direct Translation** — 'Make + O + C' translated as ~하게 만들다; Korean uses state-change expressions or adverbs
 
 ---
 
@@ -48,6 +55,10 @@
 | Absence of voice | Scan candidates → propose 3–5 options per site → apply author's chosen direction | Not applied; maintain objectivity |
 | **Speech level** | **MUST preserve — MUST NOT change** | Not applicable |
 | Communication artifacts | Remove entirely | Remove entirely |
+| Inanimate subject personification | Rewrite with human subject or adverbial construction | Same — restructure with appropriate agent or adverbial |
+| Unnecessary passive / relative clause | Convert to active voice; simplify relative clauses | Convert to active voice where clarity improves |
+| Empty subject & ~는 것이다 | Remove dummy subject; state directly | Remove dummy subject; state directly |
+| Causative 만들다 direct translation | Replace with state-change expression or adverb | Replace with state-change expression or adverb |
 
 ---
 
@@ -62,6 +73,7 @@
 7. [Template Structure — Cliché List](#7-template-structure--cliché-list)
 8. [Park & Kim (2025) Research Statistics](#8-park--kim-2025-research-statistics)
 9. [Korean Ending Diversification Reference](#9-korean-ending-diversification-reference)
+10. [English Direct Translation Detection Criteria](#10-english-direct-translation-detection-criteria)
 
 ---
 
@@ -276,6 +288,10 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 - [ ] Bullet-list sentences (short enumeration, numbered sub-points) converted to prose?
 - [ ] Same verb/adjective not repeated 3+ times?
 - [ ] Example/emphasis conjunctions (예를 들어, 특히, 예컨대) not excessive?
+- [ ] No inanimate subjects performing human actions (연구가 보여준다 → 연구를 보면)?
+- [ ] Unnecessary 되다/어지다 passives converted to active voice?
+- [ ] Empty subject / ~는 것이다 constructions removed?
+- [ ] ~하게 만들다 causative replaced with state-change expression?
 
 ### Paper/report audit items (check after rewriting)
 
@@ -289,6 +305,10 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 - [ ] Greetings and emojis removed?
 - [ ] Bullet-list structure limited to paper-appropriate level?
 - [ ] Excessive repetition of the same expressions resolved?
+- [ ] No inanimate subjects performing human actions?
+- [ ] Unnecessary 되다/어지다 passives converted to active voice?
+- [ ] Empty subject / ~는 것이다 constructions removed?
+- [ ] ~하게 만들다 causative replaced with state-change expression?
 
 ---
 
@@ -389,3 +409,70 @@ LLM repeats specific ending patterns. When rewriting, diversify endings to incre
 | ~됨으로써 | ~되어서, ~되면서 |
 | ~함으로써 | ~해서, ~하면서 |
 | ~에 따라 | ~에 맞게, ~을 보면, ~이니까 |
+
+---
+
+## 10. English Direct Translation Detection Criteria
+
+AI language models frequently produce Korean text that mirrors English syntactic structures. The four patterns below target sentence-level translation artifacts that are distinct from vocabulary repetition (P2) or stock expressions (P5).
+
+### P11 — Inanimate Subject Personification (무생물 주어 의인화)
+
+**Detection signal:** An inanimate or abstract noun occupies the grammatical subject position and performs a human action verb (보여주다, 짚다, 말하다, 증명하다, 만들다, 제시하다, 강조하다, 요구하다). This mirrors English "Research shows…", "The analysis points out…", "The environment creates…".
+
+**Treatment:** Rewrite with a human subject, or convert the inanimate noun to an adverbial/instrumental phrase.
+
+| English source pattern | AI direct translation | Natural Korean |
+| --- | --- | --- |
+| "Research shows this well." | "연구 하나가 이걸 잘 보여줍니다." | "이 연구를 보면 다음과 같은 사실을 알 수 있습니다." / "연구 결과에 이 점이 잘 나타나 있습니다." |
+| "The analysis points out this issue." | "분석에서 이 문제를 직접 짚었습니다." | "분석 결과, 이 문제점이 드러났습니다." / "해당 분석은 이 문제를 직접 지적하고 있습니다." |
+| "The environment creates thoughts." | "환경이 생각을 만든다." | "환경에 따라 생각이 바뀐다." / "사람의 생각은 환경의 영향을 받는다." |
+
+> **Quick test:** If the subject is not a person (or group of people) but the verb describes a deliberate human action, flag as P11.
+
+---
+
+### P12 — Unnecessary Passive / Relative Clause Overuse (불필요한 수동형·관형사절 남용)
+
+**Detection signal:** Past participle or passive voice translated as 되다/어지다/받다 where Korean active voice is more natural. Also includes overuse of modifier clauses (관형사절) that stack relative constructions.
+
+**Treatment:** Convert to active voice. Replace passive modifier with a direct verb phrase.
+
+| English source pattern | AI direct translation | Natural Korean |
+| --- | --- | --- |
+| "Models trained on Western data" | "서양 중심으로 학습된 모델이" | "서양 중심으로 데이터를 익힌 모델이" / "서양 위주의 데이터를 학습한 모델이" |
+| "Expressions that are selected" | "선택되는 표현" | "자주 쓰는 표현" / "선택하는 표현" |
+| "Shared algorithm" | "공유된 알고리즘" | "함께 사용하는 알고리즘" / "범용적인 알고리즘" |
+
+> **Quick test:** If 되다/어지다 can be replaced by an active verb without losing meaning, flag as P12.
+
+---
+
+### P13 — Empty Subject & '~는 것이다' Construction (의미 없는 주어·가주어/보어 구문)
+
+**Detection signal:** Sentence structures mirroring English "It is ~ that…", "The reason is ~", "There is a need to ~", "There is a reason why ~". These add a dummy frame around the actual statement, making the predicate unnecessarily long and the focus blurry.
+
+**Treatment:** Remove the dummy frame. State the content directly.
+
+| English source pattern | AI direct translation | Natural Korean |
+| --- | --- | --- |
+| "There is a reason why this is tricky." | "이 현상이 까다로운 이유가 있습니다." | "이 현상은 다음과 같은 이유로 까다롭습니다." / "이 현상이 왜 까다로운지 살펴보겠습니다." |
+| "There is a need to ask." | "물어볼 필요가 있습니다." | "의문을 가져야 합니다." / "질문해 보아야 합니다." |
+| "It was also a process of…" | "과정이기도 했습니다." | "과정이기도 합니다." / "씨름하며 배우는 단계였습니다." |
+
+> **Quick test:** If the sentence contains ~이유가 있다, ~필요가 있다, ~것이다 as a frame without adding information, flag as P13.
+
+---
+
+### P14 — Causative '만들다' Direct Translation (사역동사 '만들다' 직역)
+
+**Detection signal:** 'Make + Object + Complement' translated as ~하게 만들다/만들어주다. Korean expresses causation through state-change verbs (~해지다), adverbs, or indirect constructions rather than the explicit causative '만들다'.
+
+**Treatment:** Replace with a state-change expression (~해지다), an adverbial construction, or an indirect cause-effect description.
+
+| English source pattern | AI direct translation | Natural Korean |
+| --- | --- | --- |
+| "Makes this point clearer." | "이 지점을 더 선명하게 만들어줍니다." | "이 지점이 덕분에 더 선명해집니다." / "연구 결과를 통해 이 지점이 더욱 뚜렷하게 드러납니다." |
+| "Makes a way of thinking easy." | "어떤 사고방식을 쉽게 만들고" | "어떤 사고방식에 익숙해지게 하고" / "특정 방식으로 생각하게 유도하고" |
+
+> **Quick test:** If ~하게 만들다 can be rewritten as ~해지다 or a direct verb without losing meaning, flag as P14. Note: P1 essay example (line 34 of essay-guide.md) contains "편리하게 만들고" — this is a P14 instance co-occurring with P1.

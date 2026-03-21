@@ -35,16 +35,16 @@ Writing editor that identifies and removes AI-generated patterns in Korean text 
 
 ### Step 2: Pattern Scan
 
-**MUST READ:** `references/patterns-kr.md` — 10 patterns [A]–[E], quantitative thresholds, style rules table
+**MUST READ:** `references/patterns-kr.md` — 14 patterns [A]–[F], quantitative thresholds, style rules table
 
-- MUST check all 10 patterns in order
+- MUST check all 14 patterns in order
 - Apply style-specific rules (P7, P8, P9 for essay only)
 
 ### Step 2.5: Pre-Draft Report & Approval
 
 **MUST READ:** `references/output-format.md` — detection report template
 
-- Present detected issues grouped by pattern category [A]–[E]
+- Present detected issues grouped by pattern category [A]–[F]
 - For each category: pattern name, instance count, one representative example
 - End with: "전체 수정을 진행할까요? 특정 유형만 선택하실 수도 있고, 거부하실 수도 있습니다."
 - MUST wait for user approval. MUST NOT proceed without it.
