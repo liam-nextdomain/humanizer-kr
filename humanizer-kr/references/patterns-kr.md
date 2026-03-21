@@ -1,10 +1,57 @@
 # Korean LLM Pattern Reference Guide
 
-**Source**: KatFishNet: Detecting LLM-Generated Korean Text through Linguistic Feature Analysis
-Shinwoo Park et al., Yonsei University, 2024
-GitHub: <https://github.com/Shinwoo-Park/katfishnet>
+**Sources**: KatFishNet (Shinwoo Park et al., Yonsei University, 2024) · Park & Kim (2025)
 
-## Table of Contents
+---
+
+## 10 Korean AI Patterns — Index
+
+### [A] Punctuation
+
+- **P1 Comma Overuse** — comma inclusion rate >40%; strongest AI identifier
+- **P2 Noun-Heavy / Low Vocab Diversity** — ~의 chains, same verb/adj 3+ times (AI verb TTR 0.461 vs. human 0.545)
+
+### [B] Structure / Word-Order
+
+- **P3 Rule of Three & Bullet-Point Enumeration** — rigid 첫째/둘째/셋째, excessive outline depth (개조식)
+- **P4 Formulaic Template** — 서론 ~에 대해 살펴보겠다 / 결론 ~해야 할 것이다
+
+### [C] Vocabulary / Expression
+
+- **P5 AI High-Frequency Expressions** — 특히/예를 들어 clustering, 다양한/중요한/효과적인 repetition
+- **P6 Conjunction Overuse** — 3+ consecutive sentences starting with conjunctions
+
+### [D] Word Spacing — Essay Only
+
+- **P7 Bound Noun Spacing** — mechanical consistency vs. human intentional merging
+- **P8 Auxiliary Verb Spacing** — LLM always separates; humans merge
+
+### [E] Communication
+
+- **P9 Absence of Voice** — essay only; neutral statements without author personality
+- **P10 Communication Artifacts** — greetings, AI handover language, emoji, bold headers → remove all
+
+---
+
+## Style Rules at a Glance
+
+| Pattern | Essay / Blog | Academic / Report |
+| --- | --- | --- |
+| Comma overuse | Aggressively remove; split sentences | Remove English-style commas only |
+| Noun-heavy structure & vocab repetition | Convert to verb clauses; diversify repeated verbs/adjectives | Dissolve stacked nominalization; vary repeated terms |
+| AI stock expressions | Delete or replace with specifics | Delete or substitute precisely |
+| Rule of three & bullet-point style | Break up; convert 개조식 to prose | Keep if genuinely needed; limit outline depth |
+| Formulaic template | Remove boilerplate; enter content directly | Keep structure; remove hollow boilerplate |
+| Conjunction overuse | Aggressively delete | Remove only excessive ones |
+| Bound noun spacing | Merged forms allowed | Standard spacing required |
+| Auxiliary verb spacing | Merged forms allowed | Standard spacing required |
+| Absence of voice | Scan candidates → propose 3–5 options per site → apply author's chosen direction | Not applied; maintain objectivity |
+| **Speech level** | **MUST preserve — MUST NOT change** | Not applicable |
+| Communication artifacts | Remove entirely | Remove entirely |
+
+---
+
+## Table of Contents — Data & Reference Tables
 
 1. [KatFishNet Key Statistics](#1-katfishnet-key-statistics)
 2. [Comma Removal/Retention Criteria](#2-comma-removalretention-criteria)

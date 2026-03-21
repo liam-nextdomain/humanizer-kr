@@ -2,6 +2,11 @@
 
 **LLM이 만든 한국어 문장에서 'AI스러운 흔적'을 발견하고 사람이 쓴 글에 가깝도록 수정해 주는 Claude 스킬입니다.**
 
+| 버전 | 날짜 | 주요 변경 |
+| --- | --- | --- |
+| v1.1 | 2025-03-21 | SKILL.md 재설계, output-format.md 추가, 폴더 구조 정리 (references/ vs reference/) |
+| v1.0 | 2025-03-17 | 최초 릴리즈 — 10가지 AI 패턴, 에세이/학술 스타일 구분, 5단계 워크플로 |
+
 ## 📌 소개
 
 LLM을 이용해 쓴 글에서 'AI가 쓴 티'를 덜 내고 싶으신가요? **Humanizer KR**은 AI가 생성한 한국어 텍스트를 자연스러운 인간의 필체로 전환하는 Claude 스킬입니다.
@@ -46,12 +51,14 @@ LLM과 사람의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요
 ├── README.md                     # 이 파일
 ├── humanizer-kr/                 # 한국어 버전
 │   ├── SKILL.md                  # 에이전트 페르소나, 태스크, 패턴 정의, 처리 워크플로
-│   └── resources/
-│       ├── patterns-kr.md        # KatFishNet 연구 데이터 및 상세 참고 자료
+│   └── references/
+│       ├── patterns-kr.md        # 패턴 인덱스, 정량 기준, 스타일 규칙, 연구 데이터
 │       ├── essay-guide.md        # 에세이/블로그 스타일 처리 가이드
-│       └── academic-guide.md     # 학술/보고서 스타일 처리 가이드
-├── references/                   # 참고 문서 및 자료
+│       ├── academic-guide.md     # 학술/보고서 스타일 처리 가이드
+│       └── output-format.md      # 각 워크플로 단계별 출력 템플릿
+├── reference/                    # 비운영 참고 문서 (스킬 실행과 무관)
 │   ├── SKILL.md                  # 영어 버전 스킬 (원본 아이디어)
+│   ├── 5RulesForClaudeSkill.md   # Anthropic 스킬 작성 원칙
 │   ├── KatFishNet_Detecting_LLM-Generated_Korean_Text.md  # KatFishNet 논문
 │   └── 생성형_AI_텍스트와_인간_텍스트의_내용_및_문체_비교_연구.md  # Park & Kim (2025) 논문
 └── ...
@@ -59,10 +66,11 @@ LLM과 사람의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요
 
 ### 주요 파일 설명
 
-- **`humanizer-kr/SKILL.md`**: 에이전트 페르소나 및 6단계 태스크 정의, 10가지 AI 패턴의 감지 신호, 스타일 판단 기준, 처리 워크플로(감지 리포트 → 승인 → 초안 → 재검증 → 최종본), 출력 형식 정의
-- **`humanizer-kr/resources/essay-guide.md`**: 에세이/블로그 스타일의 각 패턴별 상세 처리 규칙, 존대법 유지 방법, Before/After 예제
-- **`humanizer-kr/resources/academic-guide.md`**: 학술/보고서 스타일의 각 패턴별 상세 처리 규칙, 기술 용어 보존 방법, Before/After 예제
-- **`humanizer-kr/resources/patterns-kr.md`**: KatFishNet + Park & Kim 연구 데이터, 쉼표 제거/유지 판단 기준, 어휘 다양성 참고표, 감사 체크리스트
+- **`humanizer-kr/SKILL.md`**: 5단계 워크플로 정의 (스타일 감지 → 패턴 스캔 → 초안 작성 → 음성 협의(에세이) → 재검증), 각 단계별 MUST READ 파일 참조
+- **`humanizer-kr/references/patterns-kr.md`**: 10가지 AI 패턴 인덱스, 정량 기준, 스타일별 규칙 테이블, KatFishNet + Park & Kim 연구 데이터, 감사 체크리스트
+- **`humanizer-kr/references/essay-guide.md`**: 에세이/블로그 스타일 패턴별 상세 처리 규칙, 존대법 보존, 음성 협의 프로세스
+- **`humanizer-kr/references/academic-guide.md`**: 학술/보고서 스타일 패턴별 상세 처리 규칙, 객관성 유지
+- **`humanizer-kr/references/output-format.md`**: 감지 리포트, 수정 브리핑, 재검증 보고서 템플릿
 
 ## 참고 문서
 
@@ -166,8 +174,8 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 
 각 스타일별 구체적인 예제와 처리 방법:
 
-- **[에세이/블로그](humanizer-kr/resources/essay-guide.md)**: 자연스러운 개인의 목소리 유지, 쉼표 적극 제거
-- **[학술/보고서](humanizer-kr/resources/academic-guide.md)**: 기술 용어 보존, 열거 쉼표 유지
+- **[에세이/블로그](humanizer-kr/references/essay-guide.md)**: 자연스러운 개인의 목소리 유지, 쉼표 적극 제거
+- **[학술/보고서](humanizer-kr/references/academic-guide.md)**: 기술 용어 보존, 열거 쉼표 유지
 
 ## 예시
 
@@ -191,62 +199,16 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 
 ### 핵심 문서
 
-- **[humanizer-kr/SKILL.md](humanizer-kr/SKILL.md)**: 에이전트 페르소나, 6단계 워크플로, 10가지 AI 패턴 정의, 처리 규칙 및 출력 형식 (마스터 가이드)
-- **[humanizer-kr/resources/essay-guide.md](humanizer-kr/resources/essay-guide.md)**: 에세이/블로그 스타일 처리 규칙, 존대법 유지 방법, Before/After 예제
-- **[humanizer-kr/resources/academic-guide.md](humanizer-kr/resources/academic-guide.md)**: 학술/보고서 스타일 처리 규칙, 기술 용어 보존 방법, Before/After 예제
-- **[humanizer-kr/resources/patterns-kr.md](humanizer-kr/resources/patterns-kr.md)**: 연구 데이터, 통계 벤치마크, 감사 체크리스트
+- **[humanizer-kr/SKILL.md](humanizer-kr/SKILL.md)**: 5단계 워크플로 정의, 각 단계별 MUST READ 파일 참조 (마스터 가이드)
+- **[humanizer-kr/references/patterns-kr.md](humanizer-kr/references/patterns-kr.md)**: 10가지 AI 패턴 인덱스, 정량 기준, 스타일별 규칙, 연구 데이터, 감사 체크리스트
+- **[humanizer-kr/references/essay-guide.md](humanizer-kr/references/essay-guide.md)**: 에세이/블로그 스타일 처리 규칙, 존대법 보존, 음성 협의 프로세스
+- **[humanizer-kr/references/academic-guide.md](humanizer-kr/references/academic-guide.md)**: 학술/보고서 스타일 처리 규칙, 객관성 유지
 
 ### 참고 자료
 
 - **[references/SKILL.md](references/SKILL.md)**: 원본 영어 스킬 (GitHub: [humanizer](https://github.com/blader/humanizer))
 - **[references/KatFishNet_Detecting_LLM-Generated_Korean_Text.md](references/KatFishNet_Detecting_LLM-Generated_Korean_Text.md)**: KatFishNet 논문
 - **[references/생성형_AI_텍스트와_인간_텍스트의_내용_및_문체_비교_연구.md](references/생성형_AI_텍스트와_인간_텍스트의_내용_및_문체_비교_연구.md)**: Park & Kim (2025) 논문
-
-## 🔄 버전 히스토리
-
-### v1.0 (현재) — 2025년 3월
-
-**주요 기능:**
-
-- 10가지 AI 패턴 감지 및 자동 식별
-- 에세이/블로그 vs. 학술/보고서 스타일 구분
-- 6단계 워크플로: 감지 → 승인 → 수정 → 목소리 주입 → 재검증 → 최종본
-- 한국어 존대법(합쇼체, 해요체, 해체) 보존
-- 대화형 검증 프로세스 (승인 게이트 포함)
-
-**포함 내용:**
-
-- KatFishNet 연구 통합: 쉼표, 띄어쓰기, 품사 패턴 분석
-- Park & Kim (2025) 연구 통합: 어휘 다양성, 접속사 유형, 개조식 문장, 사고 획일화 감지
-- 스타일별 상세 처리 가이드 및 예제
-
-**최근 업데이트:**
-
-- **2025-03-17 (현재)**: 토큰 효율화 리팩토링
-  - 불필요한 설명 제거 (상대높임법 테이블, 명사구→동사절 변환 패턴표, 중복된 Pattern 10 설명)
-  - essay-guide.md: 24줄 감소 (266줄)
-  - academic-guide.md: 1줄 감소 (182줄)
-  - patterns-kr.md: 49줄 감소 (344줄)
-  - 총 74줄 절감 (5RulesForClaudeSkill 지침 준수)
-
-- **2025-03-17**: 스킬 문서 및 리소스 최종 정비
-  - README 구조 개선 및 문서화 완성
-  - 페르소나 및 태스크 구조 명확화
-  - 처리 워크플로 최적화
-
-### 개발 히스토리
-
-**주요 마일스톤:**
-
-- **2025-03-17**: 토큰 효율화 및 README 갱신
-- **2025-03-16**: 페르소나 및 태스크 구조 명확화 (`255f53f`)
-- **2025-03-15**: 스킬 구조 재설계 (`8c0333a`)
-- **2025-03-13**: Park & Kim (2025) 연구 통합 (`ad7e4b6`, `d4342ab`)
-- **2025-03-05**: 존대법 검증 로직 추가 (`12cc0ff`)
-- **2025-03-01**: 존대법 예제 및 가이드 추가 (`b8dabdb`)
-- **2025-02-28**: 스피치 레벨 가드 기능 추가 (`f9ee3d2`)
-- **2025-02-25**: 에세이/학술 가이드 완성 (`ebb106f`)
-- **2025-02-20**: SKILL.md 파일 구조 정리 (`beb3bf8`)
 
 ## 🎯 프로젝트 상태
 

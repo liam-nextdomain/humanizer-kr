@@ -1,7 +1,7 @@
 # Academic / Report Style Guide
 
 Detailed treatment rules and Before/After examples for each of the 10 patterns in academic/report style.
-For pattern detection signals, see the main `SKILL.md`.
+For pattern definitions and detection signals, see `patterns-kr.md`.
 
 ## Table of Contents
 

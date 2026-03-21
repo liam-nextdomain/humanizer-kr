@@ -1,7 +1,7 @@
 # Essay / Blog Style Guide
 
 Detailed treatment rules and Before/After examples for each of the 10 patterns in essay/blog style.
-For pattern detection signals, see the main `SKILL.md`.
+For pattern definitions and detection signals, see `patterns-kr.md`.
 
 ## Table of Contents
 
@@ -61,7 +61,7 @@ For pattern detection signals, see the main `SKILL.md`.
 **Before (어휘 반복 — Park & Kim, 2025):**
 > 인공지능은 의료 분야에서 활용되고 있다. 교육에서도 활용되며, 산업 현장에서도 활용된다.
 
-**Treatment:** Replace repeated verbs/adjectives with synonyms or specific descriptions. Refer to the vocabulary diversification table in `resources/patterns-kr.md`.
+**Treatment:** Replace repeated verbs/adjectives with synonyms or specific descriptions. Refer to the vocabulary diversification table in `patterns-kr.md`.
 
 **After:**
 > 인공지능은 의료 분야에서 진단 보조로 쓰이고 있다. 교육에서는 맞춤형 학습 설계에 도입되었고, 산업 현장에서는 공정 자동화를 이끌고 있다.
@@ -167,7 +167,7 @@ For pattern detection signals, see the main `SKILL.md`.
 
 Allow merged forms wherever they feel natural. MUST NOT normalize back to standard spacing.
 
-→ Full allowlist: `resources/patterns-kr.md` Section 5
+→ Full allowlist: `patterns-kr.md` Section 5
 
 ---
 
