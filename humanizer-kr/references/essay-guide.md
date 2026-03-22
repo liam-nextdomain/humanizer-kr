@@ -1,7 +1,6 @@
 # Essay / Blog Style Guide
 
 Detailed treatment rules and Before/After examples for each of the 14 patterns in essay/blog style.
-For pattern definitions and detection signals, see `patterns-kr.md`.
 
 ## Table of Contents
 
@@ -65,7 +64,7 @@ For pattern definitions and detection signals, see `patterns-kr.md`.
 **Before (어휘 반복 — Park & Kim, 2025):**
 > 인공지능은 의료 분야에서 활용되고 있다. 교육에서도 활용되며, 산업 현장에서도 활용된다.
 
-**Treatment:** Replace repeated verbs/adjectives with synonyms or specific descriptions. Refer to the vocabulary diversification table in `patterns-kr.md`.
+**Treatment:** Replace repeated verbs/adjectives with synonyms or specific descriptions.
 
 **After:**
 > 인공지능은 의료 분야에서 진단 보조로 쓰이고 있다. 교육에서는 맞춤형 학습 설계에 도입되었고, 산업 현장에서는 공정 자동화를 이끌고 있다.
@@ -131,7 +130,7 @@ For pattern definitions and detection signals, see `patterns-kr.md`.
 **Before (예시·강조형 접속사 과다 — Park & Kim, 2025):**
 > 생태학은 생물과 환경의 관계를 연구하는 학문이다. 특히 종 간 상호작용이 핵심 주제이다. 예를 들어 포식자-피식자 관계가 대표적이다. 다시 말해 한 종의 변화가 전체 생태계에 영향을 미친다.
 
-**Treatment:** When example/emphasis conjunctions (특히, 예를 들어, 예컨대, 다시 말해) cluster 3+ times, remove redundant ones and convert some to direct case description or conditional framing.
+**Treatment:** When example/emphasis conjunctions cluster 3+ times, remove redundant ones and convert some to direct case description or conditional framing.
 
 **After:**
 > 생태학은 생물과 환경의 관계를 연구하는 학문으로, 종 간 상호작용이 핵심 주제다. 포식자-피식자 관계에서 보듯 한 종의 개체수가 변하면 먹이사슬 전체가 흔들린다.
@@ -152,8 +151,6 @@ For pattern definitions and detection signals, see `patterns-kr.md`.
 
 ## Pattern 7. Bound Noun Spacing (의존명사 띄어쓰기) — Essay Only
 
-**Research basis**: LLM bound-noun spacing standard deviation = 0.02 — mechanical consistency. Humans intentionally omit spacing for readability and convenience.
-
 **Acceptable merged forms in essay:**
 
 | LLM standard form | Essay natural form |
@@ -171,13 +168,9 @@ For pattern definitions and detection signals, see `patterns-kr.md`.
 
 Allow merged forms wherever they feel natural. MUST NOT normalize back to standard spacing.
 
-→ Full allowlist: `patterns-kr.md` Section 5
-
 ---
 
 ## Pattern 9. Absence of Voice / Personality — Essay Only
-
-**Detection signal:** Only neutral, encyclopedic statements — no author reaction, opinion, or emotional register.
 
 **Treatment — interactive voice consultation (3-step process):**
 
@@ -230,7 +223,7 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 **Before:**
 > 연구 하나가 이걸 잘 보여줍니다. 환경이 사람의 생각을 만든다는 사실은 이미 여러 차례 증명되었습니다.
 
-**Treatment:** Rewrite so that the inanimate noun becomes an adverbial or instrumental phrase, and a human subject or natural process takes the agent role. See `patterns-kr.md` Section 10, P11 for detection criteria.
+**Treatment:** Rewrite so that the inanimate noun becomes an adverbial or instrumental phrase, and a human subject or natural process takes the agent role.
 
 **After:**
 > 이 연구를 보면 다음과 같은 사실을 알 수 있습니다. 사람의 생각은 환경의 영향을 받는다는 점이 이미 여러 차례 확인되었습니다.
@@ -248,7 +241,7 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 **Before:**
 > 서양 중심으로 학습된 모델이 자주 선택되는 표현을 사용하면서 공유된 알고리즘이 문제를 일으키고 있습니다.
 
-**Treatment:** Convert passive constructions (되다/어지다) to active voice. Replace passive modifiers with direct verb phrases. See `patterns-kr.md` Section 10, P12 for detection criteria.
+**Treatment:** Convert passive constructions (되다/어지다) to active voice. Replace passive modifiers with direct verb phrases.
 
 **After:**
 > 서양 위주의 데이터를 학습한 모델이 자주 쓰는 표현을 사용하면서 함께 사용하는 알고리즘이 문제를 일으키고 있습니다.
@@ -266,7 +259,7 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 **Before:**
 > 이 현상이 까다로운 이유가 있습니다. 물어볼 필요가 있습니다. 결국 이것은 씨름하는 과정이기도 했습니다.
 
-**Treatment:** Remove the dummy frame ('이유가 있다', '필요가 있다', '~는 것이다'). State the content directly without the empty subject construction. See `patterns-kr.md` Section 10, P13 for detection criteria.
+**Treatment:** Remove the dummy frame ('이유가 있다', '필요가 있다', '~는 것이다'). State the content directly without the empty subject construction.
 
 **After:**
 > 이 현상은 다음과 같은 이유로 까다롭습니다. 질문해 보아야 합니다. 결국 씨름하며 배우는 단계였습니다.
@@ -284,7 +277,7 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 **Before:**
 > 이 지점을 더 선명하게 만들어줍니다. 언어는 어떤 사고방식을 쉽게 만들고 다른 사고방식은 어렵게 만듭니다.
 
-**Treatment:** Replace ~하게 만들다 with state-change expressions (~해지다), adverbs, or indirect cause-effect descriptions. See `patterns-kr.md` Section 10, P14 for detection criteria. Note: P1 essay example ("편리하게 만들고") also contains a P14 instance.
+**Treatment:** Replace ~하게 만들다 with state-change expressions (~해지다), adverbs, or indirect cause-effect descriptions. Note: P1 essay example ("편리하게 만들고") also contains a P14 instance.
 
 **After:**
 > 덕분에 이 지점이 더 선명해집니다. 언어는 어떤 사고방식에 익숙해지게 하고 다른 사고방식은 낯설게 느끼도록 유도합니다.

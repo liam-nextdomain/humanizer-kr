@@ -1,36 +1,38 @@
-# Humanizer KR: AI로 쓴 글에서 AI 냄새 지우는 스킬
+# Humanizer KR: AI로 쓴 글에서 AI가 쓴 흔적을 지우는 스킬
 
-**LLM이 만든 한국어 문장에서 'AI스러운 흔적'을 발견하고 사람이 쓴 글에 가깝도록 수정해 주는 Claude 스킬입니다.**
+**LLM이 작성한 한국어 문장에서 'AI스러운 흔적'을 발견하고 사람이 쓴 글에 가깝도록 수정해 주는 Claude 스킬입니다.**
 
 | 버전 | 날짜 | 주요 변경 |
 | --- | --- | --- |
+| v1.2.0 | 2026-03-21 | 영어 직역투 패턴 4개 추가 (P11–P14, [F] 카테고리) |
 | v1.1 | 2025-03-21 | SKILL.md 재설계, output-format.md 추가, 폴더 구조 정리 (references/ vs reference/) |
 | v1.0 | 2025-03-17 | 최초 릴리즈 — 10가지 AI 패턴, 에세이/학술 스타일 구분, 5단계 워크플로 |
 
 ## 📌 소개
 
-LLM을 이용해 쓴 글에서 'AI가 쓴 티'를 덜 내고 싶으신가요? **Humanizer KR**은 AI가 생성한 한국어 텍스트를 자연스러운 인간의 필체로 전환하는 Claude 스킬입니다.
+LLM을 이용해 글쓰기 많이 하시나요? 물론 LLM의 도움 없이 손수 쓰는 게 바람직하죠. 하지만 때로는 효율적인 글쓰기가 필요한 상황도 있습니다. LLM이 쓴 글을 검토하다보면 어딘가 어색하고, '이건 AI가 쓴 티가 난다'는 느낌이 들 때가 있죠. 이 부분이 때로는 성의가 없어 보이기도 하고, 신뢰도가 떨어진다는 인상을 줄 때가 있습니다. **Humanizer KR**은 AI가 작성한 한국어 텍스트에서 AI가 쓴 패턴을 발견해 'AI가 쓴 흔적'을 조금이나마 줄여주기 위해 만든 Claude 스킬입니다.
 
-이 스킬은 작성된 글을 분석하여:
+이 스킬은 사용자가 제공한 글을 분석하여:
 
-- **AI 패턴 감지**: LLM의 전형적인 10가지 한국어 쓰기 패턴을 자동 식별
+- **AI 패턴 감지**: LLM의 전형적인 14가지 한국어 쓰기 패턴을 자동 식별
 - **스타일별 처리**: 에세이/블로그와 학술/보고서 문체를 구분하여 맞춤 규칙 적용
-- **대화형 검증**: 감지 결과를 사용자에게 보고하고 승인받아 안전하게 수정 진행
+- **대화형 검증**: 감지 결과를 사용자에게 보고하고 승인받아 수정 진행
 - **맥락 보존**: 원문의 의도와 톤을 최대한 유지하면서 자연스러운 표현으로 개선
+- **관점 삽입 유도**: 필자의 관점을 넣을 수 있는 곳을 포착해 고유한 관점 삽입 유도
 
-LLM과 사람의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요 논문(KatFishNet, Park & Kim 2025)을 바탕으로 개발되었습니다.
+LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요 논문(KatFishNet, Park & Kim 2025)을 바탕으로 개발되었습니다.
 
-**핵심 근거:**
+**참고 자료:**
 
-- **[humanizer](https://github.com/blader/humanizer/tree/main)**: LLM의 영어 글쓰기 패턴 수정 스킬 (원본 개념)
-- **KatFishNet (2024)**: LLM과 사람의 한국어 에세이 쓰기 형식 특성 비교 연구
-- **Park & Kim (2025)**: LLM과 사람의 한국어 보고서 쓰기 어휘, 접속사, 구조 특성 비교 연구
+- **[humanizer](https://github.com/blader/humanizer/tree/main)**: LLM의 영어 글쓰기 패턴 수정 스킬로, 이 스킬의 한국어 버전을 만느는 게 프로젝트의 목표입니다.
+- **KatFishNet (2024)**: LLM과 한국 초중고 학생의 에세이 쓰기에서 나타나는 형식적 특성을 비교한 연구입니다.
+- **Park & Kim (2025)**: LLM과 한국 대학생의 보고서 쓰기 어휘, 접속사, 구조 특성을 비교한 연구입니다.
 
 ## 핵심 특징
 
-- **한국어 특화**: 띄어쓰기, 품사 다양성, 쉼표 패턴 등 한국어만의 특성을 반영
+- **한국어 특화**: 띄어쓰기, 품사 다양성, 쉼표, 영어식 문장 구조 포착 등 한국어만의 특성을 반영
 - **스타일 구분**: 에세이/블로그와 학술논문/보고서 스타일을 구분하여 개별 규칙 적용
-- **10가지 패턴 감지**:
+- **14가지 패턴 감지**:
   - 쉼표 남용 (가장 강력한 식별자)
   - 명사 중심 구조 & 어휘 반복 (동사·형용사·부사 다양성 저하)
   - 룰 오브 쓰리 나열 & 개조식 문장 (단문 나열·목차 세분화)
@@ -41,6 +43,10 @@ LLM과 사람의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요
   - 보조용언 띄어쓰기 (에세이 스타일)
   - 개성 부재 (에세이 스타일)
   - 챗봇식 커뮤니케이션 요소
+  - 무생물 주어 의인화 (영어 직역투)
+  - 불필요한 수동형·관형사절 남용 (영어 직역투)
+  - 의미 없는 주어·가주어 구문 (영어 직역투)
+  - 사역동사 '만들다' 직역 (영어 직역투)
 
 - **문체 보존**: 한국어의 다양한 존대법(합쇼체, 해요체, 해체) 유지
 
@@ -66,8 +72,8 @@ LLM과 사람의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요
 
 ### 주요 파일 설명
 
-- **`humanizer-kr/SKILL.md`**: 5단계 워크플로 정의 (스타일 감지 → 패턴 스캔 → 초안 작성 → 음성 협의(에세이) → 재검증), 각 단계별 MUST READ 파일 참조
-- **`humanizer-kr/references/patterns-kr.md`**: 10가지 AI 패턴 인덱스, 정량 기준, 스타일별 규칙 테이블, KatFishNet + Park & Kim 연구 데이터, 감사 체크리스트
+- **`humanizer-kr/SKILL.md`**: 6단계 워크플로 정의 (스타일 감지 → 패턴 스캔 → 초안 작성 → 음성 협의(에세이) → 재검증 → 최종 검증), 각 단계별 MUST READ 파일 참조
+- **`humanizer-kr/references/patterns-kr.md`**: 14가지 AI 패턴 인덱스, 정량 기준, 스타일별 규칙 테이블, KatFishNet + Park & Kim 연구 데이터, 감사 체크리스트
 - **`humanizer-kr/references/essay-guide.md`**: 에세이/블로그 스타일 패턴별 상세 처리 규칙, 존대법 보존, 음성 협의 프로세스
 - **`humanizer-kr/references/academic-guide.md`**: 학술/보고서 스타일 패턴별 상세 처리 규칙, 객관성 유지
 - **`humanizer-kr/references/output-format.md`**: 감지 리포트, 수정 브리핑, 재검증 보고서 템플릿
@@ -119,7 +125,7 @@ LLM과 사람의 글쓰기 패턴을 체계적으로 연구한 두 가지 주요
 #### 1. Skill 폴더 구성 확인
 
 - `humanizer-kr/` 폴더 구조가 완성되어 있는지 확인
-- 필수 파일: `SKILL.md`, `resources/essay-guide.md`, `resources/academic-guide.md`, `resources/patterns-kr.md`
+- 필수 파일: `SKILL.md`, `references/essay-guide.md`, `references/academic-guide.md`, `references/patterns-kr.md`
 
 #### 2. ZIP 파일 생성
 
@@ -164,7 +170,7 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 **6단계 태스크 개요:**
 
 1. **Detect style** - 에세이/블로그 vs. 학술/보고서 판별; 에세이일 경우 존대법 탐지·고정
-2. **Scan for AI patterns** - 10가지 한국어 AI 패턴 감지, 스타일별 규칙 적용
+2. **Scan for AI patterns** - 14가지 한국어 AI 패턴 감지, 스타일별 규칙 적용
 3. **Report and get approval** - 감지 결과를 유형별로 리포트, 사용자 승인 후 진행
 4. **Rewrite approved sections** - 승인된 유형만 자연스러운 한국어로 재작성
 5. **Consult on voice** (에세이만) - 목소리 주입 후보 제시, 작가 선택 반영
@@ -199,8 +205,8 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 
 ### 핵심 문서
 
-- **[humanizer-kr/SKILL.md](humanizer-kr/SKILL.md)**: 5단계 워크플로 정의, 각 단계별 MUST READ 파일 참조 (마스터 가이드)
-- **[humanizer-kr/references/patterns-kr.md](humanizer-kr/references/patterns-kr.md)**: 10가지 AI 패턴 인덱스, 정량 기준, 스타일별 규칙, 연구 데이터, 감사 체크리스트
+- **[humanizer-kr/SKILL.md](humanizer-kr/SKILL.md)**: 6단계 워크플로 정의, 각 단계별 MUST READ 파일 참조 (마스터 가이드)
+- **[humanizer-kr/references/patterns-kr.md](humanizer-kr/references/patterns-kr.md)**: 14가지 AI 패턴 인덱스, 정량 기준, 스타일별 규칙, 연구 데이터, 감사 체크리스트
 - **[humanizer-kr/references/essay-guide.md](humanizer-kr/references/essay-guide.md)**: 에세이/블로그 스타일 처리 규칙, 존대법 보존, 음성 협의 프로세스
 - **[humanizer-kr/references/academic-guide.md](humanizer-kr/references/academic-guide.md)**: 학술/보고서 스타일 처리 규칙, 객관성 유지
 
@@ -215,4 +221,3 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 - **안정성**: ✅ 프로덕션 준비 완료
 - **커버리지**: 한국어 에세이/블로그, 학술/보고서 문체
 - **검증**: 2개 주요 연구(KatFishNet, Park & Kim 2025) 기반
-- **사용성**: Claude Skills API를 통한 직관적 인터페이스

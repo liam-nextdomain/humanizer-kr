@@ -1,9 +1,5 @@
 # Korean LLM Pattern Reference Guide
 
-**Sources**: KatFishNet (Shinwoo Park et al., Yonsei University, 2024) · Park & Kim (2025)
-
----
-
 ## 14 Korean AI Patterns — Index
 
 ### [A] Punctuation
@@ -64,59 +60,18 @@
 
 ## Table of Contents — Data & Reference Tables
 
-1. [KatFishNet Key Statistics](#1-katfishnet-key-statistics)
-2. [Comma Removal/Retention Criteria](#2-comma-removalretention-criteria)
-3. [AI-Repeated Verb/Adjective Diversification](#3-ai-repeated-verbadjective-diversification-park--kim-2025)
-4. [High-Frequency Expression Substitution/Deletion Strategy](#4-high-frequency-expression-substitutiondeletion-strategy)
-5. [Auxiliary Verb Attachment Allowlist (Essay Only)](#5-auxiliary-verb-attachment-allowlist-essay-only)
-6. [AI Writing Audit Checklist](#6-ai-writing-audit-checklist)
-7. [Template Structure — Cliché List](#7-template-structure--cliché-list)
-8. [Park & Kim (2025) Research Statistics](#8-park--kim-2025-research-statistics)
-9. [Korean Ending Diversification Reference](#9-korean-ending-diversification-reference)
-10. [English Direct Translation Detection Criteria](#10-english-direct-translation-detection-criteria)
+1. [Comma Removal/Retention Criteria](#1-comma-removalretention-criteria)
+2. [AI-Repeated Verb/Adjective Diversification](#2-ai-repeated-verbadjective-diversification-park--kim-2025)
+3. [High-Frequency Expression Substitution/Deletion Strategy](#3-high-frequency-expression-substitutiondeletion-strategy)
+4. [Auxiliary Verb Attachment Allowlist (Essay Only)](#4-auxiliary-verb-attachment-allowlist-essay-only)
+5. [AI Writing Audit Checklist](#5-ai-writing-audit-checklist)
+6. [Template Structure — Cliché List](#6-template-structure--cliché-list)
+7. [Korean Ending Diversification Reference](#7-korean-ending-diversification-reference)
+8. [English Direct Translation Detection Criteria](#8-english-direct-translation-detection-criteria)
 
 ---
 
-## 1. KatFishNet Key Statistics
-
-### Comma Usage Pattern Comparison — Essay Genre
-
-| Metric | Human | LLM | Ratio |
-| --- | --- | --- | --- |
-| Sentence ratio with commas | 26.31% | 61.03% | ×2.3 |
-| Comma-to-morpheme ratio | 1.13% | 2.56% | ×2.3 |
-| Mean relative comma position | 0.09 | 0.18 | ×2 (LLM skews later) |
-| Mean segment length | 4.35 | 8.56 | ×2 |
-| POS diversity around commas | 24.38 | 59.39 | ×2.4 |
-
-### Comma Usage Pattern Comparison — Abstract Genre
-
-| Metric | Human | LLM |
-| --- | --- | --- |
-| Sentence ratio with commas | 47.48% | 65.21% |
-| Mean segment length | 9.07 | 11.55 |
-| POS diversity around commas | 42.85 | 61.95 |
-
-### Spacing Pattern — Essay Genre
-
-| Metric | Characteristics |
-| --- | --- |
-| LLM BN (dependent noun) spacing std dev | 0.02 (mechanical consistency) |
-| Human | Frequent intentional omission for readability |
-| LLM | Strictly follows NIKL standard rules |
-
-### POS N-gram Diversity
-
-| Item | Human | LLM |
-| --- | --- | --- |
-| POS combination diversity | High | Low |
-| Ending/predicate usage ratio | High | Low |
-| Noun/pronoun usage ratio | Low | High |
-| Sentence structure | Varied | Repetitive patterns |
-
----
-
-## 2. Comma Removal/Retention Criteria
+## 1. Comma Removal/Retention Criteria
 
 ### Comma patterns to remove (English-style — unnatural in Korean)
 
@@ -139,9 +94,7 @@
 
 ---
 
-## 3. AI-Repeated Verb/Adjective Diversification (Park & Kim, 2025)
-
-AI tends to repeat specific verbs and adjectives. When the same expression appears 3+ times, use the alternatives below.
+## 2. AI-Repeated Verb/Adjective Diversification (Park & Kim, 2025)
 
 | AI repeated verb | Alternatives |
 | --- | --- |
@@ -161,7 +114,7 @@ AI tends to repeat specific verbs and adjectives. When the same expression appea
 
 ---
 
-## 4. High-Frequency Expression Substitution/Deletion Strategy
+## 3. High-Frequency Expression Substitution/Deletion Strategy
 
 ### Conjunction overuse by type — AI summary (Park & Kim, 2025)
 
@@ -241,7 +194,7 @@ When removing sentence-initial conjunctions, merging two sentences with `-ㄴ데
 
 ---
 
-## 5. Auxiliary Verb Attachment Allowlist (Essay Only)
+## 4. Auxiliary Verb Attachment Allowlist (Essay Only)
 
 In essays, human writers often attach auxiliary verbs for readability. **In papers/reports, MUST maintain standard spacing. MUST NOT apply attached forms.**
 
@@ -271,7 +224,7 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 
 ---
 
-## 6. AI Writing Audit Checklist
+## 5. AI Writing Audit Checklist
 
 ### Essay/blog audit items (check after rewriting)
 
@@ -312,7 +265,7 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 
 ---
 
-## 7. Template Structure — Cliché List
+## 6. Template Structure — Cliché List
 
 ### Introduction clichés (to remove)
 
@@ -342,60 +295,7 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 
 ---
 
-## 8. Park & Kim (2025) Research Statistics
-
-**Source**: 박종향·김은영, "생성형 AI 텍스트와 인간 텍스트의 내용 및 문체 비교 연구", 2025
-D대학교 교양과목 과제물 69편(인간 20편, AI 활용 49편) 비교 분석
-
-### Sentence length comparison
-
-| Metric | Human (2021) | AI-assisted (2025) | Statistics |
-| --- | --- | --- | --- |
-| Mean sentences per document | 82.06 | 114.85 | |
-| Mean characters per sentence | 54.20 | 48.69 | t=4.874, p<.001 |
-
-> AI-assisted texts segment sentences more frequently: more sentences overall, but shorter individual sentences.
-
-### Lexical diversity by POS (TTR / MATTR)
-
-| POS | Human TTR | AI TTR | Human MATTR | AI MATTR | TTR t-test |
-| --- | --- | --- | --- | --- | --- |
-| Noun | 0.398 | 0.351 | 0.701 | 0.720 | 3.39** |
-| Verb | 0.545 | 0.461 | 0.656 | 0.576 | 5.74*** |
-| Adjective | 0.525 | 0.429 | 0.558 | 0.483 | 4.56*** |
-| Adverb | 0.602 | 0.468 | 0.602 | 0.468 | 3.53*** |
-| All content words | 0.518 | 0.427 | 0.629 | 0.562 | 6.20*** |
-
-*p<0.05, **p<0.01, ***p<0.001
-
-> Humans use significantly more diverse vocabulary than AI in verbs, adjectives, and adverbs. Nouns differ in TTR but not significantly in MATTR.
-
-### Top conjunction expressions by type
-
-| Type | Human (2021) top expressions | AI-assisted (2025) top expressions |
-| --- | --- | --- |
-| Additive | 또한(61), 그리고(54), 나아가(22), 동시에(13) | 그리고(157), 또한(19), 동시에(71), 나아가(70) |
-| Contrastive | 하지만(55), 그러나(23), 한편(9) | 하지만(96), 그러나(73), 오히려(12) |
-| Causal | 따라서(26), 때문에(22), 그 결과(5) | 따라서(78), 때문에(57), 그 결과(18), 이로 인해(16) |
-| Conditional | 한다면(9), 라면(6) | — (not in top) |
-| Temporal/sequential | 결국(21), 먼저(17) | 결국(58), 먼저(23) |
-| Example/emphasis | 즉(48), 특히(14), 예를 들어(11) | 특히(147), 예를 들어(131), 즉(99), 예컨대(21), 다시 말해(17) |
-| Alternative | 혹은(15), 또는(14) | 혹은(25), 또는(231) |
-
-> Biggest difference: AI uses example/emphasis type (특히, 예를 들어) overwhelmingly more. Humans use conditionals (한다면, ~라면) but they are nearly absent in AI.
-
-### Bullet-list tendency (qualitative analysis)
-
-- AI-assisted texts: significantly higher proportion of short enumeration/summary statements (bullet-list style) instead of prose
-- Heading fragmentation pattern: Ⅰ → 1 → 1) → (1) → ① multi-level structure
-- Human texts: majority develop arguments in continuous prose
-- AI-assisted texts: majority follow a uniform format of dividing and summarizing sub-topics
-
----
-
-## 9. Korean Ending Diversification Reference
-
-LLM repeats specific ending patterns. When rewriting, diversify endings to increase POS diversity.
+## 7. Korean Ending Diversification Reference
 
 ### LLM overused endings
 
@@ -412,15 +312,9 @@ LLM repeats specific ending patterns. When rewriting, diversify endings to incre
 
 ---
 
-## 10. English Direct Translation Detection Criteria
-
-AI language models frequently produce Korean text that mirrors English syntactic structures. The four patterns below target sentence-level translation artifacts that are distinct from vocabulary repetition (P2) or stock expressions (P5).
+## 8. English Direct Translation Detection Criteria
 
 ### P11 — Inanimate Subject Personification (무생물 주어 의인화)
-
-**Detection signal:** An inanimate or abstract noun occupies the grammatical subject position and performs a human action verb (보여주다, 짚다, 말하다, 증명하다, 만들다, 제시하다, 강조하다, 요구하다). This mirrors English "Research shows…", "The analysis points out…", "The environment creates…".
-
-**Treatment:** Rewrite with a human subject, or convert the inanimate noun to an adverbial/instrumental phrase.
 
 | English source pattern | AI direct translation | Natural Korean |
 | --- | --- | --- |
@@ -434,10 +328,6 @@ AI language models frequently produce Korean text that mirrors English syntactic
 
 ### P12 — Unnecessary Passive / Relative Clause Overuse (불필요한 수동형·관형사절 남용)
 
-**Detection signal:** Past participle or passive voice translated as 되다/어지다/받다 where Korean active voice is more natural. Also includes overuse of modifier clauses (관형사절) that stack relative constructions.
-
-**Treatment:** Convert to active voice. Replace passive modifier with a direct verb phrase.
-
 | English source pattern | AI direct translation | Natural Korean |
 | --- | --- | --- |
 | "Models trained on Western data" | "서양 중심으로 학습된 모델이" | "서양 중심으로 데이터를 익힌 모델이" / "서양 위주의 데이터를 학습한 모델이" |
@@ -449,10 +339,6 @@ AI language models frequently produce Korean text that mirrors English syntactic
 ---
 
 ### P13 — Empty Subject & '~는 것이다' Construction (의미 없는 주어·가주어/보어 구문)
-
-**Detection signal:** Sentence structures mirroring English "It is ~ that…", "The reason is ~", "There is a need to ~", "There is a reason why ~". These add a dummy frame around the actual statement, making the predicate unnecessarily long and the focus blurry.
-
-**Treatment:** Remove the dummy frame. State the content directly.
 
 | English source pattern | AI direct translation | Natural Korean |
 | --- | --- | --- |
@@ -466,13 +352,9 @@ AI language models frequently produce Korean text that mirrors English syntactic
 
 ### P14 — Causative '만들다' Direct Translation (사역동사 '만들다' 직역)
 
-**Detection signal:** 'Make + Object + Complement' translated as ~하게 만들다/만들어주다. Korean expresses causation through state-change verbs (~해지다), adverbs, or indirect constructions rather than the explicit causative '만들다'.
-
-**Treatment:** Replace with a state-change expression (~해지다), an adverbial construction, or an indirect cause-effect description.
-
 | English source pattern | AI direct translation | Natural Korean |
 | --- | --- | --- |
 | "Makes this point clearer." | "이 지점을 더 선명하게 만들어줍니다." | "이 지점이 덕분에 더 선명해집니다." / "연구 결과를 통해 이 지점이 더욱 뚜렷하게 드러납니다." |
 | "Makes a way of thinking easy." | "어떤 사고방식을 쉽게 만들고" | "어떤 사고방식에 익숙해지게 하고" / "특정 방식으로 생각하게 유도하고" |
 
-> **Quick test:** If ~하게 만들다 can be rewritten as ~해지다 or a direct verb without losing meaning, flag as P14. Note: P1 essay example (line 34 of essay-guide.md) contains "편리하게 만들고" — this is a P14 instance co-occurring with P1.
+> **Quick test:** If ~하게 만들다 can be rewritten as ~해지다 or a direct verb without losing meaning, flag as P14. Note: P1 essay examples may contain "편리하게 만들고" — a P14 instance co-occurring with P1.
