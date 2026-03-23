@@ -36,16 +36,10 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **Before:**
 > 현대 사회에서, 기술의 발전은, 인간의 삶을 편리하게 만들고 있지만, 동시에 소외 현상을 초래하기도 한다. 따라서, 이에 대한 대책 마련이 시급한 실정이다.
 
-**Treatment:** Remove commas aggressively. Split sentences, use connective endings, or drop the conjunction entirely.
+**Treatment:** Remove commas aggressively. Split sentences or use connective endings where comma removal alone leaves an awkward join.
 
 **After:**
-> 현대 사회에서 기술의 발전은 인간의 삶을 편리하게 만드는 동시에 소외 현상을 초래하기도 한다. 따라서 이에 대한 대책이 시급하다.
-
-**Before (높임말 — 하십시오체+해요체 혼용):**
-> 현대 사회에서, 기술의 발전은, 우리의 삶을 편리하게 만들어 주고 있지만, 동시에 소외 현상도 심각해지고 있어요. 따라서, 이에 대한 대책 마련이 시급합니다.
-
-**After (높임말 유지):**
-> 현대 사회에서 기술의 발전은 우리의 삶을 편리하게 만들어 주고 있지만 동시에 소외 현상도 심각해지고 있어요. 이에 대한 대책 마련이 시급합니다.
+> 현대 사회에서 기술의 발전은 인간의 삶을 편리하게 만들고 있지만 동시에 소외 현상을 초래하기도 한다. 따라서 이에 대한 대책 마련이 시급한 실정이다.
 
 ---
 
@@ -67,7 +61,7 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **Treatment:** Replace repeated verbs/adjectives with synonyms or specific descriptions.
 
 **After:**
-> 인공지능은 의료 분야에서 진단 보조로 쓰이고 있다. 교육에서는 맞춤형 학습 설계에 도입되었고, 산업 현장에서는 공정 자동화를 이끌고 있다.
+> 인공지능은 의료 분야에서 쓰이고 있다. 교육에서도 도입되었고, 산업 현장에서도 접목되고 있다.
 
 ---
 
@@ -79,7 +73,7 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **Treatment:** Break the rule-of-three. Keep only the most important point or merge into natural flow.
 
 **After:**
-> 프로젝트를 성공적으로 완수하려면 무엇보다 팀원 간의 원활한 소통이 뒷받침되어야 한다. 여기에 명확한 목표 설정과 일정 관리가 유기적으로 맞물릴 때 예상치 못한 변수에도 흔들리지 않는 유연한 대응 능력이 생긴다.
+> 성공적인 프로젝트 수행을 위해서는 팀원들 간의 원활한 소통이 이루어져야 한다. 명확한 목표 설정과 일정 관리가 뒷받침될 때 예상치 못한 변수에 대응할 수 있는 유연한 태도도 갖출 수 있다.
 
 **Before (개조식 — bullet-point enumeration, Park & Kim, 2025):**
 > 복잡계과학의 특징은 다음과 같다.
@@ -100,12 +94,14 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **Treatment:** Remove intro/conclusion boilerplate entirely. Enter content directly. For the conclusion's closing stance, apply Pattern 9 voice consultation — do not invent the author's reaction unilaterally.
 
 **Before:**
-> [서론] "이 글에서는 인공지능 기술이 교육 현장에 미치는 영향에 대해 살펴보고자 한다. 인공지능 교육의 필요성을 알아보고 구체적인 활용 방안을 다룰 것이다."
-> [결론] "결론적으로 인공지능 교육이 중요하다는 것을 알 수 있다. 물론 과제도 있지만 앞으로도 이 분야에 관심을 가져야 할 것이다. 그렇게 된다면 교육 현장에서 긍정적인 변화를 이끌어 낼 수 있을 것으로 기대된다."
+> [서론] "이 글에서는 인공지능이 우리의 인식에 미치는 영향에 대해 살펴보고자 한다. 인공지능이 사고방식을 어떻게 바꾸는지 알아보고 그에 따른 변화를 다룰 것이다."
+> [결론] "결론적으로 인공지능이 우리의 인식에 큰 영향을 미친다는 것을 알 수 있다. 물론 부정적인 측면도 있지만 앞으로도 이 문제에 관심을 가져야 할 것이다. 그렇게 된다면 더 나은 방향으로 나아갈 수 있을 것으로 기대된다."
 
 **After:**
-> [서론] "인공지능은 이제 교실의 풍경을 근본적으로 바꾸어 놓았다. 단순한 기술 도입을 넘어, 아이들의 학습 경험을 어떻게 재설계할 수 있을지에 대한 구체적인 고민이 필요한 시점이다."
-> [결론] "기술이 교사를 대신할 수는 없겠지만, 교사의 손에 쥐어진 인공지능은 아이들 한 명 한 명에게 맞춤형 지도를 제공하는 강력한 도구가 된다. 기술의 속도보다 우리 아이들의 성장을 먼저 생각하는 따뜻한 변화가 교육 현장에 자리 잡기를 바란다"
+> [서론] "요즘 무언가를 판단할 때 나도 모르게 AI에게 먼저 물어보게 된다. 내 생각인 줄 알았던 것이 사실은 알고리즘이 건넨 답이었던 적도 있다."
+> [결론] "AI는 우리가 세상을 바라보는 렌즈 자체를 바꾸고 있다. 편리함 뒤에서 내 판단력이 조금씩 위축되고 있지는 않은지 가끔은 스스로 점검해 볼 필요가 있다."
+>
+> [→ 결론부에 작가의 관점을 담으려면 Pattern 9 Voice Consultation을 진행하세요.]
 
 ---
 
@@ -133,7 +129,7 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **Treatment:** When example/emphasis conjunctions cluster 3+ times, remove redundant ones and convert some to direct case description or conditional framing.
 
 **After:**
-> 생태학은 생물과 환경의 관계를 연구하는 학문으로, 종 간 상호작용이 핵심 주제다. 포식자-피식자 관계에서 보듯 한 종의 개체수가 변하면 먹이사슬 전체가 흔들린다.
+> 생태학은 생물과 환경의 관계를 연구하는 학문이다. 종 간 상호작용이 핵심 주제인데 포식자-피식자 관계에서 보듯 한 종의 변화가 전체 생태계에 영향을 미친다.
 
 ---
 
@@ -145,7 +141,7 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **Treatment:** Delete conjunctions where the flow is natural without them. Merge causal relationships into a single clause using -므로 or -서. MUST NOT merge two originally separate sentences using clause connectors that generate new commas (-ㄴ데,/-지만,/-으나,). When removing a sentence-initial conjunction (하지만, 그래서, 그런데 등), keep the sentences separate — delete only the conjunction.
 
 **After:**
-> 규칙적인 운동은 신체 건강만을 위한 것이 아니다. 뇌의 엔도르핀 분비를 촉진해 정신적 스트레스를 다독여 주는 활동인 까닭이다. 전문가들이 바쁜 현대인에게 매일 짧게라도 몸을 움직이라고 입을 모으는 이유이기도 하다. 운동 습관은 지친 일상에 활력을 불어넣어 업무 효율성까지 기분 좋게 끌어올려 준다.
+> 규칙적인 운동은 신체 건강만을 위한 것이 아니다. 운동은 뇌의 엔도르핀 분비를 촉진하여 정신적 스트레스를 완화해 주기 때문이다. 많은 전문가들은 현대인들에게 매일 짧게라도 운동할 것을 권장한다. 이를 통해 업무 효율성까지 함께 높일 수 있다.
 
 ---
 
@@ -162,11 +158,23 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 
 **Treatment:** MUST NOT enforce standard spacing. Choose whichever form sounds natural in context.
 
+**Before:**
+> 결국 그가 말하고 싶었던 것은 자유라는 것이다. 그럴 때 사람은 비로소 솔직해진다.
+
+**After:**
+> 결국 그가 말하고 싶었던 것은 자유라는거다. 그럴때 사람은 비로소 솔직해진다.
+
 ---
 
 ## Pattern 8. Auxiliary Verb Spacing (보조용언 띄어쓰기) — Essay Only
 
 Allow merged forms wherever they feel natural. MUST NOT normalize back to standard spacing.
+
+**Before:**
+> 그는 오랫동안 그 일을 해 왔다. 문제가 저절로 이루어 지는 일은 없다.
+
+**After:**
+> 그는 오랫동안 그 일을 해왔다. 문제가 저절로 이루어지는 일은 없다.
 
 ---
 
@@ -216,6 +224,12 @@ Format:
 
 Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 
+**Before:**
+> 안녕하세요! 😊 오늘은 **인공지능의 미래**에 대해 이야기해 보겠다. 아래 내용을 참고하자!
+
+**After:**
+> 오늘은 인공지능의 미래에 대해 이야기해 보겠다. 아래 내용을 참고하자.
+
 ---
 
 ## Pattern 11. Inanimate Subject Personification — Essay Treatment
@@ -244,7 +258,7 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 **Treatment:** Convert passive constructions (되다/어지다) to active voice. Replace passive modifiers with direct verb phrases.
 
 **After:**
-> 서양 위주의 데이터를 학습한 모델이 자주 쓰는 표현을 사용하면서 함께 사용하는 알고리즘이 문제를 일으키고 있습니다.
+> 서양 중심으로 학습한 모델이 자주 쓰는 표현을 사용하면서 함께 사용하는 알고리즘이 문제를 일으키고 있습니다.
 
 **Before (높임말 — 하십시오체):**
 > 최근 발표된 연구에서 제안된 방법론이 적용되었습니다.
@@ -280,13 +294,13 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 **Treatment:** Replace ~하게 만들다 with state-change expressions (~해지다), adverbs, or indirect cause-effect descriptions. Note: P1 essay example ("편리하게 만들고") also contains a P14 instance.
 
 **After:**
-> 덕분에 이 지점이 더 선명해집니다. 언어는 어떤 사고방식에 익숙해지게 하고 다른 사고방식은 낯설게 느끼도록 유도합니다.
+> 이 지점이 더 선명해집니다. 언어는 어떤 사고방식에 익숙해지게 하고 다른 사고방식은 낯설게 느끼도록 유도합니다.
 
 **Before (높임말 — 하십시오체):**
 > 이 도구는 작업을 효율적으로 만들어 줍니다.
 
 **After (하십시오체 유지):**
-> 이 도구 덕분에 작업이 훨씬 효율적으로 바뀝니다.
+> 이 도구를 쓰면 작업이 훨씬 효율적으로 바뀝니다.
 
 ---
 
@@ -332,4 +346,4 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 
 ### Final Version (Author's choice: Option 2 — skeptical/critical)
 
-> 인공지능은 현대 사회의 핵심 동력으로서 여러 산업 현장에 깊숙이 자리 잡았습니다. 의료·교육·산업 자동화에서 분명한 성과를 내고 있고, 기술 고도화도 빠른 속도로 진행 중입니다. 다만 그 혜택이 모두에게 고르게 닿고 있는지는 아직 확신하기 어렵습니다. 기술의 진보만큼이나, 그 과실을 나누는 방식에 대한 사회적 논의가 함께 따라와야 할 때입니다.
+> 인공지능은 현대 사회의 핵심 동력으로서 여러 산업 현장에 깊숙이 자리 잡았습니다. 의료·교육·산업 자동화에서 분명한 성과를 내고 있고, 기술 고도화도 빠른 속도로 진행 중입니다. 다만 그 혜택이 모두에게 고르게 닿고 있는지는 아직 확신하기 어렵습니다. 기술의 진보만큼이나 그 과실을 나누는 방식에 대한 사회적 논의가 함께 따라와야 할 때입니다.
