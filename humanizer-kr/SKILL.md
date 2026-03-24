@@ -7,7 +7,7 @@ description: >
   Not intended for translation, general editing, or non-Korean text.
 license: MIT
 metadata:
-  version: "1.2.0"
+  version: "1.4.0"
   author: ilseoppark
 compatibility: Claude Code
 ---
@@ -27,11 +27,20 @@ Writing editor that identifies and removes AI-generated patterns in Korean text 
 
 ## Workflow
 
-### Step 1: Style Detection
+### Step 1: Style Detection & Writing Profile
 
 - Determine essay/blog vs. academic/report
 - MUST ask user if unclear: "에세이/블로그와 논문/보고서 중 어느 쪽으로 처리할까요?"
 - For essay: detect and lock speech level (높임말 vs. 반말). MUST NOT change during rewriting. Within 높임말, mixing 하십시오체 and 해요체 is allowed.
+
+**Writing profile — detect and lock the following traits before rewriting:**
+
+| Trait | What to detect | Lock rule |
+| --- | --- | --- |
+| Vocabulary register | Sino-Korean (한자어) ratio, everyday vs. technical diction | MUST rewrite at the same register — do not elevate or simplify |
+| Sentence-length tendency | Predominantly short (≤30 chars), long (60+ chars), or mixed | MUST preserve the author's predominant pattern |
+| Tone | Dry/analytical vs. warm/narrative vs. conversational | MUST NOT shift tone during rewriting |
+| Syntactic complexity | Simple S-V structures vs. multi-layered modification | MUST stay within the author's complexity range |
 
 ### Step 2: Pattern Scan
 
@@ -58,7 +67,8 @@ Writing editor that identifies and removes AI-generated patterns in Korean text 
 
 - Remove only patterns from approved categories while preserving meaning
 - **Speech level guard (essay):** MUST rewrite every sentence in the same politeness tier detected in Step 1. If original mixes 하십시오체 and 해요체, MUST preserve that mix.
-- Essay: vary sentence rhythm (mix short and long); MUST NOT inject voice yet — voice is Step 4
+- **Writing-profile guard:** MUST preserve the author's vocabulary register, sentence-length tendency, tone, and syntactic complexity detected in Step 1. Reference After examples in guide files illustrate *what* to fix, not *how* the author writes. MUST NOT adopt vocabulary, sentence rhythm, or tone from reference examples.
+- Essay: if original already varies sentence rhythm, preserve it; if monotonous, introduce mild variation while staying close to the author's predominant sentence length. MUST NOT inject voice yet — voice is Step 4.
 - Academic: maintain objectivity, remove only hollow boilerplate
 
 ### Step 3.5: Draft Change Brief

@@ -1,5 +1,7 @@
 # Essay / Blog Style Guide
 
+> **Example disclaimer:** The After examples below demonstrate correction *techniques* only. They are NOT style targets. When rewriting, match the original author's vocabulary level, sentence length, and tone — not the examples'. See SKILL.md Step 1 Writing Profile for the traits to preserve.
+
 Detailed treatment rules and Before/After examples for each of the 14 patterns in essay/blog style.
 
 ## Table of Contents

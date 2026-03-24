@@ -125,6 +125,8 @@
 
 ## 2. AI-Repeated Verb/Adjective Diversification (Park & Kim, 2025)
 
+> **Selection rule:** Choose alternatives that match the original author's vocabulary register. If the original uses everyday language, prefer simpler alternatives (쓰다, 높이다); if academic, prefer formal alternatives (도입하다, 제고하다). Do NOT default to the first item in the list.
+
 | AI repeated verb | Alternatives |
 | --- | --- |
 | 활용하다 | 쓰다, 도입하다, 적용하다, 끌어오다, 접목하다 |
@@ -378,7 +380,7 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 | "Shared algorithm" | "공유된 알고리즘" | "함께 사용하는 알고리즘" / "범용적인 알고리즘" |
 
 > **Quick test:** If 되다/어지다 can be replaced by an active verb without losing meaning, flag as P12.
-
+>
 > **Exclusions — do NOT flag as P12:**
 >
 > - **-ㄹ 수 있다 / -ㄹ 수 있는** (ability/potential): active voice expressing capability. e.g., "정리할 수 있는", "표현할 수 있는", "쓸 수 있는"
