@@ -74,6 +74,10 @@ Apply the following rules:
 **After:**
 > 복잡계과학의 핵심 개념으로 비선형성과 자기조직화를 들 수 있다. 비선형성은 원인과 결과가 단순한 비례 관계를 따르지 않는 현상으로, 미세한 초기 조건의 차이가 예측 불가능한 결과를 야기할 수 있다. 자기조직화는 외부의 중앙 통제 없이도 구성 요소 간의 상호작용을 통해 거시적 질서가 자발적으로 형성되는 과정을 가리킨다.
 
+**Comma-separated three-item clausal list:**
+
+Detect comma-separated clause-level three-item lists as P3. Convert to prose where appropriate, or restructure to reduce mechanical repetition.
+
 ---
 
 ## Pattern 4. Formulaic Template Structure — Academic Treatment
@@ -180,6 +184,8 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 > 서양 중심으로 학습된 모델이 생성한 텍스트에서 선택되는 표현은 제한적이며, 공유된 알고리즘에 의해 편향이 재생산된다.
 
 **Treatment:** Convert passive constructions to active voice where clarity improves. Academic passive ("~된 바 있다", "~으로 확인되었다") is acceptable when it serves objectivity. Only flag passives that obscure the actual agent or add unnecessary complexity.
+
+**Exclusion reminder:** -ㄹ 수 있다/있는 (ability), -게 되다 (change of state), and native passive suffixes (-이/-히/-리/-기) are NOT P12 targets. See patterns-kr.md §8 P12 exclusions.
 
 **After:**
 > 서양 중심으로 학습한 모델이 생성한 텍스트에서 자주 쓰는 표현은 제한적이며, 공유 알고리즘이 편향을 재생산한다.

@@ -87,6 +87,18 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **After:**
 > 복잡계과학의 핵심은 비선형성에 있다. 원인과 결과가 단순히 비례하지 않기 때문에 작은 변화가 거대한 결과를 낳기도 한다. 이런 비선형적 상호작용 속에서 외부의 통제 없이도 스스로 질서가 만들어지는 자기조직화 현상이 일어나며, 개별 요소만으로는 설명할 수 없는 새로운 속성이 전체 수준에서 드러나기도 한다.
 
+**Comma-separated three-item clausal list:**
+
+This is a variant of Rule of Three where three clause-level items are listed with commas instead of 첫째/둘째/셋째. Detect and rewrite into natural prose flow.
+
+**Before:**
+> 매뉴얼로 쓸 수 있는 것, 데이터로 표현할 수 있는 것, 규칙으로 정리할 수 있는 일들입니다.
+
+**Treatment:** Merge the three parallel items into flowing prose. Vary sentence structure instead of repeating the same "~할 수 있는 것" pattern three times.
+
+**After:**
+> 매뉴얼로 남기거나 데이터로 표현하거나 규칙으로 정리할 수 있는 일들입니다.
+
 ---
 
 ## Pattern 4. Formulaic Template Structure — Essay Treatment
@@ -256,6 +268,8 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 > 서양 중심으로 학습된 모델이 자주 선택되는 표현을 사용하면서 공유된 알고리즘이 문제를 일으키고 있습니다.
 
 **Treatment:** Convert passive constructions (되다/어지다) to active voice. Replace passive modifiers with direct verb phrases.
+
+**Exclusion reminder:** -ㄹ 수 있다/있는 (ability), -게 되다 (change of state), and native passive suffixes (-이/-히/-리/-기) are NOT P12 targets. See patterns-kr.md §8 P12 exclusions.
 
 **After:**
 > 서양 중심으로 학습한 모델이 자주 쓰는 표현을 사용하면서 함께 사용하는 알고리즘이 문제를 일으키고 있습니다.
