@@ -4,6 +4,7 @@
 
 | 버전 | 날짜 | 주요 변경 |
 | --- | --- | --- |
+| v2.0.0 | 2026-03-29 | **아키텍처 고도화** — Generator/Evaluator 페르소나 분리, 내부 피드백 루프 (Step 3 세분화: 3.0→3.1→3.2→3.3), Rewrite Contract (Step 2.5 확장), 4차원 채점 루브릭(독창성/일관성/자연스러움/완성도) 도입, references/scoring-rubric.md 신규 추가 |
 | v1.4.0 | 2026-03-25 | 사용자 글쓰기 특성 보존 강화 — Writing Profile 감지 (어휘 수준, 문장 길이, 톤, 구문 복잡도), Step 3 보존 원칙 명시, 레퍼런스 예시 면책 경고, 대체어 선택 가이드 |
 | v1.3.0 | 2026-03-24 | 패턴 23개로 확대 (기존 14개 + 신규 9개, P15–P23), 카테고리 [G] 추가, 가이드 예제·제외 조건 강화 |
 | v1.2.1 | 2026-03-24 | 에세이/학술 가이드 예제 개선 및 설명 정제, .gitignore 경로명 수정 |
@@ -59,12 +60,13 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
 .
 ├── README.md                     # 이 파일
 ├── humanizer-kr/                 # 한국어 버전
-│   ├── SKILL.md                  # 에이전트 페르소나, 태스크, 패턴 정의, 처리 워크플로
+│   ├── SKILL.md                  # 에이전트 페르소나, 태스크, 패턴 정의, 처리 워크플로 (7단계 + 내부 루프)
 │   └── references/
 │       ├── patterns-kr.md        # 패턴 인덱스, 정량 기준, 스타일 규칙, 연구 데이터
 │       ├── essay-guide.md        # 에세이/블로그 스타일 처리 가이드
 │       ├── academic-guide.md     # 학술/보고서 스타일 처리 가이드
-│       └── output-format.md      # 각 워크플로 단계별 출력 템플릿
+│       ├── output-format.md      # 각 워크플로 단계별 출력 템플릿
+│       └── scoring-rubric.md     # 4차원 채점 루브릭 (Evaluator 모드 전용)
 ├── reference/                    # 비운영 참고 문서 (스킬 실행과 무관)
 │   ├── SKILL.md                  # 영어 버전 스킬 (원본 아이디어)
 │   ├── 5RulesForClaudeSkill.md   # Anthropic 스킬 작성 원칙
@@ -75,11 +77,20 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
 
 ### 주요 파일 설명
 
-- **`humanizer-kr/SKILL.md`**: 6단계 워크플로 정의 (스타일 감지 → 패턴 스캔 → 초안 작성 → 음성 협의(에세이) → 재검증 → 최종 검증), 각 단계별 MUST READ 파일 참조
+- **`humanizer-kr/SKILL.md`**: 7단계 워크플로 정의
+  - Step 1: 스타일 감지 & 작성 프로필 잠금
+  - Step 2: 패턴 스캔 (23가지)
+  - Step 2.5: 감지 보고 & Rewrite Contract 합의
+  - Step 3: 초안 작성 (Generator/Evaluator 내부 루프 포함: 3.0→3.1→3.2→3.3)
+  - Step 3.5: 변경 브리핑
+  - Step 4: 음성 협의 (에세이만)
+  - Step 5: 재검증 (Auditor 페르소나로 전환)
+  - Step 5.5: 최종 브리핑
 - **`humanizer-kr/references/patterns-kr.md`**: 23가지 AI 패턴 인덱스 (P1–P23), 정량 기준, 스타일별 규칙 테이블, KatFishNet + Park & Kim 연구 데이터, 감사 체크리스트
 - **`humanizer-kr/references/essay-guide.md`**: 에세이/블로그 스타일 패턴별 상세 처리 규칙, 존대법 보존, 음성 협의 프로세스
 - **`humanizer-kr/references/academic-guide.md`**: 학술/보고서 스타일 패턴별 상세 처리 규칙, 객관성 유지
-- **`humanizer-kr/references/output-format.md`**: 감지 리포트, 수정 브리핑, 재검증 보고서 템플릿
+- **`humanizer-kr/references/output-format.md`**: 감지 리포트, Rewrite Contract, 수정 브리핑, 음성 협의, 재검증 보고서 템플릿
+- **`humanizer-kr/references/scoring-rubric.md`**: 4차원 채점 루브릭 (독창성/일관성/자연스러움/완성도), Step 3.1/3.3 내부 루프 및 Step 5 재검증에서 사용
 
 ## 참고 문서
 
@@ -170,16 +181,30 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 
 스킬의 구체적인 작업 절차는 **[humanizer-kr/SKILL.md](humanizer-kr/SKILL.md)**를 참고하세요.
 
-**6단계 태스크 개요:**
+**7단계 + 내부 루프 개요:**
 
 1. **Detect style & writing profile** - 에세이/블로그 vs. 학술/보고서 판별; 에세이일 경우 존대법 탐지·고정; 어휘 수준·문장 길이·톤·구문 복잡도 감지하여 보존
 2. **Scan for AI patterns** - 23가지 한국어 AI 패턴 감지, 스타일별 규칙 적용
-3. **Report and get approval** - 감지 결과를 유형별로 리포트, 사용자 승인 후 진행
-4. **Rewrite approved sections** - 승인된 유형만 자연스러운 한국어로 재작성
-5. **Consult on voice** (에세이만) - 목소리 주입 후보 제시, 작가 선택 반영
-6. **Do a final anti-AI pass** - 남은 패턴 재검증, 사용자 승인 후 최종본 출력
+2.5. **Report & Rewrite Contract** - 감지 결과 리포트, 완료 기준 3가지를 명시적으로 합의 후 사용자 승인
+3. **Rewrite with internal feedback loop (Generator ↔ Evaluator)**
 
-핵심 흐름: 감지 → 승인 → 수정 → 목소리 협의 → 재검증 → 최종본
+   - 3.0: Generator 모드 — 초안 생성
+   - 3.1: Evaluator 모드 — 4차원 채점 루브릭 기준 내부 검토 (사용자에게 미노출)
+   - 3.2: Generator 모드 — 발견된 문제 수정 (사용자에게 미노출)
+   - 3.3: Evaluator 모드 — 최종 1회 검토 (사용자에게 미노출)
+   - → 사용자에게는 이미 자체 검토 1-2회를 거친 정제된 초안이 전달됨
+
+3.5. **Draft change brief** — 수정 항목 요약
+4. **Consult on voice** (에세이만) - 목소리 주입 후보 제시, 작가 선택 반영
+5. **Final re-validation (Auditor persona)** - Rewrite Contract 이행 여부 + 남은 AI 패턴 재검증, 사용자 승인 후 진행
+5.5. **Final output & brief** - 최종본 + 수정 요약
+
+**핵심 특징:**
+- **Generator/Evaluator 분리**: self-evaluation bias 제거 → Step 3.1 & 5에서 명시적 페르소나 전환
+- **내부 피드백 루프**: Step 3 내에서 자동으로 1-2회 자체 검토 및 수정 → 사용자가 받는 초안 품질 향상
+- **Rewrite Contract**: Step 2.5에서 명시적으로 "완료 기준"을 합의 → 모든 평가의 바인딩 기준으로 사용
+
+핵심 흐름: 감지 → Rewrite Contract 합의 → 내부 루프 포함 수정 → 목소리 협의 → 재검증 → 최종본
 
 각 스타일별 구체적인 예제와 처리 방법:
 
