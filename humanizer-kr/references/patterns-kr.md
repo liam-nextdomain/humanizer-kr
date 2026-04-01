@@ -8,6 +8,7 @@
 
 - **P1 Comma Overuse** — comma inclusion rate >40% as attention flag (context-dependent, not an absolute threshold); strongest AI identifier
 - **P2 Noun-Heavy / Low Vocab Diversity** — ~의 chains, same verb/adj 3+ times (AI verb TTR 0.461 vs. human 0.545) *(for English-style syntactic translation, see [F] P11–P14)*
+  > **Counting rule:** P2 counts at the **lemma level**, not the collocation level. "비슷한 구조", "비슷한 심리", "비슷한 이야기" = "비슷한" × 3 → threshold exceeded. Different collocations do NOT reset the count.
 
 ### [B] Structure / Word-Order
 
@@ -17,6 +18,7 @@
 ### [C] Vocabulary / Expression
 
 - **P5 AI High-Frequency Expressions** — 특히/예를 들어 clustering, 다양한/중요한/효과적인 repetition, rhetorical filler (흥미로운, ~에 그치지 않고, 체득하다, 통찰력 etc.) *(for structural translation issues, see [F] P11–P14)*
+  > **AI-preferred abstract words:** AI tends to repeat certain abstract nouns (감각, 맥락, 관점, 측면, 차원, 본질) when describing psychological or conceptual states. These words follow P2 counting rules (3+ = flag) AND carry P5 characteristics when used as a catch-all replacement for more specific terms.
 - **P6 Conjunction Overuse** — 3+ consecutive sentences starting with conjunctions
 
 ### [D] Word Spacing — Essay Only
@@ -281,11 +283,12 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 - [ ] AI stock expressions ("중요한 역할", "다양한 측면", "효과적으로 활용") and rhetorical filler (흥미로운, ~에 그치지 않고, 체득하다, 통찰력) removed or reduced?
 - [ ] Formulaic introduction/conclusion clichés removed?
 - [ ] Greetings, emojis, and communication artifacts removed?
-- [ ] Same verb/adjective not repeated 3+ times?
+- [ ] Same verb/adjective not repeated 3+ times? (count at lemma level — different collocations of the same word still count)
 - [ ] No inanimate subjects performing human actions (P11)?
 - [ ] Unnecessary 되다/어지다 passives converted to active voice (P12)?
 - [ ] Empty subject / ~는 것이다 constructions removed (P13)?
 - [ ] ~하게 만들다 causative replaced with state-change expression (P14)?
+- [ ] No compound P11+P14 (inanimate subject + causative 만들다) in same sentence?
 - [ ] No pedagogical framing (P15)?
 - [ ] No fractal summaries at every subsection level (P16)?
 - [ ] No copula avoidance — "~로서 기능한다" replaced with "~이다" (P17)?
@@ -294,7 +297,7 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 - [ ] Rhetorical self-Q&A not repeated 2+ times (P20)?
 - [ ] No magic adverb / grandiose noun clusters (3+ same class) (P21)?
 - [ ] No repetitive rhetoric — anaphora (3+), dead metaphor (5+×), analogy stacking (3+) (P22)?
-- [ ] Vague attributions specified with concrete sources (P23)?
+- [ ] Vague attributions specified with concrete sources — evaluate each independently (P23)?
 
 ### Essay/blog additional items
 
@@ -371,6 +374,7 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 1. **Recognize sentence structure before item-level scanning.** Identify the overall sentence structure (parallel lists, conditional chains, topic-comment pairs) before scanning individual phrases for pattern violations.
 2. **P3 takes priority over P12 within list items.** When a sentence contains a three-item enumeration (P3), address the list structure first. Do not flag individual items within the list for P12 passive — the items may be valid active constructions (e.g., -ㄹ 수 있는) that are not passive at all.
 3. **P12 exclusions override P12 detection.** Before flagging any construction as P12, check the exclusion list. -ㄹ 수 있다, -게 되다, and native passive suffixes are never P12.
+4. **P11 + P14 compound detection.** When an inanimate subject (P11) is paired with causative 만들다 (P14) in the same sentence (e.g., "환경이 스트레스를 만들 수 있다"), the combination is a stronger AI signal than either pattern alone. Flag as compound violation even if each individual pattern appears marginal.
 
 ---
 
@@ -622,6 +626,7 @@ AI poses a question nobody asked, then immediately answers it — treating self-
 
 - AI-overused: "전문가들은", "연구에 따르면", "업계에서는", "많은 사람들이"
 - Fix: specify source or delete attribution frame; state the claim directly
+- **Adjacent source halo:** Evaluate each attribution independently. A specific citation nearby (e.g., "한국비정규노동센터, 2025") does NOT validate adjacent vague references (e.g., "임상 정신의학 쪽에서도"). Each claim must have its own verifiable source or the attribution frame must be removed.
 
 **Stakes inflation:** Every point inflated to world-historical significance.
 

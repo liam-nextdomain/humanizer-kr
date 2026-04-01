@@ -34,6 +34,8 @@ At Step 3.1/3.3: if total score < 6 OR any single dimension = 0, proceed to Step
 
 **Tier-1 patterns to check (always flag):** P15 (교수법적 프레이밍), P16 (구조적 패딩), P17 (Copula 회피), P18 (부정 병렬), P19 (조어 라벨)
 
+**Anti-camouflage rule:** Tier escalation is a mechanical, count-based check. Count matching structures first, THEN assess quality. A pattern instance counts toward the threshold even if it feels thematically motivated by the essay's argument. The author's intent does not reduce the count.
+
 ---
 
 ## Dimension 2: Consistency (일관성)
@@ -78,6 +80,9 @@ At Step 3.1/3.3: if total score < 6 OR any single dimension = 0, proceed to Step
 
 Run this before scoring to catch the most common issues fast:
 
+**Step 0 — Mechanical count (run BEFORE qualitative checks):**
+- [ ] Count all "아니라/아닙니다/않습니다" carrying "not X — rather Y" reframe → if 2+, P18 Tier escalation applies regardless of thematic fit
+- [ ] Count each repeated word/adjective (same lemma) across entire text → if 3+, flag P2 regardless of collocation variety
 - [ ] Any sentence starts with "결론적으로", "이처럼", "이를 통해", "~에 대해 알아보겠습니다"? → Dimension 1 = 0
 - [ ] Any Tier-1 pattern (P15–P23) still present? → Dimension 1 = 0
 - [ ] Did sentence length distribution change significantly? → Dimension 2 = 0

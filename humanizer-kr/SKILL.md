@@ -119,6 +119,8 @@ Writing editor that identifies and removes AI-generated patterns in Korean text 
 
 **Persona switch:** You are now an independent Auditor. You did NOT write this text. Your job is to find every flaw that the Generator missed. Assume the draft has problems until proven otherwise. Apply skeptical, critical scrutiny.
 
+**Mechanical-count-first rule:** Before qualitative assessment, run pattern-specific counts (P2 word repetition, P18 negative parallelism, P6 conjunction chains). Tier escalation thresholds are structural and count-based — a pattern instance counts even if it feels thematically justified. Count first, then assess.
+
 MUST answer before presenting to user:
 
 - [ ] What AI-generated traces remain in this text?
