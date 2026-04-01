@@ -4,6 +4,7 @@
 
 | 버전 | 날짜 | 주요 변경 |
 | --- | --- | --- |
+| v2.1.0 | 2026-04-02 | **P5 수사적 관용 표현 확장** — AI rhetorical filler 감지 추가 (감성 형용사·확장 구문·과잉 학술어·논증 클리셰 4유형), 밀도 규칙(동일 유형 2+회 / 전체 4+회), 에세이·학술 가이드에 before/after 예시 추가, 감사 체크리스트 반영 |
 | v2.0.0 | 2026-03-29 | **아키텍처 고도화** — Generator/Evaluator 페르소나 분리, 내부 피드백 루프 (Step 3 세분화: 3.0→3.1→3.2→3.3), Rewrite Contract (Step 2.5 확장), 4차원 채점 루브릭(독창성/일관성/자연스러움/완성도) 도입, references/scoring-rubric.md 신규 추가 |
 | v1.4.0 | 2026-03-25 | 사용자 글쓰기 특성 보존 강화 — Writing Profile 감지 (어휘 수준, 문장 길이, 톤, 구문 복잡도), Step 3 보존 원칙 명시, 레퍼런스 예시 면책 경고, 대체어 선택 가이드 |
 | v1.3.0 | 2026-03-24 | 패턴 23개로 확대 (기존 14개 + 신규 9개, P15–P23), 카테고리 [G] 추가, 가이드 예제·제외 조건 강화 |
@@ -41,7 +42,7 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
   - 명사 중심 구조 & 어휘 반복 (동사·형용사·부사 다양성 저하)
   - 룰 오브 쓰리 나열 & 개조식 문장 (단문 나열·목차 세분화)
   - 공식적 서식 (서론/결론 템플릿)
-  - AI 고빈도 표현 (예시·강조형 접속사 과다)
+  - AI 고빈도 표현 (예시·강조형 접속사 과다, 수사적 관용 표현)
   - 접속사 남용 (조건형 부재)
   - 의존명사 띄어쓰기 (에세이 스타일)
   - 보조용언 띄어쓰기 (에세이 스타일)
@@ -52,6 +53,12 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
   - 의미 없는 주어·가주어 구문 (영어 직역투)
   - 사역동사 '만들다' 직역 (영어 직역투)
 
+- **수사적 관용 표현 감지** (v2.1 신규): P5에 AI rhetorical filler 4유형 추가
+  - 감성 형용사 (흥미로운, 묘한) — 2회 이상 시 구체적 감정으로 교체
+  - 확장 구문 (~에 그치지 않고, ~을 넘어서) — 실질 확장이 없으면 삭제
+  - 과잉 학술어 (체득하다, 통찰력) — 일상어로 대체
+  - 논증 클리셰 (주장이 약해진다) — 구체적 결과로 서술
+  - 밀도 규칙: 동일 유형 2+회 또는 전체 4+회 시 적극 치환
 - **문체 보존**: 한국어의 다양한 존대법(합쇼체, 해요체, 해체) 유지, 사용자의 어휘 수준·문장 길이 경향·톤·구문 복잡도 보존
 
 ## 폴더 구조
@@ -86,7 +93,7 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
   - Step 4: 음성 협의 (에세이만)
   - Step 5: 재검증 (Auditor 페르소나로 전환)
   - Step 5.5: 최종 브리핑
-- **`humanizer-kr/references/patterns-kr.md`**: 23가지 AI 패턴 인덱스 (P1–P23), 정량 기준, 스타일별 규칙 테이블, KatFishNet + Park & Kim 연구 데이터, 감사 체크리스트
+- **`humanizer-kr/references/patterns-kr.md`**: 23가지 AI 패턴 인덱스 (P1–P23), 정량 기준, 스타일별 규칙 테이블, KatFishNet + Park & Kim 연구 데이터, 수사적 관용 표현 치환 테이블 (v2.1), 감사 체크리스트
 - **`humanizer-kr/references/essay-guide.md`**: 에세이/블로그 스타일 패턴별 상세 처리 규칙, 존대법 보존, 음성 협의 프로세스
 - **`humanizer-kr/references/academic-guide.md`**: 학술/보고서 스타일 패턴별 상세 처리 규칙, 객관성 유지
 - **`humanizer-kr/references/output-format.md`**: 감지 리포트, Rewrite Contract, 수정 브리핑, 음성 협의, 재검증 보고서 템플릿
@@ -234,7 +241,7 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 ### 핵심 문서
 
 - **[humanizer-kr/SKILL.md](humanizer-kr/SKILL.md)**: 6단계 워크플로 정의, 각 단계별 MUST READ 파일 참조 (마스터 가이드)
-- **[humanizer-kr/references/patterns-kr.md](humanizer-kr/references/patterns-kr.md)**: 23가지 AI 패턴 인덱스 (P1–P23), 정량 기준, 스타일별 규칙, 연구 데이터, 감사 체크리스트
+- **[humanizer-kr/references/patterns-kr.md](humanizer-kr/references/patterns-kr.md)**: 23가지 AI 패턴 인덱스 (P1–P23), 정량 기준, 스타일별 규칙, 연구 데이터, 수사적 관용 표현 치환 테이블, 감사 체크리스트
 - **[humanizer-kr/references/essay-guide.md](humanizer-kr/references/essay-guide.md)**: 에세이/블로그 스타일 처리 규칙, 존대법 보존, 음성 협의 프로세스
 - **[humanizer-kr/references/academic-guide.md](humanizer-kr/references/academic-guide.md)**: 학술/보고서 스타일 처리 규칙, 객관성 유지
 

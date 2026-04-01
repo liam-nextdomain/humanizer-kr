@@ -16,7 +16,7 @@
 
 ### [C] Vocabulary / Expression
 
-- **P5 AI High-Frequency Expressions** — 특히/예를 들어 clustering, 다양한/중요한/효과적인 repetition *(for structural translation issues, see [F] P11–P14)*
+- **P5 AI High-Frequency Expressions** — 특히/예를 들어 clustering, 다양한/중요한/효과적인 repetition, rhetorical filler (흥미로운, ~에 그치지 않고, 체득하다, 통찰력 etc.) *(for structural translation issues, see [F] P11–P14)*
 - **P6 Conjunction Overuse** — 3+ consecutive sentences starting with conjunctions
 
 ### [D] Word Spacing — Essay Only
@@ -225,6 +225,21 @@ In essays, when removing sentence-initial conjunctions, merging two sentences wi
 | 부정적인 영향을 미친다 | Same as above |
 | 효과적으로 활용 | State how it is used directly |
 
+### AI rhetorical filler treatment
+
+Expressions that rarely appear in human-written Korean but are characteristic of LLM output. Unlike stock modifiers above (which are vague but sometimes legitimate), these are rhetorical habits that signal AI authorship through their tone, register, or framing.
+
+| Type | Expressions | Treatment |
+| --- | --- | --- |
+| Emotive adjective (감성 형용사) | 흥미로운/흥미롭다, 묘한/묘하다 | 1× allowed; 2+× replace with the specific emotion or reaction the author would actually feel (e.g., 흥미로운 → 낯선, 의외인, 눈에 띄는) |
+| Expansion phrase (확장 구문) | 단순히 ~에 그치지 않고, ~을 넘어서 | If concrete expansion follows → rewrite as direct connection (A이자 B, A이면서 B); if no real expansion → delete the phrase entirely |
+| Elevated vocabulary (과잉 학술어) | 체득하다, 익히다, 통찰력 | Replace with everyday equivalents: 체득하다 → 배우다/몸에 배다, 익히다 → 배우다/알게 되다, 통찰력 → 핵심/요점/감 |
+| Argument cliché (논증 클리셰) | 주장이 약해진다, ~에 중요한 역할을 하다 | State the specific consequence or role directly (e.g., "주장이 약해진다" → describe what actually breaks; "중요한 역할을 하다" → name the role) |
+
+> **Density rule:** Same-type filler appearing **2+ times** in the text → replacement/deletion target. Even across different types, **4+ total occurrences** signals excessive AI rhetorical patterning — treat aggressively.
+>
+> **Interaction with other P5 tables:** Rhetorical filler is checked alongside conjunction, intensifier, and stock modifier scans during the same P5 pass. No separate scanning step is needed.
+
 ---
 
 ## 4. Auxiliary Verb Attachment Allowlist (Essay Only)
@@ -263,7 +278,7 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 
 ### Common items (both styles)
 
-- [ ] AI stock expressions ("중요한 역할", "다양한 측면", "효과적으로 활용") removed?
+- [ ] AI stock expressions ("중요한 역할", "다양한 측면", "효과적으로 활용") and rhetorical filler (흥미로운, ~에 그치지 않고, 체득하다, 통찰력) removed or reduced?
 - [ ] Formulaic introduction/conclusion clichés removed?
 - [ ] Greetings, emojis, and communication artifacts removed?
 - [ ] Same verb/adjective not repeated 3+ times?

@@ -7,7 +7,7 @@ description: >
   Not intended for translation, general editing, or non-Korean text.
 license: MIT
 metadata:
-  version: "1.4.0"
+  version: "2.0.0"
   author: ilseoppark
 compatibility: Claude Code
 ---

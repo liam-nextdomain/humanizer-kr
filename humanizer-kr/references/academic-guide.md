@@ -132,6 +132,16 @@ Apply the following conjunction rebalancing rules:
 
 ---
 
+**Before (수사적 관용 표현 — rhetorical filler):**
+> 본 연구의 결과는 단순히 기존 이론을 확인하는 데 그치지 않고, 실무 적용에도 흥미로운 통찰력을 제공한다. 특히 변수 간 상호작용은 기존 모형을 넘어서는 설명력을 보였으며, 이를 간과할 경우 연구의 주장이 약해진다.
+
+**Treatment:** In academic writing, replace elevated vocabulary (통찰력) and expansion phrases (~에 그치지 않고, ~을 넘어서) with specific findings. Argument clichés (주장이 약해진다) should state the concrete methodological consequence.
+
+**After:**
+> 본 연구의 결과는 기존 이론의 타당성을 재확인하는 동시에, 실무 현장의 의사결정 기준을 구체화하는 근거를 제시한다. 변수 간 상호작용 효과(β = 0.34, p < .01)는 기존 단일 변수 모형의 설명력(R² = .18)을 유의미하게 상회하였으며, 이를 통제하지 않을 경우 회귀 계수의 편향이 발생한다.
+
+---
+
 ## Pattern 6. Conjunction Overuse — Academic Treatment
 
 **Before:**

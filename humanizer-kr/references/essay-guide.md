@@ -147,6 +147,16 @@ This is a variant of Rule of Three where three clause-level items are listed wit
 
 ---
 
+**Before (수사적 관용 표현 — rhetorical filler):**
+> 이 경험은 단순히 기술을 익히는 데 그치지 않고, 협업이라는 묘한 역학 관계를 체득하는 계기가 되었다. 흥미로운 점은 서로 다른 배경을 가진 사람들이 모이면 예상을 넘어서는 결과가 나온다는 것이다. 이런 통찰력은 혼자서는 결코 얻을 수 없다.
+
+**Treatment:** Emotive adjectives (흥미로운, 묘한), expansion phrases (~에 그치지 않고, ~을 넘어서), and elevated vocabulary (체득하다, 통찰력) cluster together — a strong AI rhetorical filler signal. Replace with concrete descriptions of what the author actually experienced and felt.
+
+**After:**
+> 이 경험에서 기술보다 오래 남은 건 협업의 감각이었다. 배경이 다른 사람들이 모이니 혼자였으면 떠올리지 못했을 방향이 튀어나왔다. 그건 책에서 읽어서 아는 것과는 다른 종류의 앎이었다.
+
+---
+
 ## Pattern 6. Conjunction Overuse — Essay Treatment
 
 **Before:**
