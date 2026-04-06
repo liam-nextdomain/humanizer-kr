@@ -4,6 +4,7 @@
 
 | 버전 | 날짜 | 주요 변경 |
 | --- | --- | --- |
+| v2.3.0 | 2026-04-06 | **문서 구조 리팩토링 & 패턴 재편성** — P4(Formulaic Template) → P5로 병합, P2 명칭 변경(Low Vocab Diversity), 가이드 파일(essay-guide/academic-guide)에서 중복 Before/After 예시 제거 후 patterns-kr.md를 단일 소스로 통합, P9·P10·P17·P23에 구체적 예시 및 판별 기준 보강 |
 | v2.2.0 | 2026-04-02 | **패턴 감지 정밀도 강화** — P2 어간(lemma) 기준 카운팅 규칙 추가 (콜로케이션이 달라도 동일 어간은 동일 카운트), P5 AI 선호 추상 명사 6종(감각/맥락/관점/측면/차원/본질) 감지 추가, P11+P14 복합 감지 규칙(무생물 주어+사역 만들다 동시 출현) 추가, P23 Adjacent Source Halo 규칙(인접 출처가 다른 모호 출처를 검증하지 않음) 추가; Step 5 Mechanical-count-first rule 도입; 채점 루브릭에 Anti-camouflage rule + Step 0 기계적 카운팅 사전 검사 추가; 감사 체크리스트 개선 |
 | v2.1.0 | 2026-04-02 | **P5 수사적 관용 표현 확장** — AI rhetorical filler 감지 추가 (감성 형용사·확장 구문·과잉 학술어·논증 클리셰 4유형), 밀도 규칙(동일 유형 2+회 / 전체 4+회), 에세이·학술 가이드에 before/after 예시 추가, 감사 체크리스트 반영 |
 | v2.0.0 | 2026-03-29 | **아키텍처 고도화** — Generator/Evaluator 페르소나 분리, 내부 피드백 루프 (Step 3 세분화: 3.0→3.1→3.2→3.3), Rewrite Contract (Step 2.5 확장), 4차원 채점 루브릭(독창성/일관성/자연스러움/완성도) 도입, references/scoring-rubric.md 신규 추가 |
@@ -215,6 +216,7 @@ Skill 활성화 후 Claude에 다음과 같이 요청합니다:
 5.5. **Final output & brief** - 최종본 + 수정 요약
 
 **핵심 특징:**
+
 - **Generator/Evaluator 분리**: self-evaluation bias 제거 → Step 3.1 & 5에서 명시적 페르소나 전환
 - **내부 피드백 루프**: Step 3 내에서 자동으로 1-2회 자체 검토 및 수정 → 사용자가 받는 초안 품질 향상
 - **Rewrite Contract**: Step 2.5에서 명시적으로 "완료 기준"을 합의 → 모든 평가의 바인딩 기준으로 사용

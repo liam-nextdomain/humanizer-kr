@@ -7,13 +7,17 @@
 ### [A] Punctuation
 
 - **P1 Comma Overuse** — comma inclusion rate >40% as attention flag (context-dependent, not an absolute threshold); strongest AI identifier
-- **P2 Noun-Heavy / Low Vocab Diversity** — ~의 chains, same verb/adj 3+ times (AI verb TTR 0.461 vs. human 0.545) *(for English-style syntactic translation, see [F] P11–P14)*
+- **P2 Low Vocab Diversity** — same verb/adj 3+ times (AI verb TTR 0.461 vs. human 0.545)
   > **Counting rule:** P2 counts at the **lemma level**, not the collocation level. "비슷한 구조", "비슷한 심리", "비슷한 이야기" = "비슷한" × 3 → threshold exceeded. Different collocations do NOT reset the count.
+  >
+  > **Example:**
+  > - Before: "**다양한** 분야에서 **다양한** 시도가 이루어지고 있으며, **다양한** 결과를 낳고 있다."
+  > - After: "**여러** 분야에서 **갖가지** 시도가 이루어지고 있으며, **폭넓은** 결과를 낳고 있다."
 
 ### [B] Structure / Word-Order
 
 - **P3 Rule of Three & Bullet-Point Enumeration** — rigid 첫째/둘째/셋째, excessive outline depth (개조식), three-item comma-separated clausal lists
-- **P4 Formulaic Template** — 서론 ~에 대해 살펴보겠다 / 결론 ~해야 할 것이다
+- ~~P4 Academic Convention Comma~~ — Merged into P5 (originally covered comma usage in academic/report contexts as a separate convention; now handled as part of P5's style-conditional rules)
 
 ### [C] Vocabulary / Expression
 
@@ -29,7 +33,11 @@
 ### [E] Communication
 
 - **P9 Absence of Voice** — essay only; neutral statements without author personality
+  > **Example:**
+  > - Before (AI): "이 결과는 주목할 만하다. 기존 방식 대비 성능이 크게 향상되었다."
+  > - After (voice inserted): "이 결과를 보고 솔직히 놀랐다. 기존 방식 대비 성능이 이 정도로 차이 날 줄은 몰랐기 때문이다." / "개인적으로 이 결과가 가장 인상적이었다. 성능 차이가 기대 이상이었다."
 - **P10 Communication Artifacts** — greetings, AI handover language, emoji, bold headers → remove all
+  > **AI handover language examples:** "도움이 되셨길 바랍니다", "더 궁금한 점이 있으시면 말씀해 주세요", "이 내용이 도움이 되었기를 바랍니다", "요약하자면 다음과 같습니다:", "아래에서 자세히 설명드리겠습니다"
 
 ### [F] English Direct Translation (영어 직역투)
 
@@ -416,9 +424,9 @@ In essays, human writers often attach auxiliary verbs for readability. **In pape
 
 | English source pattern | AI direct translation | Natural Korean |
 | --- | --- | --- |
-| "There is a reason why this is tricky." | "이 현상이 까다로운 이유가 있습니다." | "이 현상은 다음과 같은 이유로 까다롭습니다." |
+| "There is a reason why this is tricky." | "이 현상이 까다로운 이유가 있습니다." | "이 현상은 변수가 많아서 까다롭습니다." / "이 현상은 조건이 복잡해서 까다롭습니다." |
 | "There is a need to ask." | "물어볼 필요가 있습니다." | "의문을 가져야 합니다." / "질문해 보아야 합니다." |
-| "It was also a process of…" | "과정이기도 했습니다." | "과정이기도 합니다." / "씨름하며 배우는 단계였습니다." |
+| "It was also a process of…" | "이것은 배우는 과정이기도 했습니다." | "시행착오는 배우는 과정이기도 합니다." |
 
 > **Quick test:** If the sentence contains ~이유가 있다, ~필요가 있다, ~것이다 as a frame without adding information, flag as P13.
 
@@ -520,7 +528,7 @@ AI's repetition penalty pushes it away from simple "~이다" toward ornamental v
 
 **Detection keywords:** ~로서 기능하다, ~의 역할을 하다, ~을 상징하다, ~을 대변하다, ~으로 자리 잡다, ~을 제공하다 (when a simple copula suffices)
 
-> **Quick test:** If "~로서 기능하다/역할을 하다" can be replaced with "~이다" without losing meaning, flag as P17.
+> **Quick test:** If "~로서 기능하다/역할을 하다" can be replaced with "~이다" without losing meaning, flag as P17. Apply ONLY when the sentence describes a simple identity or equivalence relation. Do NOT apply when the author intentionally uses figurative language (e.g., "이 사건은 민주주의를 상징한다" — genuine symbolic relationship, not copula avoidance).
 
 ---
 
@@ -627,6 +635,9 @@ AI poses a question nobody asked, then immediately answers it — treating self-
 - AI-overused: "전문가들은", "연구에 따르면", "업계에서는", "많은 사람들이"
 - Fix: specify source or delete attribution frame; state the claim directly
 - **Adjacent source halo:** Evaluate each attribution independently. A specific citation nearby (e.g., "한국비정규노동센터, 2025") does NOT validate adjacent vague references (e.g., "임상 정신의학 쪽에서도"). Each claim must have its own verifiable source or the attribution frame must be removed.
+- **Source specificity levels:**
+  - ❌ Vague (remove or specify): "전문가들은", "연구에 따르면", "업계에서는", "많은 사람들이"
+  - ✅ Specific (acceptable): "MIT 2024년 연구(Smith et al.)", "한국은행 2025년 1분기 보고서", "가트너(Gartner)의 2024 하이프 사이클"
 
 **Stakes inflation:** Every point inflated to world-historical significance.
 

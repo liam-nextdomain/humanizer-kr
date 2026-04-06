@@ -2,26 +2,25 @@
 
 > **Example disclaimer:** The After examples below demonstrate correction *techniques* only. They are NOT style targets. When rewriting, match the original author's vocabulary level, sentence length, and tone — not the examples'. See SKILL.md Step 1 Writing Profile for the traits to preserve.
 
-Detailed treatment rules and Before/After examples for each of the 14 patterns in essay/blog style.
+This guide covers **essay-specific exceptions and variations only**. For universal pattern definitions, detection criteria, and Before/After examples, see patterns-kr.md.
 
 ## Table of Contents
 
 1. [Speech Level Rule](#speech-level-rule)
 2. [Pattern 1. Comma Overuse](#pattern-1-comma-overuse--essay-treatment)
-3. [Pattern 2. Noun-Heavy Structure](#pattern-2-noun-heavy-structure--essay-treatment)
+3. [Pattern 2. Low Vocab Diversity](#pattern-2-low-vocab-diversity--not-applicable)
 4. [Pattern 3. Rule of Three & Bullet-Point Enumeration](#pattern-3-rule-of-three--bullet-point-enumeration--essay-treatment)
-5. [Pattern 4. Formulaic Template Structure](#pattern-4-formulaic-template-structure--essay-treatment)
-6. [Pattern 5. AI High-Frequency Expressions](#pattern-5-ai-high-frequency-expressions--essay-treatment)
-7. [Pattern 6. Conjunction Overuse](#pattern-6-conjunction-overuse--essay-treatment)
-8. [Pattern 7. Bound Noun Spacing](#pattern-7-bound-noun-spacing-의존명사-띄어쓰기--essay-only)
-9. [Pattern 8. Auxiliary Verb Spacing](#pattern-8-auxiliary-verb-spacing-보조용언-띄어쓰기--essay-only)
-10. [Pattern 9. Absence of Voice / Personality](#pattern-9-absence-of-voice--personality--essay-only)
-11. [Pattern 10. Communication Artifacts](#pattern-10-communication-artifacts--essay-treatment)
-12. [Pattern 11. Inanimate Subject Personification](#pattern-11-inanimate-subject-personification--essay-treatment)
-13. [Pattern 12. Unnecessary Passive / Relative Clause Overuse](#pattern-12-unnecessary-passive--relative-clause-overuse--essay-treatment)
-14. [Pattern 13. Empty Subject & ~는 것이다 Construction](#pattern-13-empty-subject--는-것이다-construction--essay-treatment)
-15. [Pattern 14. Causative 만들다 Direct Translation](#pattern-14-causative-만들다-direct-translation--essay-treatment)
-16. [Example 1: Full Worked Example](#example-1-essay-style-full-worked-example)
+5. [Pattern 5. AI High-Frequency Expressions](#pattern-5-ai-high-frequency-expressions--essay-treatment)
+6. [Pattern 6. Conjunction Overuse](#pattern-6-conjunction-overuse--essay-treatment)
+7. [Pattern 7. Bound Noun Spacing](#pattern-7-bound-noun-spacing-의존명사-띄어쓰기--essay-only)
+8. [Pattern 8. Auxiliary Verb Spacing](#pattern-8-auxiliary-verb-spacing-보조용언-띄어쓰기--essay-only)
+9. [Pattern 9. Absence of Voice / Personality](#pattern-9-absence-of-voice--personality--essay-only)
+10. [Pattern 10. Communication Artifacts](#pattern-10-communication-artifacts--essay-treatment)
+11. [Pattern 11. Inanimate Subject Personification](#pattern-11-inanimate-subject-personification--essay-treatment)
+12. [Pattern 12. Unnecessary Passive / Relative Clause Overuse](#pattern-12-unnecessary-passive--relative-clause-overuse--essay-treatment)
+13. [Pattern 13. Empty Subject & ~는 것이다 Construction](#pattern-13-empty-subject--는-것이다-construction--essay-treatment)
+14. [Pattern 14. Causative 만들다 Direct Translation](#pattern-14-causative-만들다-direct-translation--essay-treatment)
+15. [Example 1: Full Worked Example](#example-1-essay-style-full-worked-example)
 
 ---
 
@@ -35,35 +34,13 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 
 ## Pattern 1. Comma Overuse — Essay Treatment
 
-**Before:**
-> 현대 사회에서, 기술의 발전은, 인간의 삶을 편리하게 만들고 있지만, 동시에 소외 현상을 초래하기도 한다. 따라서, 이에 대한 대책 마련이 시급한 실정이다.
-
-**Treatment:** Remove commas aggressively. Split sentences or use connective endings where comma removal alone leaves an awkward join.
-
-**After:**
-> 현대 사회에서 기술의 발전은 인간의 삶을 편리하게 만들고 있지만 동시에 소외 현상을 초래하기도 한다. 따라서 이에 대한 대책 마련이 시급한 실정이다.
+**Essay-specific rule:** Remove commas aggressively. Split sentences or use connective endings where comma removal alone leaves an awkward join. See patterns-kr.md §1 for universal comma removal/retention criteria.
 
 ---
 
-## Pattern 2. Noun-Heavy Structure — Essay Treatment
+## Pattern 2. Low Vocab Diversity — Not Applicable
 
-**Before:**
-> 데이터의 효율적 활용의 중요성에 대한 대중적인 인식의 확산은 기업의 경쟁력의 제고의 기반이다.
-
-**Treatment:** Convert noun phrases to verb clauses. Diversify endings. Conversational forms allowed.
-
-**After:**
-> 데이터를 효율적으로 활용하는 일이 얼마나 중요한지 사람들이 이해하는 것이 기업이 경쟁력을 높이는 밑바탕이 된다.
-
----
-
-**Before (어휘 반복 — Park & Kim, 2025):**
-> 인공지능은 의료 분야에서 활용되고 있다. 교육에서도 활용되며, 산업 현장에서도 활용된다.
-
-**Treatment:** Replace repeated verbs/adjectives with synonyms or specific descriptions.
-
-**After:**
-> 인공지능은 의료 분야에서 쓰이고 있다. 교육에서도 도입되었고, 산업 현장에서도 접목되고 있다.
+Not style-specific. Universal counting rule (same verb/adj 3+ times) applies across all styles. See patterns-kr.md §1 P2.
 
 ---
 
@@ -75,7 +52,7 @@ Detailed treatment rules and Before/After examples for each of the 14 patterns i
 **Treatment:** Break the rule-of-three. Keep only the most important point or merge into natural flow.
 
 **After:**
-> 성공적인 프로젝트 수행을 위해서는 팀원들 간의 원활한 소통이 이루어져야 한다. 명확한 목표 설정과 일정 관리가 뒷받침될 때 예상치 못한 변수에 대응할 수 있는 유연한 태도도 갖출 수 있다.
+> 프로젝트를 성공하려면 팀원들 간의 원활한 소통이 이루어져야 한다. 목표를 명확히 설정하고 일정 관리가 뒷받침될 때 예상치 못한 변수에 대응할 수 있는 유연한 태도도 갖출 수 있다.
 
 **Before (개조식 — bullet-point enumeration, Park & Kim, 2025):**
 > 복잡계과학의 특징은 다음과 같다.
@@ -103,69 +80,35 @@ This is a variant of Rule of Three where three clause-level items are listed wit
 
 ---
 
-## Pattern 4. Formulaic Template Structure — Essay Treatment
-
-**Treatment:** Remove intro/conclusion boilerplate entirely. Enter content directly. For the conclusion's closing stance, apply Pattern 9 voice consultation — do not invent the author's reaction unilaterally.
-
-**Before:**
-> [서론] "이 글에서는 인공지능이 우리의 인식에 미치는 영향에 대해 살펴보고자 한다. 인공지능이 사고방식을 어떻게 바꾸는지 알아보고 그에 따른 변화를 다룰 것이다."
-> [결론] "결론적으로 인공지능이 우리의 인식에 큰 영향을 미친다는 것을 알 수 있다. 물론 부정적인 측면도 있지만 앞으로도 이 문제에 관심을 가져야 할 것이다. 그렇게 된다면 더 나은 방향으로 나아갈 수 있을 것으로 기대된다."
-
-**After:**
-> [서론] "요즘 무언가를 판단할 때 나도 모르게 AI에게 먼저 물어보게 된다. 내 생각인 줄 알았던 것이 사실은 알고리즘이 건넨 답이었던 적도 있다."
-> [결론] "AI는 우리가 세상을 바라보는 렌즈 자체를 바꾸고 있다. 편리함 뒤에서 내 판단력이 조금씩 위축되고 있지는 않은지 가끔은 스스로 점검해 볼 필요가 있다."
->
-> [→ 결론부에 작가의 관점을 담으려면 Pattern 9 Voice Consultation을 진행하세요.]
-
----
-
 ## Pattern 5. AI High-Frequency Expressions — Essay Treatment
 
-**Before:**
-> 특히 인공지능은 다양한 분야에서 중요한 역할을 하며, 교육 현장에서도 효과적으로 활용되고 있습니다. 뿐만 아니라, 이는 학생들에게 긍정적인 영향을 미치며, 결과적으로 학습 성과를 지속적으로 개선할 수 있습니다.
+**Essay convention note:** In essay/blog style, formulaic intro/conclusion frames ("~에 대해 살펴보고자 한다", "~임을 알 수 있다") should be removed entirely — enter content directly. For the conclusion's closing stance, apply Pattern 9 voice consultation.
 
-**Treatment:** Scan the **entire text** first. Identify expressions that appear **2 or more times** — these are the primary replacement targets. A single occurrence of 다양한/중요한/효과적인 is acceptable; recurring repetition is the signal to act. For conjunctions, remove only those where the logical flow holds naturally without them (Pattern 6 threshold: 3+ consecutive still applies).
-
-**After:**
-> 인공지능은 교실 안팎에서 학생 개개인의 학습 속도를 세심하게 살피는 조력자가 되었습니다. 학생의 취약한 문제를 실시간으로 분석해 맞춤형 복습 과제를 제시해 주기도 합니다. 이러한 개별 맞춤형 피드백은 아이들이 배움을 포기하지 않고 실력을 차근차근 쌓아 올리도록 돕습니다.
+**Essay-specific treatment:** Scan the **entire text** first. Identify expressions that appear **2 or more times** — these are the primary replacement targets. A single occurrence of 다양한/중요한/효과적인 is acceptable; recurring repetition is the signal to act. For universal substitution/deletion strategies, see patterns-kr.md §3.
 
 **Before (높임말 — 해요체):**
 > 특히 인공지능은 다양한 분야에서 중요한 역할을 하고 있고요, 교육 현장에서도 효과적으로 활용되고 있어요. 뿐만 아니라, 이를 통해 학생들에게 긍정적인 영향을 주고 있고요, 결과적으로 학습 성과도 지속적으로 좋아지고 있어요.
 
 **After (해요체 유지):**
-> 인공지능은 교실 안팎에서 학생 개개인의 학습 속도를 세심하게 살피는 조력자가 되었어요. 학생의 취약한 문제를 실시간으로 분석해서 맞춤형 복습 과제를 제시해 주기도 하고요. 이런 개별 맞춤형 피드백 덕분에 아이들이 배움을 포기하지 않고 실력을 차근차근 쌓아 올릴 수 있게 돼요.
+> 인공지능은 교실 안팎에서 학생 개개인의 학습 속도를 세심하게 살피는 조력자가 되었어요. 학생의 취약한 문제를 실시간으로 분석해서 맞춤형 복습 과제를 제시해 주기도 하고요. 이렇게 학생 개개인에게 맞춘 피드백 덕분에 아이들이 배움을 포기하지 않고 실력을 차근차근 쌓아 올릴 수 있게 돼요.
 
 ---
 
-**Before (예시·강조형 접속사 과다 — Park & Kim, 2025):**
-> 생태학은 생물과 환경의 관계를 연구하는 학문이다. 특히 종 간 상호작용이 핵심 주제이다. 예를 들어 포식자-피식자 관계가 대표적이다. 다시 말해 한 종의 변화가 전체 생태계에 영향을 미친다.
+**Essay-specific rhetorical filler treatment:**
 
-**Treatment:** When example/emphasis conjunctions cluster 3+ times, remove redundant ones and convert some to direct case description or conditional framing.
+Emotive adjectives (흥미로운, 묘한), expansion phrases (~에 그치지 않고, ~을 넘어서), and elevated vocabulary (체득하다, 통찰력) cluster together — a strong AI rhetorical filler signal. In essays, replace with concrete descriptions of what the author actually experienced and felt. See patterns-kr.md §3 for universal density rules and definitions.
 
-**After:**
-> 생태학은 생물과 환경의 관계를 연구하는 학문이다. 종 간 상호작용이 핵심 주제인데 포식자-피식자 관계에서 보듯 한 종의 변화가 전체 생태계에 영향을 미친다.
-
----
-
-**Before (수사적 관용 표현 — rhetorical filler):**
+**Before:**
 > 이 경험은 단순히 기술을 익히는 데 그치지 않고, 협업이라는 묘한 역학 관계를 체득하는 계기가 되었다. 흥미로운 점은 서로 다른 배경을 가진 사람들이 모이면 예상을 넘어서는 결과가 나온다는 것이다. 이런 통찰력은 혼자서는 결코 얻을 수 없다.
 
-**Treatment:** Emotive adjectives (흥미로운, 묘한), expansion phrases (~에 그치지 않고, ~을 넘어서), and elevated vocabulary (체득하다, 통찰력) cluster together — a strong AI rhetorical filler signal. Replace with concrete descriptions of what the author actually experienced and felt.
-
 **After:**
-> 이 경험에서 기술보다 오래 남은 건 협업의 감각이었다. 배경이 다른 사람들이 모이니 혼자였으면 떠올리지 못했을 방향이 튀어나왔다. 그건 책에서 읽어서 아는 것과는 다른 종류의 앎이었다.
+> 이 경험에서 기술보다 오래 남은 건 협업의 경험 그 자체였다. 배경이 다른 사람들이 모이니 혼자였으면 생각조차 못했을 아이디어가 튀어나왔다. 그건 책에서 읽어서 아는 것과는 다른 종류의 앎이었다.
 
 ---
 
 ## Pattern 6. Conjunction Overuse — Essay Treatment
 
-**Before:**
-> 하지만 규칙적인 운동은 신체 건강만을 위한 것이 아니다. 왜냐하면 운동은 뇌의 엔도르핀 분비를 촉진하여 정신적 스트레스를 완화해 주기 때문이다. 그래서 많은 전문가들은 현대인들에게 매일 짧게라도 운동할 것을 권장한다. 또한 이를 통해 업무 효율성까지 함께 높일 수 있다.
-
-**Treatment:** Delete conjunctions where the flow is natural without them. Merge causal relationships into a single clause using -므로 or -서. MUST NOT merge two originally separate sentences using clause connectors that generate new commas (-ㄴ데,/-지만,/-으나,). When removing a sentence-initial conjunction (하지만, 그래서, 그런데 등), keep the sentences separate — delete only the conjunction.
-
-**After:**
-> 규칙적인 운동은 신체 건강만을 위한 것이 아니다. 운동은 뇌의 엔도르핀 분비를 촉진하여 정신적 스트레스를 완화해 주기 때문이다. 많은 전문가들은 현대인들에게 매일 짧게라도 운동할 것을 권장한다. 이를 통해 업무 효율성까지 함께 높일 수 있다.
+**Essay-specific rule:** MUST NOT merge two originally separate sentences using clause connectors that generate new commas (-ㄴ데,/-지만,/-으나,). When removing a sentence-initial conjunction (하지만, 그래서, 그런데 등), keep the sentences separate — delete only the conjunction. For universal conjunction treatment rules, see patterns-kr.md §3.
 
 ---
 
@@ -246,25 +189,15 @@ Format:
 
 ## Pattern 10. Communication Artifacts — Essay Treatment
 
-Remove all (greetings, emojis, bold headers, bullet-only content → prose).
-
-**Before:**
-> 안녕하세요! 😊 오늘은 **인공지능의 미래**에 대해 이야기해 보겠다. 아래 내용을 참고하자!
-
-**After:**
-> 오늘은 인공지능의 미래에 대해 이야기해 보겠다. 아래 내용을 참고하자.
+Remove all (greetings, emojis, bold headers, bullet-only content → prose). No essay-specific exceptions. See patterns-kr.md P10 for universal rules.
 
 ---
 
 ## Pattern 11. Inanimate Subject Personification — Essay Treatment
 
-**Before:**
-> 연구 하나가 이걸 잘 보여줍니다. 환경이 사람의 생각을 만든다는 사실은 이미 여러 차례 증명되었습니다.
+Rewrite so that the inanimate noun becomes an adverbial or instrumental phrase, and a human subject or natural process takes the agent role. For universal detection criteria and Before/After examples, see patterns-kr.md §8 P11.
 
-**Treatment:** Rewrite so that the inanimate noun becomes an adverbial or instrumental phrase, and a human subject or natural process takes the agent role.
-
-**After:**
-> 이 연구를 보면 다음과 같은 사실을 알 수 있습니다. 사람의 생각은 환경의 영향을 받는다는 점이 이미 여러 차례 확인되었습니다.
+**Speech level examples (essay-specific):**
 
 **Before (높임말 — 해요체):**
 > 이 분석에서 문제를 직접 짚었어요. 데이터가 우리에게 답을 알려줘요.
@@ -276,15 +209,9 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 
 ## Pattern 12. Unnecessary Passive / Relative Clause Overuse — Essay Treatment
 
-**Before:**
-> 서양 중심으로 학습된 모델이 자주 선택되는 표현을 사용하면서 공유된 알고리즘이 문제를 일으키고 있습니다.
+Convert passive constructions (되다/어지다) to active voice. Replace passive modifiers with direct verb phrases. For universal detection criteria, exclusions, and Before/After examples, see patterns-kr.md §8 P12.
 
-**Treatment:** Convert passive constructions (되다/어지다) to active voice. Replace passive modifiers with direct verb phrases.
-
-**Exclusion reminder:** -ㄹ 수 있다/있는 (ability), -게 되다 (change of state), and native passive suffixes (-이/-히/-리/-기) are NOT P12 targets. See patterns-kr.md §8 P12 exclusions.
-
-**After:**
-> 서양 중심으로 학습한 모델이 자주 쓰는 표현을 사용하면서 함께 사용하는 알고리즘이 문제를 일으키고 있습니다.
+**Speech level examples (essay-specific):**
 
 **Before (높임말 — 하십시오체):**
 > 최근 발표된 연구에서 제안된 방법론이 적용되었습니다.
@@ -296,13 +223,9 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 
 ## Pattern 13. Empty Subject & '~는 것이다' Construction — Essay Treatment
 
-**Before:**
-> 이 현상이 까다로운 이유가 있습니다. 물어볼 필요가 있습니다. 결국 이것은 씨름하는 과정이기도 했습니다.
+Remove the dummy frame ('이유가 있다', '필요가 있다', '~는 것이다'). State the content directly without the empty subject construction. For universal detection criteria and Before/After examples, see patterns-kr.md §8 P13.
 
-**Treatment:** Remove the dummy frame ('이유가 있다', '필요가 있다', '~는 것이다'). State the content directly without the empty subject construction.
-
-**After:**
-> 이 현상은 다음과 같은 이유로 까다롭습니다. 질문해 보아야 합니다. 결국 씨름하며 배우는 단계였습니다.
+**Speech level examples (essay-specific):**
 
 **Before (높임말 — 해요체):**
 > 이게 중요한 이유가 있어요. 다시 생각해 볼 필요가 있어요.
@@ -314,13 +237,9 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 
 ## Pattern 14. Causative '만들다' Direct Translation — Essay Treatment
 
-**Before:**
-> 이 지점을 더 선명하게 만들어줍니다. 언어는 어떤 사고방식을 쉽게 만들고 다른 사고방식은 어렵게 만듭니다.
+Replace ~하게 만들다 with state-change expressions (~해지다), adverbs, or indirect cause-effect descriptions. For universal detection criteria and Before/After examples, see patterns-kr.md §8 P14.
 
-**Treatment:** Replace ~하게 만들다 with state-change expressions (~해지다), adverbs, or indirect cause-effect descriptions. Note: P1 essay example ("편리하게 만들고") also contains a P14 instance.
-
-**After:**
-> 이 지점이 더 선명해집니다. 언어는 어떤 사고방식에 익숙해지게 하고 다른 사고방식은 낯설게 느끼도록 유도합니다.
+**Speech level examples (essay-specific):**
 
 **Before (높임말 — 하십시오체):**
 > 이 도구는 작업을 효율적으로 만들어 줍니다.
@@ -340,7 +259,7 @@ Remove all (greetings, emojis, bold headers, bullet-only content → prose).
 - Pattern 1: Comma overuse (2+ per sentence)
 - Pattern 5: AI stock expressions (뿐만 아니라, 따라서, 이처럼, 다양한, 효과적으로, 중요한)
 - Pattern 3 Rule of Three: 첫째, 둘째, 셋째
-- Pattern 4: Formulaic conclusion (중요한 역할을 한다는 것을 알 수 있습니다)
+- Pattern 5: Formulaic conclusion with hollow content (중요한 역할을 한다는 것을 알 수 있습니다)
 - Pattern 6: Consecutive conjunctions (뿐만 아니라 → 따라서 → 이처럼)
 - Speech level detected: **하십시오체** (~합니다 / ~입니다) → must be preserved throughout
 

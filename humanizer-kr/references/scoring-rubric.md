@@ -81,6 +81,7 @@ At Step 3.1/3.3: if total score < 6 OR any single dimension = 0, proceed to Step
 Run this before scoring to catch the most common issues fast:
 
 **Step 0 — Mechanical count (run BEFORE qualitative checks):**
+
 - [ ] Count all "아니라/아닙니다/않습니다" carrying "not X — rather Y" reframe → if 2+, P18 Tier escalation applies regardless of thematic fit
 - [ ] Count each repeated word/adjective (same lemma) across entire text → if 3+, flag P2 regardless of collocation variety
 - [ ] Any sentence starts with "결론적으로", "이처럼", "이를 통해", "~에 대해 알아보겠습니다"? → Dimension 1 = 0
