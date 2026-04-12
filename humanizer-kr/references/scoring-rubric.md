@@ -18,7 +18,7 @@ Score each dimension on a 3-point scale:
 
 A score of **0 in any dimension** triggers a correction loop (Step 3.2) or must be reported to the user (Step 5).
 
-At Step 3.1/3.3: if total score < 6 OR any single dimension = 0, proceed to Step 3.2.
+At Step 3.1/3.3: if total score < 8 OR any single dimension = 0, proceed to Step 3.2. *(v2.4.0: threshold raised from 6/8 to 8/10 to accommodate new Dimension 5.)*
 
 ---
 
@@ -76,6 +76,39 @@ At Step 3.1/3.3: if total score < 6 OR any single dimension = 0, proceed to Step
 
 ---
 
+## Dimension 5: Structural Readability (구조 가독성) *(v2.4.0)*
+
+**Question:** Did pattern removal damage the author's structural skeleton (headings, section boundaries, conceptual anchors)?
+
+| Score | Criteria |
+| --- | --- |
+| 2 | Author-intended H1/H2 headings preserved per [patterns-kr.md P10 Header policy](patterns-kr.md). Section boundaries clear. Anchor noun (Preserve item #3) appears at expected density. Reader can navigate the piece without re-reading. |
+| 1 | One author heading collapsed into prose, OR one anchor noun was diversified once. Overall structure still legible. |
+| 0 | Multiple author H2 headings removed and content collapsed into a single prose blob. OR: anchor noun was forcibly diversified across the text (e.g., "질문" → "물음/의문/묻는 일" 분산). OR: a "Preserve" Contract item was violated. |
+
+**Trade-off detection rule:** Before scoring Dimension 5, run a **delta check** between the Step 3.0 draft and the original:
+
+- [ ] Did the rewrite **remove** an author heading without restating the heading's phrase in the parent paragraph?
+- [ ] Did the rewrite **diversify** an anchor noun more than once?
+- [ ] Did the rewrite **introduce a new pedagogical lead sentence** ("~를 들여다봅니다", "~쪽 사정을 살펴봅니다", "~를 따져봅니다") that was not in the original? (See [P15](patterns-kr.md))
+
+If any answer is yes → Dimension 5 = 0.
+
+---
+
+## Trade-off Audit (v2.4.0)
+
+Before finalizing any Evaluator score, run this delta check to catch patterns the Generator **introduced** while removing other patterns:
+
+- [ ] **P20 → P15 swap:** Were rhetorical self-Q&A's replaced with declarative sentences that read as teacher-voice ("따져볼 만합니다", "의심해볼 만합니다", "거슬러 짚어볼 수 있습니다", "한 번 생각해 볼 만합니다")? → Each occurrence is a Dimension 1 = 0 trigger.
+- [ ] **Heading removal → P15:** Were removed headings replaced with new lead sentences that frame the section pedagogically? → Dimension 5 = 0.
+- [ ] **P11 fix → voice loss:** Did fixing an inanimate-subject sentence flatten an originally voice-rich expression (e.g., `~거든요`/`~죠` ending stripped)? → Dimension 2 = 0.
+- [ ] **P2 fix → anchor scattering:** Did adjective/verb diversification reach into a thematic anchor noun? → Dimension 5 = 0.
+
+A trade-off is just as bad as the original violation. The total AI-signal count is what matters, not the count of any single pattern.
+
+---
+
 ## Quick Checklist (for Evaluator mode)
 
 Run this before scoring to catch the most common issues fast:
@@ -90,3 +123,7 @@ Run this before scoring to catch the most common issues fast:
 - [ ] Are 3+ consecutive sentences using the same connector (그리고/하지만/또한)? → Dimension 3 = 0
 - [ ] Is any rewritten sentence ungrammatical or unnatural due to mechanical substitution? → Dimension 4 = 0
 - [ ] Are all Rewrite Contract items (Step 2.5) satisfied? → Dimension 2 = 0 for each unmet item
+- [ ] Were any author H2/H3 headings removed without preserving the heading phrase in the resulting paragraph? → Dimension 5 = 0
+- [ ] Was any thematic anchor noun (from Preserve list) diversified into 2+ variants? → Dimension 5 = 0
+- [ ] Did the rewrite introduce any new "들여다봅니다 / 살펴봅니다 / 따져봅니다" framing that wasn't in the original? → Dimension 1 = 0 (new P15)
+- [ ] Did the new sentence ratio of `~습니다` vs `~거든요/~죠` drift more than ±20% from the original? → Dimension 2 = 0

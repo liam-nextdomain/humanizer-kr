@@ -30,6 +30,26 @@ This guide covers **essay-specific exceptions and variations only**. For univers
 - Within 높임말, mixing 하십시오체 and 해요체 is allowed.
 - The examples below are written in specific speech levels for illustration. When rewriting, always match the original.
 
+### Ending-level mixing detection (v2.4.0)
+
+When a 합쇼체-dominant essay sprinkles 해요체 endings (`~거든요`, `~죠`, `~네요`, `~잖아요`) onto otherwise `~습니다/~입니다` sentences, this is **NOT** an inconsistency to normalize — it is a deliberate **conversational voice signal** the author chose. Detect this in Step 1 and lock it as a preserve item.
+
+| Pattern | Author signal | Generator action |
+| --- | --- | --- |
+| 합쇼체 + scattered `~거든요` | Conversational warmth, reader-aside | **MUST preserve every `~거든요` instance** |
+| 합쇼체 + scattered `~죠` | Soft assertion, shared assumption | **MUST preserve every `~죠` instance** |
+| 합쇼체 + scattered `~네요/~잖아요` | Discovery / shared knowledge | **MUST preserve every instance** |
+| 합쇼체 + scattered `~겁니다` (the colloquial reduction of `~것입니다`) | Informal aside within formal register | Preserve; do NOT expand to `~것입니다` |
+
+**Generator guard:** When generating a NEW sentence to replace a removed AI sentence, MUST sample the ending tier in proportion to the source text. If the source had 80% `~습니다` / 20% `~거든요/~죠`, replacement sentences MUST roughly match that ratio. Defaulting all new sentences to `~습니다` flattens the author's voice and is a Dimension 2 (Consistency) violation.
+
+**Anti-pattern (do not do this):**
+
+| Original (preserve) | Wrong rewrite (flattens voice) | Correct rewrite |
+| --- | --- | --- |
+| "그 순간에는 비용 같은 건 없거든요." | "그 순간에는 비용 같은 것이 없습니다." | (leave unchanged) |
+| "많이 쓸수록 잘하고 있다는 뜻이 되는 거죠." | "많이 쓸수록 잘하고 있다는 의미입니다." | (leave unchanged) |
+
 ---
 
 ## Pattern 1. Comma Overuse — Essay Treatment

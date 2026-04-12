@@ -4,6 +4,7 @@
 
 | 버전 | 날짜 | 주요 변경 |
 | --- | --- | --- |
+| v2.4.0 | 2026-04-12 | **트레이드오프 방지 & 작가 자산 보존 강화** — (1) P2에 thematic anchor noun 예외 도입(제목·정의문에 등장하는 핵심 주제어는 다양화 금지), (2) P10 헤더 분기 정책 신설(작가 의도 H1/H2는 보존, fractal H3+와 AI 부산물만 제거), (3) Speech level에 어미 단위 혼용 감지(`~거든요/~죠/~네요` 산발 패턴 보존), (4) Rewrite Contract 템플릿에 Preserve 슬롯 5종 분리, (5) 채점 루브릭에 **Dimension 5 (Structural Readability)** 신설 + Trade-off Audit 도입(P20→P15 치환, 헤더 제거→P15 신규, P11 fix→voice 손실, P2 fix→anchor 분산 4종), (6) Step 2.5에 long-text 청크 룰(800자 초과 시 Detection Report만 단독 응답), (7) Mechanical-count-first 룰을 Step 5에서 Step 2로 전진 배치, (8) 임계 점수 6/8 → 8/10으로 상향 |
 | v2.3.0 | 2026-04-06 | **문서 구조 리팩토링 & 패턴 재편성** — P4(Formulaic Template) → P5로 병합, P2 명칭 변경(Low Vocab Diversity), 가이드 파일(essay-guide/academic-guide)에서 중복 Before/After 예시 제거 후 patterns-kr.md를 단일 소스로 통합, P9·P10·P17·P23에 구체적 예시 및 판별 기준 보강 |
 | v2.2.0 | 2026-04-02 | **패턴 감지 정밀도 강화** — P2 어간(lemma) 기준 카운팅 규칙 추가 (콜로케이션이 달라도 동일 어간은 동일 카운트), P5 AI 선호 추상 명사 6종(감각/맥락/관점/측면/차원/본질) 감지 추가, P11+P14 복합 감지 규칙(무생물 주어+사역 만들다 동시 출현) 추가, P23 Adjacent Source Halo 규칙(인접 출처가 다른 모호 출처를 검증하지 않음) 추가; Step 5 Mechanical-count-first rule 도입; 채점 루브릭에 Anti-camouflage rule + Step 0 기계적 카운팅 사전 검사 추가; 감사 체크리스트 개선 |
 | v2.1.0 | 2026-04-02 | **P5 수사적 관용 표현 확장** — AI rhetorical filler 감지 추가 (감성 형용사·확장 구문·과잉 학술어·논증 클리셰 4유형), 밀도 규칙(동일 유형 2+회 / 전체 4+회), 에세이·학술 가이드에 before/after 예시 추가, 감사 체크리스트 반영 |

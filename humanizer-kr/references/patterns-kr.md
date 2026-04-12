@@ -10,7 +10,19 @@
 - **P2 Low Vocab Diversity** — same verb/adj 3+ times (AI verb TTR 0.461 vs. human 0.545)
   > **Counting rule:** P2 counts at the **lemma level**, not the collocation level. "비슷한 구조", "비슷한 심리", "비슷한 이야기" = "비슷한" × 3 → threshold exceeded. Different collocations do NOT reset the count.
   >
-  > **Example:**
+  > **Thematic anchor exception (v2.4.0):** A **thematic anchor noun** is exempt from P2 counting. An anchor noun is one that:
+  > 1. appears in the title or a section heading of the input, OR
+  > 2. is the explicit subject of a definitional sentence in the text ("X란 ~이다", "X는 ~을 말한다"), OR
+  > 3. names the central concept the entire piece is arguing about
+  >
+  > Anchor nouns MUST NOT be diversified. Forcing variants ("질문" → "물음/의문/묻는 일/묻는 행위") shatters the piece's conceptual spine and is a worse outcome than the original repetition. Local correction (pronoun, ellipsis, sentence merge) applies ONLY when the same anchor noun appears 3+ times **within a single paragraph**, and even then the canonical form is retained at least once per paragraph.
+  >
+  > P2 still applies fully to AI-stock adjectives/verbs (다양한, 중요한, 효과적인, 활용하다, 기여하다 etc.) and to non-anchor nouns.
+  >
+  > **Example (anchor exempt):**
+  > - Title: "질문에 가격표가 붙으면 생기는 일" → "질문" is an anchor → 15+ occurrences allowed.
+  >
+  > **Example (P2 fix still applies):**
   > - Before: "**다양한** 분야에서 **다양한** 시도가 이루어지고 있으며, **다양한** 결과를 낳고 있다."
   > - After: "**여러** 분야에서 **갖가지** 시도가 이루어지고 있으며, **폭넓은** 결과를 낳고 있다."
 
@@ -36,8 +48,20 @@
   > **Example:**
   > - Before (AI): "이 결과는 주목할 만하다. 기존 방식 대비 성능이 크게 향상되었다."
   > - After (voice inserted): "이 결과를 보고 솔직히 놀랐다. 기존 방식 대비 성능이 이 정도로 차이 날 줄은 몰랐기 때문이다." / "개인적으로 이 결과가 가장 인상적이었다. 성능 차이가 기대 이상이었다."
-- **P10 Communication Artifacts** — greetings, AI handover language, emoji, bold headers → remove all
+- **P10 Communication Artifacts** — greetings, AI handover language, emoji, decorative headers → remove
   > **AI handover language examples:** "도움이 되셨길 바랍니다", "더 궁금한 점이 있으시면 말씀해 주세요", "이 내용이 도움이 되었기를 바랍니다", "요약하자면 다음과 같습니다:", "아래에서 자세히 설명드리겠습니다"
+  >
+  > **Header policy (v2.4.0) — distinguish AI artifacts from author-intended structure:**
+  >
+  > | Header type | How to identify | Treatment |
+  > | --- | --- | --- |
+  > | **AI artifact header** | Emoji-prefixed (`📌 핵심 정리`, `✅ 결론`), bolded one-line labels acting as fake headings, "요약하자면 다음과 같습니다:" style handover | **Remove entirely** — fold the substance into prose |
+  > | **Author-intended section heading** | Numbered or unnumbered H2/H3 that organizes a long-form piece into named acts/chapters; the heading itself carries narrative weight (e.g., "같은 수도꼭지, 다른 몸짓") | **Preserve as simplified headings** — keep as plain H2 with the original phrase. Strip outline numbering (`1. ~`, `2. ~`) and collapse depth to ≤2 levels (H1 + H2 only) |
+  > | **Fractal sub-headings** | H3 sub-sections nested under every H2, each containing one paragraph | **Promote to inline emphasis or merge into the parent section's lead sentence** — do NOT preserve as headings, but DO retain the heading's compressed phrasing somewhere in the resulting paragraph |
+  >
+  > **MUST NOT** convert an entire structured essay to a single flat prose blob. The structural skeleton (H1 title + H2 acts) is part of the author's craft and survives Step 3 unchanged. Only fractal H3+ depth and AI-artifact headers are removed.
+  >
+  > **MUST NOT** introduce new pedagogical lead sentences (e.g., "절약 쪽 사정을 들여다봅니다", "한쪽에는 ~ 사람들이 있습니다") to compensate for removed headings — this re-introduces P15 (pedagogical framing). If a heading carried meaning, restate it in the existing paragraph's first sentence using declarative form, not a teacher-voice transition.
 
 ### [F] English Direct Translation (영어 직역투)
 
