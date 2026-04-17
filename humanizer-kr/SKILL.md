@@ -10,7 +10,7 @@ when_to_use: >
   patterns from Korean writing. Skip for translation, general editing, or
   non-Korean text.
 metadata:
-  version: "2.7.0"
+  version: "2.8.0"
   author: ilseoppark
 ---
 
@@ -25,8 +25,62 @@ Orchestrator for removing AI-generated patterns from Korean writing. This file c
 | `references/patterns-kr.md` | Step 2 (pattern scan) and Step 5 (remaining-pattern check) |
 | `references/essay-guide.md` | Steps 2–4, only when style = essay/blog |
 | `references/academic-guide.md` | Steps 2–3, only when style = academic/report |
+| `scripts/chunk.py` | Step 2 when input > 2,000자 (deterministic input chunking) |
 
 > **Example disclaimer (applies to all reference files):** After examples in guides demonstrate correction *techniques* only. MUST match the original author's vocabulary, sentence length, and tone detected in Step 1 — not the example's.
+
+> **Pattern examples are classification anchors.** patterns-kr.md leads with Before/After pairs and ⚪ Preserve counterexamples. Treat them as canonical exemplars. If a candidate resembles neither a Before example nor a ⚪ Preserve example, the default is retention (mark 🟡 경계 with reasoning, or skip).
+
+---
+
+## Chunking Policy
+
+Long inputs MUST be chunked before pattern scanning to keep each pass within Claude's optimal token window.
+
+- **Activation**: input > 2,000자 triggers chunking. ≤ 2,000자 stays single-pass.
+- **Per-chunk target**: 1,500자 (min 800, hard max 2,000, overflow up to 2,800 for unsplittable paragraphs).
+- **Soft ceiling**: 12,000자 — warn the user and suggest splitting the source itself.
+- **Split priority** (top down, never mid-sentence):
+  1. H1/H2 boundary if the resulting chunk lands in [800, 2000].
+  2. Blank-line paragraph boundary.
+  3. Sentence boundary (`다.`, `요.`, `까?`, `죠.`, `.`, `!`, `?`).
+- **Metaphor protection**: Step 1 extracts figurative phrases (e.g., `시간이 토큰을 따라간다`). Pass them via `--metaphors` to prevent splitting across a metaphor span — overflow is preferred over dismembering.
+
+### Invocation
+
+Run `scripts/chunk.py` via bash, piping the source text on stdin:
+
+```bash
+python3 humanizer-kr/scripts/chunk.py --metaphors "시간이 토큰을 따라간다;배에서는 꼬르륵"
+```
+
+Stdout is JSON:
+
+```json
+{
+  "total_chars": 5412,
+  "activated": true,
+  "chunks": [
+    {
+      "id": 1,
+      "char_start": 0,
+      "char_end": 1487,
+      "text": "...",
+      "last_two_sentences": "...",
+      "conj_initial_tail": [false, true]
+    }
+  ],
+  "section_map": [{"level": "H2", "title": "...", "char_offset": 812}],
+  "warnings": []
+}
+```
+
+- `chunks[i].last_two_sentences` is the seam context injected into Pass 2 (P6 boundary window) and Step 3 (rewrite rhythm continuity).
+- `conj_initial_tail` is a 2-bit flag marking whether each of the last two sentences begins with a conjunction — used to reconstruct P6's 3-sentence window across chunk boundaries.
+
+### Fallback
+
+If `scripts/chunk.py` cannot execute (code-execution disabled or script error), proceed single-pass on the full text and WARN the user: `"청킹 스크립트 실행에 실패해 전체 텍스트를 단일 패스로 처리합니다. 입력이 2,000자를 초과하므로 감지 정확도가 저하될 수 있습니다."`
 
 ---
 
@@ -51,6 +105,10 @@ Five steps. Each step ends by communicating status to the user and either waits 
 | Ending mix ratio | `~습니다` vs `~거든요/~죠/~네요` across source | New sentences MUST match ratio ±20% |
 | Thematic anchor nouns | Nouns in title/headings/definitional sentences | MUST exempt from P2 diversification |
 | Structural skeleton | H1 + H2 acts/chapters | MUST preserve as simplified H1+H2 |
+| Metaphor spans | Figurative phrases (e.g., `시간이 토큰을 따라간다`) | Pass to `chunk.py --metaphors` to prevent split |
+| Section map | H1/H2 offsets in the source | Chunk boundary candidates + location tags |
+
+Profile runs on the FULL source text, not per-chunk. Output is locked before Step 2 chunking.
 
 **Communicate to user:** "스타일은 [essay/academic]으로 판단했습니다. 주요 보존 요소는 [speech level, anchor nouns, structural skeleton...]입니다."
 
@@ -60,13 +118,41 @@ Five steps. Each step ends by communicating status to the user and either waits 
 **MUST READ (if essay):** `references/essay-guide.md`
 **MUST READ (if academic):** `references/academic-guide.md`
 
-- Check all 23 patterns (P1–P14, P15–P23) in order
-- Apply style-specific rules (P7, P8, P9 essay-only)
-- **Mechanical count first, then classify:** For P2 (lemma repetition), P6 (consecutive conjunctions), P18 (negative parallelism), P20 (rhetorical Q), P22 (anaphora) — run counts before judging thematic intent. Instances count even if motivated.
-- **Anchor exception:** Apply P2 thematic anchor rule. Anchor nouns NOT diversified.
+If input > 2,000자, run `scripts/chunk.py` per the Chunking Policy above and execute the two-pass architecture (Step 2a + Step 2b). Otherwise, run Step 2b only on the single chunk returned by the script (activated=false).
+
+#### Step 2a: Per-chunk local scan (only when chunking activated)
+
+Announce progress: `"입력 [N]자 → [K]청크로 스캔합니다."` then `"[i/K] 스캔 완료"` per chunk.
+
+For each chunk `C_i`:
+
+- Check all 23 patterns (P1–P14, P15–P23) in order.
+- Apply style-specific rules (P7, P8, P9 essay-only).
+- Emit a **Local Candidate List** (carry forward to Step 2b, not shown to user):
+
+  ```text
+  chunk_id · pattern_id · location_tag · span_text · reason
+  P2: lemma="활용" at [C2 · §3. 섹션], occurrence 1 of chunk
+  P6: "또한" starts S2 of chunk; conj_initial_tail={S_{k-1}: false, S_k: true}
+  P1 local: commas=7, sentences=12, ratio=0.58
+  P18/P20/P22: candidate occurrences tagged; tier NOT decided locally
+  ```
+
+- Do NOT emit a Detection Report yet. Do NOT wait for user input between chunks.
+
+#### Step 2b: Global aggregation + Detection Report
+
+Merge all Local Candidate Lists into one global view (no reference file re-read needed):
+
+- **P1**: `ratio = Σcommas / Σsentences` across all chunks. Apply 0.40 gate globally.
+- **P2**: Group candidates by lemma → global count → apply anchor filter (from Step 1 Profile) → flag at 3+.
+- **P6**: Reconstruct 3-sentence windows across boundaries using each chunk's `conj_initial_tail` bits. A window (S_n, S_{n+1}, S_{n+2}) spans two chunks when n is near a boundary — evaluate globally.
+- **P18 / P20 / P22**: Sum global occurrences → map to Tier per patterns-kr.md tier table.
+- **Mechanical count first, then classify:** For P2, P6, P18, P20, P22 — run counts before judging thematic intent. Instances count even if motivated.
+- **Anchor exception:** Apply P2 thematic anchor rule globally. Anchor nouns NOT diversified.
 - **Header policy:** Author H1+H2 preserved; fractal H3+ and AI-artifact headers removed.
 
-**Present Detection Report + Rewrite Contract + Preserve list, then wait for approval.**
+**Present ONE unified Detection Report + Rewrite Contract + Preserve list, then wait for approval.** Location tags use `[C{i} · §{n}. 섹션]` format when chunking active, `[§{n}. 섹션]` when single-pass.
 
 **Report format rules (MUST follow):**
 
@@ -121,11 +207,23 @@ Five steps. Each step ends by communicating status to the user and either waits 
 - MUST wait for user approval. MUST NOT proceed without it.
 - If user rejects all, stop here.
 - Rewrite Contract is binding for Step 3. Preserve items override Contract when they conflict.
-- **Long-text chunking:** If input > 800자, this Step 2 response MUST contain only the Detection Report + Contract + Preserve list, then stop. Shorter inputs MAY include Step 3 draft in the next response after approval.
+- **Step 2b output contract:** This Step 2b response MUST contain only the Detection Report + Contract + Preserve list, then stop. Step 3 draft is deferred to the next response after approval.
 
 ### Step 3: Rewrite
 
 **Prerequisite:** User approved at least one category in Step 2.
+
+**Chunked rewrite (when chunking was active in Step 2):**
+
+Rewrite each chunk independently, then concatenate. Each chunk rewrite call receives:
+
+1. **Writing Profile** from Step 1 (locked).
+2. **Rewrite Contract** (approved 🔴 items, scoped to this chunk's candidates).
+3. **Preserve list** (global — applies to every chunk).
+4. **Seam context**: the previous chunk's `last_two_sentences` from the chunk.py output — reference for rhythm and ending-ratio continuity. Do NOT copy its vocabulary.
+5. **Global anchor noun list** from Step 1 Profile — prevents cross-chunk diversification drift.
+
+After concatenation, run a **seam smoothing pass** on the 2-sentence overlap at each boundary: verify the transition reads naturally (no abrupt topic shift, consistent speech level, no re-introduced conjunction chain). Adjust only the seam, never the chunk bodies.
 
 **Generator guards (all MUST hold):**
 
@@ -180,7 +278,9 @@ Academic style: MUST skip Step 4 entirely.
 
 **MUST READ:** `references/patterns-kr.md`
 
-Re-scan the Step 3/4 output for patterns. Run mechanical counts first (P2, P6, P18, P20, P22). Check:
+Re-scan the Step 3/4 output for patterns. If Step 2 was chunked, run the same two-pass architecture on the JOINED final output — Pass 1 per chunk (re-run `chunk.py` on the rewritten text), Pass 2 global aggregation. **Global re-count of P2, P6, P18, P20, P22 is mandatory** because per-chunk recheck cannot validate tier thresholds.
+
+Run mechanical counts first (P2, P6, P18, P20, P22). Check:
 
 - [ ] Approved-category patterns still present?
 - [ ] (essay) Every sentence in original speech-level tier?

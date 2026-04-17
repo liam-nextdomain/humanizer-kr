@@ -4,6 +4,7 @@
 
 | 버전 | 날짜 | 주요 변경 |
 | --- | --- | --- |
+| v2.8.0 | 2026-04-17 | **예시 기반 리팩터 + 입력 청킹 도입** — (1) `patterns-kr.md` 전면 재작성: 각 패턴을 Before/After 쌍 + ⚪ Preserve 반례 중심으로 재구성해 클로드가 예시를 분류 앵커로 활용하도록 설계(Anthropic 5Rules "Claude가 이미 아는 건 적지 마라" 원칙 반영). 장황한 정의·제거/보존 테이블·치환 테이블은 삭제하되 숫자 임계값(P1 0.40, P18 1×/2×/3+× tier), 폐쇄 어휘 목록(P5 상투어, P15 구절), 워크플로우 예외(P12 제외, P18 STRICT two-gate, P23 미인용 통계 🟡 분기)는 안전 레일로 유지. (2) 입력 청킹 도입: 신규 `scripts/chunk.py`(stdlib only)가 입력 2,000자 초과 시 H1/H2→문단→문장 경계 우선순위로 1,500자 타겟 분할, 메타포 span 보호, section map과 seam 컨텍스트 출력. (3) SKILL.md Step 2를 2a(청크별 로컬 감지)+2b(글로벌 집계)로 분할, P2·P6·P18/20/22는 글로벌 카운트로 tier 결정, P6 경계 캐리오버(2문장 오버랩) 구현. (4) Step 3에 청크별 재작성 + seam smoothing pass 도입. Step 5에 청킹 활성 시 2-패스 재검증 의무화. (5) code execution 미활성 환경을 위한 fallback 경로 명시. |
 | v2.7.0 | 2026-04-17 | **Detection Report 포맷 재설계 + 감지 규칙 정밀화** — (1) SKILL.md Step 2 리포트 템플릿을 per-case 마커(🔴 수정 / 🟡 경계 / ⚪ 보존) + 위치 태그 + 이유 + 수정 방향 동사 형식으로 전면 교체(count-evidence contract 강제), (2) P1을 2단계 프로토콜로 분할(density gate 40% + individual-case classification)하고 Retain 표에 Dependent clause connector / Appositive 행 추가해 한국어 `-는데/-지만/-니까` 연결어미 뒤 쉼표 false positive 차단, (3) P18 감지를 STRICT로 전환 — negation keyword + AI reframing intent 양조건 필수, 양보·단순 대조·문장 간 대조·실체적 대립 예외, (4) P20에 연결 수사구·간접화법·내적 독백 Exclusion 추가, (5) P11에 authorial metaphor Exception 추가(시간이 토큰을 따라간다 유형 보존), (6) P19에 External citations 및 Authorial coinages Exclusion 추가, (7) P22에 thematic anchor noun 예외 도입(P2 규칙과 일치), (8) P15 phrase list에 선언형 결론 class 추가(방향은 분명합니다 유형), (9) P23에 uncited-statistic 저자 확인 분기 추가 |
 | v2.6.1 | 2026-04-17 | **사용자 실관찰 패턴 보강** — (1) P5 line 160 "Emotive adj" 항목에 서술형까지 명시(`흥미로운/흥미롭다, 묘한/묘하다`)하여 관형형만 잡히던 누락 위험 제거, (2) P11에 영어 "X reads as Y / X is read as Y" 직역인 `~라/로 읽히다·읽힌다·읽힙니다` 변형을 추가(정의 줄에 Read-as variant 보강 + 표 행 1개 추가). 신규 패턴 ID 신설 없이 기존 패턴 본문만 보강. |
 | v2.6.0 | 2026-04-17 | **patterns-kr.md Before/After 예시 검증·보정** — `reference/`의 KatFishNet·Park & Kim 2025 논문 기준 재검토 후 10개 지점 수정. (1) P2 Before의 P12 피동 성분 제거("이루어지며"→"벌어지며"), (2) P5 Before/After를 P2·P17 개념 혼재 제거하고 P5 전용 예시로 재작성, (3) P6 After의 P5 대상어("선택적으로") 제거, (4) P11 Before 구어체 → 격식체 교체, (5) P12 표에서 의미 변형 위험 있던 "학습된 모델" 행을 "연구가 수행되고 있다"로 교체 + Exclusions에 `-된 + 명사` 수식어 예외 보강, (6) P13·P23에 환각·창작 금지 기능적 주석 추가(소스 없을 시 주장 삭제 원칙), (7) P14 After 잔존 사역 "~게 하다" 제거하고 자동사 "-어지다"로 전환, (8) P17 After 조사 교정("가"→"는"), (9) P18 After의 Before/After 등록(register) 불일치 해소(격식 문어→존대 구어) |
@@ -81,9 +82,11 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
 .
 ├── README.md                     # 이 파일
 ├── humanizer-kr/                 # 한국어 버전
-│   ├── SKILL.md                  # 오케스트레이터 — 5단계 워크플로, 사용자 커뮤니케이션, 출력 템플릿 inline
+│   ├── SKILL.md                  # 오케스트레이터 — 5단계 워크플로, Chunking Policy, 출력 템플릿 inline
+│   ├── scripts/
+│   │   └── chunk.py              # 입력 2,000자 초과 시 결정론적 청크 분할 (stdlib only)
 │   └── references/
-│       ├── patterns-kr.md        # 23 AI 패턴 Before/After 중심, 정량 기준, 스타일 규칙
+│       ├── patterns-kr.md        # 23 AI 패턴 예시 기반 (Before/After + ⚪ Preserve 반례), 안전 레일 유지
 │       ├── essay-guide.md        # 에세이/블로그 스타일 처리 가이드
 │       └── academic-guide.md     # 학술/보고서 스타일 처리 가이드
 ├── reference/                    # 비운영 참고 문서 (스킬 실행과 무관)
