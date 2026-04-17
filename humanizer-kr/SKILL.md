@@ -1,161 +1,209 @@
 ---
 name: humanizer-kr
 description: >
-  Activated when the user asks to humanize, de-AI, or naturalize Korean text,
-  or references "humanizer" / "humanizer-kr" by name,
-  or asks to remove AI patterns from Korean writing.
-  Not intended for translation, general editing, or non-Korean text.
-license: MIT
+  Identifies and removes AI-generated patterns in Korean writing, producing
+  natural human-authored text. Covers essay/blog and academic/report styles
+  with per-style pattern handling.
+when_to_use: >
+  Use when the user asks to humanize, de-AI, or naturalize Korean text, or
+  references "humanizer" / "humanizer-kr" by name, or asks to remove AI
+  patterns from Korean writing. Skip for translation, general editing, or
+  non-Korean text.
 metadata:
-  version: "2.4.0"
+  version: "2.5.0"
   author: ilseoppark
-compatibility: Claude Code
 ---
 
 # Humanizer KR
 
-Writing editor that identifies and removes AI-generated patterns in Korean text to make it sound naturally human. Supports essay/blog and academic/report styles.
+Orchestrator for removing AI-generated patterns from Korean writing. This file coordinates the workflow and communicates progress with the user. Pattern knowledge and style rules live in the reference files below.
 
-| File | Step | Purpose |
-| --- | --- | --- |
-| `references/patterns-kr.md` | 2, 5 | Pattern index, quantitative thresholds, style rules, audit checklists |
-| `references/essay-guide.md` | 3, 4 | Essay/blog treatment rules, speech level rules, voice consultation |
-| `references/academic-guide.md` | 3 | Academic/report treatment rules |
-| `references/output-format.md` | 2.5, 3.5, 4, 5.5 | Output templates for each workflow phase |
-| `references/scoring-rubric.md` | 3.1, 3.3, 5 | 5-dimension quality rubric for Evaluator mode |
+## Reference Files
+
+| File | When to read |
+| --- | --- |
+| `references/patterns-kr.md` | Step 2 (pattern scan) and Step 5 (remaining-pattern check) |
+| `references/essay-guide.md` | Steps 2–4, only when style = essay/blog |
+| `references/academic-guide.md` | Steps 2–3, only when style = academic/report |
+
+> **Example disclaimer (applies to all reference files):** After examples in guides demonstrate correction *techniques* only. MUST match the original author's vocabulary, sentence length, and tone detected in Step 1 — not the example's.
 
 ---
 
 ## Workflow
 
+Five steps. Each step ends by communicating status to the user and either waits for approval or advances.
+
 ### Step 1: Style Detection & Writing Profile
 
-- Determine essay/blog vs. academic/report
-- MUST ask user if unclear: "에세이/블로그와 논문/보고서 중 어느 쪽으로 처리할까요?"
-- For essay: detect and lock speech level (높임말 vs. 반말). MUST NOT change during rewriting. Within 높임말, mixing 하십시오체 and 해요체 is allowed.
-- **Ending-level mixing:** If 합쇼체 is mixed with scattered `~거든요/~죠/~네요/~잖아요/~겁니다`, treat it as deliberate conversational voice. MUST lock the ratio. See `references/essay-guide.md` — Ending-level mixing detection.
+- Determine **essay/blog** vs. **academic/report**. MUST ask if unclear: "에세이/블로그와 논문/보고서 중 어느 쪽으로 처리할까요?"
+- For essay: detect and lock **speech level** (높임말 vs. 반말). MUST NOT cross boundary during rewriting. Within 높임말, mixing 하십시오체 and 해요체 is allowed.
+- **Ending-level mixing:** If 합쇼체 is mixed with scattered `~거든요/~죠/~네요/~잖아요/~겁니다`, treat as deliberate conversational voice. MUST lock the ratio.
 
-**Writing profile — detect and lock the following traits before rewriting:**
+**Writing Profile — detect and lock before rewriting:**
 
-| Trait | What to detect | Lock rule |
+| Trait | Detect | Lock rule |
 | --- | --- | --- |
-| Vocabulary register | Sino-Korean (한자어) ratio, everyday vs. technical diction | MUST rewrite at the same register — do not elevate or simplify |
-| Sentence-length tendency | Predominantly short (≤30 chars), long (60+ chars), or mixed | MUST preserve the author's predominant pattern |
-| Tone | Dry/analytical vs. warm/narrative vs. conversational | MUST NOT shift tone during rewriting |
-| Syntactic complexity | Simple S-V structures vs. multi-layered modification | MUST stay within the author's complexity range |
-| Ending mix ratio | Approximate `~습니다` vs `~거든요/~죠/~네요` ratio across the source | MUST sample new sentences in roughly the same ratio (±20%) |
-| Thematic anchor nouns | Nouns in the title, headings, or definitional sentences | MUST exempt from P2 diversification — record as Preserve item |
-| Author-intended structural skeleton | H1 + H2 headings that organize the piece into named acts/chapters | MUST preserve as simplified H1+H2; only fractal H3+ depth is removed |
+| Vocabulary register | Sino-Korean ratio, everyday vs. technical | MUST rewrite at same register |
+| Sentence length | Short (≤30자), long (60자+), or mixed | MUST preserve predominant pattern |
+| Tone | Dry/analytical · warm/narrative · conversational | MUST NOT shift tone |
+| Syntactic complexity | Simple S-V vs. multi-layered modification | MUST stay within author's range |
+| Ending mix ratio | `~습니다` vs `~거든요/~죠/~네요` across source | New sentences MUST match ratio ±20% |
+| Thematic anchor nouns | Nouns in title/headings/definitional sentences | MUST exempt from P2 diversification |
+| Structural skeleton | H1 + H2 acts/chapters | MUST preserve as simplified H1+H2 |
 
-### Step 2: Pattern Scan
+**Communicate to user:** "스타일은 [essay/academic]으로 판단했습니다. 주요 보존 요소는 [speech level, anchor nouns, structural skeleton...]입니다."
 
-**MUST READ:** `references/patterns-kr.md` — 23 patterns [A]–[G], quantitative thresholds, style rules table
+### Step 2: Pattern Scan + Detection Report
 
-- MUST check all 23 patterns in order (P1–P14 then P15–P23)
-- Apply style-specific rules (P7, P8, P9 for essay only)
-- **Mechanical-count-first:** Before classifying any instance, run counts on P2 (lemma repetition), P6 (consecutive conjunctions), P18 (negative parallelism), P20 (rhetorical Q), P22 (anaphora). Instances count even if thematically motivated.
-- **Anchor noun guard:** Apply the P2 thematic anchor exception (see `references/patterns-kr.md` P2 Counting rule). Anchor nouns are NOT diversified.
-- **Header policy:** Apply the P10 header policy. Author H1+H2 are preserved; only fractal H3+ and AI-artifact headers are removed.
+**MUST READ:** `references/patterns-kr.md`
+**MUST READ (if essay):** `references/essay-guide.md`
+**MUST READ (if academic):** `references/academic-guide.md`
 
-### Step 2.5: Pre-Draft Report & Approval
+- Check all 23 patterns (P1–P14, P15–P23) in order
+- Apply style-specific rules (P7, P8, P9 essay-only)
+- **Mechanical count first, then classify:** For P2 (lemma repetition), P6 (consecutive conjunctions), P18 (negative parallelism), P20 (rhetorical Q), P22 (anaphora) — run counts before judging thematic intent. Instances count even if motivated.
+- **Anchor exception:** Apply P2 thematic anchor rule. Anchor nouns NOT diversified.
+- **Header policy:** Author H1+H2 preserved; fractal H3+ and AI-artifact headers removed.
 
-**MUST READ:** `references/output-format.md` — detection report template
+**Present Detection Report + Rewrite Contract + Preserve list, then wait for approval:**
 
-- Present detected issues grouped by pattern category [A]–[G]
-- For each category: pattern name, instance count, one representative example
-- After the pattern report, present a **Rewrite Contract** (see `references/output-format.md` — Rewrite Contract template):
-  - List up to 3 concrete completion criteria derived from the detected issues and the locked writing profile
-  - Append a **Preserve list** (5 slots: voice/어미, structure, anchor noun, metaphor, other). Generator MUST treat Preserve items as higher-priority than Contract criteria.
-  - End with: "이 방향으로 초안 작업을 시작할까요? 수정이 필요하면 말씀해 주세요."
+```text
+**[패턴 감지 결과]**
+
+**[A] 구두점 패턴**
+- P1 (쉼표 남용): N건 — 예시: "..."
+
+**[B] 구조/어순 패턴**
+- P3 (삼단 나열·개조식): N건 — 예시: "..."
+
+**[C] 어휘/표현 패턴**
+- P2 (어휘 반복): N건 — 예시: "..."
+- P5 (AI 상투 표현): N건 — 예시: "..."
+- P6 (접속사 남용): N건 — 예시: "..."
+
+**[D] 띄어쓰기 패턴** *(에세이 전용)*
+- P7 (의존명사): N건
+
+**[E] 소통 패턴**
+- P10 (소통 부산물): N건 — 예시: "..."
+
+**[F] 영어 직역투 패턴**
+- P11 (무생물 주어 의인화): N건 — 예시: "..."
+- P12 (불필요한 수동형): N건
+- P13 (가주어/보어 구문): N건
+- P14 (사역동사 만들다 직역): N건
+
+**[G] 영어 기원 수사 패턴**
+- P15–P19 Tier-1: N건 (각 패턴별 내역)
+- P20–P23 Tier-2: N건 (각 패턴별 내역)
+
+---
+
+**[수정 목표 계약 (Rewrite Contract)]**
+1. [카테고리/패턴] — 예: [G] Tier-1 패턴(P15·P18) 100% 제거
+2. [스타일 유지] — 예: 하십시오체 + `~거든요` 산발 비율 보존
+3. [톤/방향] — 예: 에세이 톤 유지
+
+**[보존 자산 (Preserve)]** *(Rewrite Contract보다 우선한다)*
+1. voice/어미 — 예: 합쇼체 + `~거든요/~죠` 비율
+2. 구조 — 예: H1 + H2 보존, 마지막 단락 단문 리듬 보존
+3. 어휘 anchor — 예: 핵심 주제어 `질문/토큰`은 P2 카운팅 제외
+4. 메타포 — 예: `수도꼭지`·`계산기` 메타포 보존
+5. 기타 — 작가 명시 보존 요구
+
+이 방향으로 초안 작업을 시작할까요? 수정이 필요하면 말씀해 주세요.
+```
+
 - MUST wait for user approval. MUST NOT proceed without it.
 - If user rejects all, stop here.
-- Rewrite Contract is binding: Step 3 Generator and Step 5 Evaluator MUST use it as the Definition of Done.
-- **Long-text chunking:** If input > 800 Korean chars, this Step 2.5 response MUST contain only the Detection Report + Contract + Preserve list, then stop for approval. MUST NOT include the Step 3 draft. Shorter inputs MAY include the draft in the next response after approval.
+- Rewrite Contract is binding for Step 3. Preserve items override Contract when they conflict.
+- **Long-text chunking:** If input > 800자, this Step 2 response MUST contain only the Detection Report + Contract + Preserve list, then stop. Shorter inputs MAY include Step 3 draft in the next response after approval.
 
-### Step 3: First Rewrite (Draft) — with Internal Correction Loop
+### Step 3: Rewrite
 
-**MUST READ:** `references/essay-guide.md` OR `references/academic-guide.md` (per detected style)
+**Prerequisite:** User approved at least one category in Step 2.
 
-**Prerequisite:** User has approved at least one category.
+**Generator guards (all MUST hold):**
 
-#### Step 3.0: Generate Draft (Generator mode)
+| Guard | Rule |
+| --- | --- |
+| Speech level | MUST rewrite every sentence in the Step 1 tier. For mixed 하십시오체+해요체, preserve the mix. |
+| Ending mix | NEW sentences sample the Step 1 ratio ±20%. Do NOT default new sentences to `~습니다`. |
+| Writing profile | MUST preserve register, sentence length, tone, syntactic complexity from Step 1. Guide examples show *what* to fix, not *how* the author writes. MUST NOT copy the guide's vocabulary/rhythm. |
+| Preserve override | Preserve items outrank Contract fixes. If a fix would violate a Preserve item, skip the fix. |
+| Trade-off | When removing P20 or P10, MUST NOT substitute pedagogical lead sentences (`~를 들여다봅니다`, `~쪽 사정을 살펴봅니다`) — that re-introduces P15. Use plain declarative continuation. |
+| Anchor noun | Thematic anchor nouns stay in canonical form. Do NOT diversify. |
+| Essay rhythm | If original varies rhythm, preserve it; if monotonous, add mild variation within author's predominant length. MUST NOT inject voice (voice = Step 4). |
+| Academic objectivity | Maintain objective tone; remove only hollow boilerplate. |
 
-- Remove only patterns from approved categories while preserving meaning
-- **Speech level guard (essay):** MUST rewrite every sentence in the same politeness tier detected in Step 1. If the original mixes 하십시오체 and 해요체, MUST preserve that mix.
-- **Ending mix guard (essay):** For any NEW sentence (not in source), MUST sample its ending in the Step 1 ratio (±20%). Do NOT default new sentences to `~습니다`.
-- **Writing-profile guard:** MUST preserve the author's vocabulary register, sentence length, tone, and syntactic complexity from Step 1. Guide After examples show *what* to fix, not *how* the author writes — MUST NOT copy their vocabulary, rhythm, or tone.
-- **Preserve guard:** Preserve items (Step 2.5) override Contract fixes. If a fix would violate a Preserve item, skip the fix.
-- **Trade-off guard:** When removing P20 or P10, MUST NOT replace with pedagogical lead sentences (`~를 들여다봅니다`, `~쪽 사정을 살펴봅니다`, `~를 따져봅니다`, `~을 한 번 짚어봅니다`) — they re-introduce P15. Use plain declarative continuation.
-- **Anchor noun guard:** Thematic anchor nouns (Preserve item #3) MUST stay in canonical form. Do NOT diversify into variants.
-- Essay: if the original already varies sentence rhythm, preserve it; if monotonous, introduce mild variation within the author's predominant length. MUST NOT inject voice yet — voice is Step 4.
-- Academic: maintain objectivity, remove only hollow boilerplate
+**Output Draft + Change Brief:**
 
-#### Step 3.1: Internal Review (Evaluator mode — do NOT show to user)
+```text
+**1차 재작성본 (Draft)**
+[rewritten text]
 
-**MUST READ:** `references/scoring-rubric.md`
-
-**Persona switch:** You are now a critical Auditor, not the Generator. Your job is to find flaws in the Step 3.0 draft. Treat it with suspicion.
-
-- Score the draft on all 5 dimensions in `references/scoring-rubric.md`
-- Check Rewrite Contract items AND Preserve items from Step 2.5 one by one
-- Run **Trade-off Audit** (see scoring-rubric.md). Patterns introduced while removing others count as failures.
-- If any Tier-1 trace (P15–P23 Tier 1) remains → MUST proceed to Step 3.2
-- If any Contract or Preserve item is unmet → MUST proceed to Step 3.2
-- If any trade-off is detected → MUST proceed to Step 3.2
-- If all checks pass and no Tier-1 traces remain → skip to Step 3.5
-
-#### Step 3.2: Internal Correction (Generator mode — do NOT show to user)
-
-**Persona switch:** Return to Generator mode. Apply the Evaluator's Step 3.1 critique. Fix only the flagged items — do not over-correct.
-
-#### Step 3.3: Final Internal Check (Evaluator mode — do NOT show to user, 1 pass only)
-
-**Persona switch:** Auditor again. Confirm Step 3.2 corrections resolved the flagged issues. No further internal loops after this.
-
-### Step 3.5: Draft Change Brief
-
-**MUST READ:** `references/output-format.md` — change brief template
-
-- Concise change summary grouped by category (bullet points only)
+**[1차 수정 브리핑]**
+- [A] ...
+- [C] ...
+```
 
 ### Step 4: Voice Consultation (Essay Only)
 
 **MUST READ:** `references/essay-guide.md` — Pattern 9 voice consultation process
 
 1. Identify 2–4 voice injection candidates
-2. Present options (3–5 per candidate), wait for author's response
-3. Apply author's chosen direction
-4. If author declines, proceed to Step 5 without voice injection
+2. Present 3–5 options per candidate; wait for author's choice
+3. Apply the chosen direction; if author declines, proceed to Step 5 without voice injection
 
-### Step 5: Re-Validation
+Voice option template:
 
-**MUST READ:** `references/patterns-kr.md` — audit checklist
-**MUST READ:** `references/scoring-rubric.md` — 5-dimension rubric
+```text
+**[목소리 협의 — 에세이 전용]**
 
-**Persona switch:** You are now an independent Auditor. You did NOT write this text. Find every flaw the Generator missed. Assume the draft has problems until proven otherwise.
+**[V1]** 원문 문장 발췌
+→ 이 부분에 작가님만의 관점을 담을 수 있습니다. 어떤 방향이 가장 가깝나요?
 
-**Mechanical-count-first:** Before qualitative assessment, run pattern-specific counts (P2 lemma repetition, P18 negative parallelism, P6 conjunction chains). Tier escalation is count-based — an instance counts even if thematically justified. Count first, then assess.
+1. (동의/긍정) 예시 문장
+2. (회의/비판) 예시 문장
+3. (개인 경험 연결) 예시 문장
+4. (열린 물음 제기) 예시 문장
+5. (직접 의견 입력) 원하시는 관점을 직접 말씀해 주세요.
+```
 
-MUST answer before presenting to user:
+Academic style: MUST skip Step 4 entirely.
 
-- [ ] What AI-generated traces remain in this text?
-- [ ] (essay) Does every sentence maintain the original speech-level tier?
-- [ ] (essay) Does the `~습니다` vs `~거든요/~죠` ratio match the Step 1 ratio (±20%)?
-- [ ] Are any approved-category patterns still present?
-- [ ] Are all Rewrite Contract items from Step 2.5 satisfied?
-- [ ] Are all Preserve items from Step 2.5 satisfied?
-- [ ] Did the rewrite introduce any new patterns (P15 lead sentences, anchor noun diversification, etc.)? Run Trade-off Audit.
-- [ ] Does the scoring rubric (all 5 dimensions) confirm the draft is acceptable?
+### Step 5: Remaining-Pattern Check
 
-**MUST READ:** `references/output-format.md` — re-validation report template
+**MUST READ:** `references/patterns-kr.md`
 
-- Report remaining issues grouped by category with instance counts and examples
-- "아래 패턴이 아직 남아 있습니다. 추가 수정을 진행할까요?"
-- MUST wait for user response. MUST NOT produce final output without approval.
-- If user rejects all, present current draft as final.
+Re-scan the Step 3/4 output for patterns. Run mechanical counts first (P2, P6, P18, P20, P22). Check:
 
-### Step 5.5: Final Change Brief
+- [ ] Approved-category patterns still present?
+- [ ] (essay) Every sentence in original speech-level tier?
+- [ ] (essay) `~습니다` vs `~거든요/~죠` ratio matches Step 1 ±20%?
+- [ ] Rewrite Contract items satisfied?
+- [ ] Preserve items satisfied?
+- [ ] Trade-off: did the rewrite introduce P15 lead sentences, anchor diversification, or new comma clusters?
 
-**MUST READ:** `references/output-format.md` — final brief template
+**If remaining issues exist:**
 
-- After final output, produce brief summary of fixes — grouped by category, bullet points only.
+```text
+**[재검증 결과]**
+- P_X (설명): N건 — 예시: "..."
+
+추가 수정을 진행할까요? 그대로 제출하실 수도 있습니다.
+```
+
+- If user requests more fixes → return to Step 3 with narrowed scope.
+- If user says "그대로 제출" or no issues remain → output final version + brief.
+
+**Final output:**
+
+```text
+**최종본**
+[final rewritten text]
+
+**[최종 수정 브리핑]**
+- [category] ...
+```
