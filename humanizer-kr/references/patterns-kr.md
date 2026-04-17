@@ -339,7 +339,14 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 | False suspense | "여기서 흥미로운 점이 있습니다. 사실은 비용이 더 중요했습니다." | "실제로는 비용이 더 중요했습니다." |
 | Teacher mode | "이것을 자판기에 비유해보세요. 동전을 넣으면..." | "자판기처럼 입력이 들어가면 출력이 나오는 구조입니다." |
 
-**Phrase list:** 함께 살펴보겠습니다 · 하나씩 풀어보겠습니다 · 차근차근 알아보겠습니다 · 여기서 핵심이 있습니다 · 흥미로운 지점이 나옵니다 · 바로 이 부분이 중요합니다
+**Phrase list:**
+
+- 교수형: 함께 살펴보겠습니다 · 하나씩 풀어보겠습니다 · 차근차근 알아보겠습니다
+- 긴장 조성: 여기서 핵심이 있습니다 · 흥미로운 지점이 나옵니다 · 바로 이 부분이 중요합니다
+- 선언형 결론: 방향은 분명합니다 · 결론은 명확합니다 · 답은 간단합니다 · 핵심은 하나입니다 · 요점은 이것입니다 — 독자에게 "이제 정답을 알려주겠다"는 교사 톤을 재현하는 AI frame.
+
+**Before (선언형):** "농담처럼 들리지만 방향은 분명합니다. 토큰 사용량이 곧 업무량이랑 같은 말이 되는 겁니다."
+**After:** "농담 같지만 실질적으로는 토큰 사용량이 업무량의 지표로 자리잡고 있습니다."
 
 ---
 
@@ -486,6 +493,12 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 | --- | --- |
 | "전문가들은 이 기술이 혁명적이라고 평가합니다" | "이 기술은 기존 방식보다 처리 속도가 3배 빠릅니다" |
 | "교육부터 의료까지 모든 분야를 변화시킬 것입니다" | "교육과 의료 분야에서 활용 가능성이 높습니다" |
+
+> **Uncited-statistic branch:** Before applying the deletion rule, flag uncited statistics ("열 명 중 여덟 명", "절반 넘게", "대부분의 경영진이") as 🟡 author-clarification items in the Step 2 Detection Report. Ask the author whether each has a source:
+> - Has source → author adds inline citation; P23 resolved.
+> - No source → apply the deletion rule below.
+>
+> Do NOT silently delete before asking — an author's paraphrase of real data and an AI fabrication are surface-indistinguishable.
 
 > **MUST NOT** fabricate statistics or sources to replace vague attributions. If no verifiable number or source exists, delete the claim rather than substitute invented figures (the "3배 빠릅니다" above assumes a real measurement; without one, drop the claim entirely).
 
