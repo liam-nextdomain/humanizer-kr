@@ -10,7 +10,7 @@ when_to_use: >
   patterns from Korean writing. Skip for translation, general editing, or
   non-Korean text.
 metadata:
-  version: "2.6.0"
+  version: "2.6.1"
   author: ilseoppark
 ---
 
@@ -66,53 +66,56 @@ Five steps. Each step ends by communicating status to the user and either waits 
 - **Anchor exception:** Apply P2 thematic anchor rule. Anchor nouns NOT diversified.
 - **Header policy:** Author H1+H2 preserved; fractal H3+ and AI-artifact headers removed.
 
-**Present Detection Report + Rewrite Contract + Preserve list, then wait for approval:**
+**Present Detection Report + Rewrite Contract + Preserve list, then wait for approval.**
+
+**Report format rules (MUST follow):**
+
+1. **No "N건 — 예시" single-line summaries.** Each detected case is an independent bullet.
+2. **Count breakdown:** `수정 N건 / 경계 M건 / 보존 K건` — the sum MUST equal the actual bullet count under that pattern (count-evidence contract).
+3. **Three markers:**
+   - 🔴 **수정 권장** — clear AI pattern, fix recommended
+   - 🟡 **경계** — borderline; requires user confirmation
+   - ⚪ **보존 권장** — anchor noun, authorial metaphor, cited term, natural Korean rhetoric, etc.
+4. **Location tag required:** `[0. 섹션]`, `[3. 섹션]`, `[인트로]`, `[결말]` — so the user can locate it in the source immediately.
+5. **One-line reason required:** each bullet states *what* and *why*.
+6. **Action verb required for 🔴:** "삭제", "분할", "능동형 전환", "직접 서술로 전환", "삼단 나열 해체" etc.
+7. If a pattern has zero detections, omit its bullet entirely — do not print empty rows.
+
+**Template:**
 
 ```text
 **[패턴 감지 결과]**
 
 **[A] 구두점 패턴**
-- P1 (쉼표 남용): N건 — 예시: "..."
-
-**[B] 구조/어순 패턴**
-- P3 (삼단 나열·개조식): N건 — 예시: "..."
-
-**[C] 어휘/표현 패턴**
-- P2 (어휘 반복): N건 — 예시: "..."
-- P5 (AI 상투 표현): N건 — 예시: "..."
-- P6 (접속사 남용): N건 — 예시: "..."
-
-**[D] 띄어쓰기 패턴** *(에세이 전용)*
-- P7 (의존명사): N건
-
-**[E] 소통 패턴**
-- P10 (소통 부산물): N건 — 예시: "..."
-
-**[F] 영어 직역투 패턴**
-- P11 (무생물 주어 의인화): N건 — 예시: "..."
-- P12 (불필요한 수동형): N건
-- P13 (가주어/보어 구문): N건
-- P14 (사역동사 만들다 직역): N건
+- **P1 쉼표 남용** · 수정 3건 / 경계 2건 / 보존 0건
+  - 🔴 [0. 섹션] "경험했기 때문에, 최상급 모델을" — 원인절 뒤 영어식 쉼표. **삭제 권장**
+  - 🔴 [3. 섹션] "오래 앉아 있는 대신, AI를 많이" — 부사절 뒤 영어식 쉼표. **삭제 권장**
+  - 🟡 [4. 섹션] "확인하니, 이제 10%" — 의존절 연결어미 쉼표. **보존 권장 (경계)**
 
 **[G] 영어 기원 수사 패턴**
-- P15–P19 Tier-1: N건 (각 패턴별 내역)
-- P20–P23 Tier-2: N건 (각 패턴별 내역)
+- **P18 부정 병렬** · 수정 1건 / 보존 2건
+  - 🔴 [2. 섹션] "단순히 많이 사용한다는 건 아니라는 거죠" — AI 재프레이밍. **직접 서술로 전환**
+  - ⚪ [0. 섹션] "농담처럼 들리지만 방향은 분명합니다" — 양보 구문(A지만 B). **자연 한국어, 보존**
+  - ⚪ [4. 섹션] "몇 시에 자고 ... 아니라, 몇 시에 한도가 리셋되느냐가" — 실체적 대립. **에세이 리듬, 보존**
+
+[...다른 감지 패턴도 동일 포맷...]
 
 ---
 
-**[수정 목표 계약 (Rewrite Contract)]**
-1. [카테고리/패턴] — 예: [G] Tier-1 패턴(P15·P18) 100% 제거
+**[수정 목표 계약 (Rewrite Contract)]** *(🔴 항목만 포함. 🟡은 사용자 협의 결과에 따라 추가·제외.)*
+1. [카테고리/패턴] — 예: [G] P18 AI 재프레이밍 1건 직접 서술로 전환
 2. [스타일 유지] — 예: 하십시오체 + `~거든요` 산발 비율 보존
 3. [톤/방향] — 예: 에세이 톤 유지
 
-**[보존 자산 (Preserve)]** *(Rewrite Contract보다 우선한다)*
+**[보존 자산 (Preserve)]** *(⚪ 항목 및 앵커·메타포·인용 명시. Rewrite Contract보다 우선한다.)*
 1. voice/어미 — 예: 합쇼체 + `~거든요/~죠` 비율
 2. 구조 — 예: H1 + H2 보존, 마지막 단락 단문 리듬 보존
-3. 어휘 anchor — 예: 핵심 주제어 `질문/토큰`은 P2 카운팅 제외
-4. 메타포 — 예: `수도꼭지`·`계산기` 메타포 보존
-5. 기타 — 작가 명시 보존 요구
+3. 어휘 anchor — 예: 핵심 주제어 `질문/토큰`은 P2·P22 카운팅 제외
+4. 메타포 — 예: `시간이 토큰을 따라간다` 메타포 보존
+5. 인용 — 예: `클로드노믹스`, `토큰 전설` 외부 출처 인용 보존
+6. 기타 — 작가 명시 보존 요구
 
-이 방향으로 초안 작업을 시작할까요? 수정이 필요하면 말씀해 주세요.
+이 방향으로 초안 작업을 시작할까요? 🟡 경계 항목은 어떻게 처리할지 함께 말씀해 주세요.
 ```
 
 - MUST wait for user approval. MUST NOT proceed without it.
