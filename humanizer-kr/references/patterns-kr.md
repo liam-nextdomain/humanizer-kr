@@ -45,9 +45,12 @@
 
 ## P1. Comma Overuse
 
-- **Definition:** >40% comma inclusion rate across sentences — strongest AI identifier.
-- **Detect:** `comma_count / sentence_count > 0.4`.
-- **Treatment:** Essay → aggressive remove/split. Academic → remove English-style only.
+- **Definition:** English-style comma insertions — the strongest AI identifier.
+- **Two-stage detection:**
+  1. **Density gate:** `comma_count / sentence_count`. Above 0.40 → aggressive-remove mode. At or below 0.40 → **individual-case mode** (scan only explicit violations in the Remove table below).
+  2. **Individual-case classification:** Each comma MUST be classifiable as one row of either the "Remove" or "Retain" table. **If a comma matches neither table, leave it — default is retention.**
+- **Report contract:** The count reported in Detection Report MUST equal the number of citeable violation examples. Do NOT inflate counts with sentences that contain no comma or whose issue is unrelated to P1. If uncertain, mark the case 🟡 경계 with explicit reasoning — never pad the 🔴 count.
+- **Treatment:** Essay → remove per density gate + individual rule. Academic → individual-case only.
 
 **Before:** "이 연구는, 흥미로운 결과를 보여주었고, 향후 연구에, 기여할 것으로 기대된다."
 **After:** "이 연구는 흥미로운 결과를 보여주었다. 향후 연구에 기여할 것으로 기대된다."
@@ -70,6 +73,8 @@
 | Vocative | "홍길동, 앞으로" | Grammatical marker |
 | Quotation (academic) | "다음과 같이 정의된다, '...'" | Academic convention |
 | Coordinate clauses (academic) | "A는 B이고, C는 D이다" | Clarifies parallel clauses |
+| Dependent clause connector | "~는데, ...", "~지만, ...", "~니까, ..." | 한국어 연결어미 뒤 쉼표는 영어 직역이 아님. 보존이 기본. |
+| Appositive / parenthetical | "10만 달러, 우리 돈으로 1억 원" | 환산·부연 삽입 구조. 보존. |
 
 ---
 
@@ -157,7 +162,7 @@
 
 | Type | Expressions | Treatment |
 | --- | --- | --- |
-| Emotive adj | 흥미로운, 묘한 | 1× OK; 2+× → specific emotion (낯선, 의외인, 눈에 띄는) |
+| Emotive adj | 흥미로운/흥미롭다, 묘한/묘하다 | 1× OK; 2+× → specific emotion (낯선, 의외인, 눈에 띄는) |
 | Expansion | 단순히 ~에 그치지 않고, ~을 넘어서 | Direct connection (A이자 B) or delete |
 | Elevated vocab | 체득하다, 익히다, 통찰력 | 배우다/몸에 배다, 핵심/요점/감 |
 | Argument cliché | 주장이 약해진다, 중요한 역할을 하다 | State the specific consequence |
@@ -260,12 +265,14 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 - **Definition:** Inanimate nouns as agents of deliberate human action (연구가 보여준다, 분석이 짚었다).
 - **Quick test:** If subject is not a person but the verb describes deliberate human action, flag.
 - **P11+P14 compound:** When inanimate subject is paired with causative 만들다 in the same sentence, flag as stronger compound violation.
+- **Read-as variant:** "~라/로 읽히다·읽힌다·읽힙니다" 형식은 영어 "X reads as Y / X is read as Y"의 직역. '~라 볼 수 있다, ~라 해석할 수 있다, ~로 보인다'로 교정.
 
 | English source | AI direct | Natural Korean |
 | --- | --- | --- |
 | "Research shows this." | "이 연구 결과는 해당 현상을 명확히 보여준다." | "이 연구 결과에서 해당 현상이 뚜렷이 드러난다." |
 | "The analysis points out this issue." | "분석에서 이 문제를 직접 짚었습니다." | "분석 결과, 이 문제점이 드러났습니다." |
 | "The environment creates thoughts." | "환경이 생각을 만든다." | "환경에 따라 생각이 바뀐다." |
+| "This event is read as a crisis." | "이 사건은 위기로 읽힌다." | "이 사건은 위기를 시사한다." / "이 사건은 위기로 보인다." |
 
 ---
 
