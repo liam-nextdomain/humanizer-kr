@@ -4,6 +4,7 @@
 
 | 버전 | 날짜 | 주요 변경 |
 | --- | --- | --- |
+| v2.5.0 | 2026-04-17 | **오케스트레이터 구조로 단순화 & 공식 Skills 규격 정렬** — (1) 워크플로우 9단계 → 5단계로 축소 (내부 Generator↔Evaluator 루프 Step 3.0/3.1/3.2/3.3 제거, Step 5 재검증 간소화), (2) `references/output-format.md` 삭제 및 출력 템플릿을 SKILL.md의 각 Step으로 inline 이식, (3) `references/scoring-rubric.md` 삭제 (5차원 채점 루브릭 제거), (4) `patterns-kr.md`를 23 패턴 Before/After 중심으로 재편 (697→479줄, -31%), (5) `essay-guide.md`/`academic-guide.md`에서 중복 면책 및 Generator guard 제거 후 SKILL.md로 이관 (314→205줄, 162→125줄), (6) Frontmatter 정리 — 공식 스키마 외 필드(`license`, `compatibility`) 제거, `when_to_use` 공식 필드 추가하여 트리거 정밀도 강화, description을 기능 front-load 형식으로 수정 |
 | v2.4.0 | 2026-04-12 | **트레이드오프 방지 & 작가 자산 보존 강화** — (1) P2에 thematic anchor noun 예외 도입(제목·정의문에 등장하는 핵심 주제어는 다양화 금지), (2) P10 헤더 분기 정책 신설(작가 의도 H1/H2는 보존, fractal H3+와 AI 부산물만 제거), (3) Speech level에 어미 단위 혼용 감지(`~거든요/~죠/~네요` 산발 패턴 보존), (4) Rewrite Contract 템플릿에 Preserve 슬롯 5종 분리, (5) 채점 루브릭에 **Dimension 5 (Structural Readability)** 신설 + Trade-off Audit 도입(P20→P15 치환, 헤더 제거→P15 신규, P11 fix→voice 손실, P2 fix→anchor 분산 4종), (6) Step 2.5에 long-text 청크 룰(800자 초과 시 Detection Report만 단독 응답), (7) Mechanical-count-first 룰을 Step 5에서 Step 2로 전진 배치, (8) 임계 점수 6/8 → 8/10으로 상향 |
 | v2.3.0 | 2026-04-06 | **문서 구조 리팩토링 & 패턴 재편성** — P4(Formulaic Template) → P5로 병합, P2 명칭 변경(Low Vocab Diversity), 가이드 파일(essay-guide/academic-guide)에서 중복 Before/After 예시 제거 후 patterns-kr.md를 단일 소스로 통합, P9·P10·P17·P23에 구체적 예시 및 판별 기준 보강 |
 | v2.2.0 | 2026-04-02 | **패턴 감지 정밀도 강화** — P2 어간(lemma) 기준 카운팅 규칙 추가 (콜로케이션이 달라도 동일 어간은 동일 카운트), P5 AI 선호 추상 명사 6종(감각/맥락/관점/측면/차원/본질) 감지 추가, P11+P14 복합 감지 규칙(무생물 주어+사역 만들다 동시 출현) 추가, P23 Adjacent Source Halo 규칙(인접 출처가 다른 모호 출처를 검증하지 않음) 추가; Step 5 Mechanical-count-first rule 도입; 채점 루브릭에 Anti-camouflage rule + Step 0 기계적 카운팅 사전 검사 추가; 감사 체크리스트 개선 |
@@ -77,13 +78,11 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
 .
 ├── README.md                     # 이 파일
 ├── humanizer-kr/                 # 한국어 버전
-│   ├── SKILL.md                  # 에이전트 페르소나, 태스크, 패턴 정의, 처리 워크플로 (7단계 + 내부 루프)
+│   ├── SKILL.md                  # 오케스트레이터 — 5단계 워크플로, 사용자 커뮤니케이션, 출력 템플릿 inline
 │   └── references/
-│       ├── patterns-kr.md        # 패턴 인덱스, 정량 기준, 스타일 규칙, 연구 데이터
+│       ├── patterns-kr.md        # 23 AI 패턴 Before/After 중심, 정량 기준, 스타일 규칙
 │       ├── essay-guide.md        # 에세이/블로그 스타일 처리 가이드
-│       ├── academic-guide.md     # 학술/보고서 스타일 처리 가이드
-│       ├── output-format.md      # 각 워크플로 단계별 출력 템플릿
-│       └── scoring-rubric.md     # 4차원 채점 루브릭 (Evaluator 모드 전용)
+│       └── academic-guide.md     # 학술/보고서 스타일 처리 가이드
 ├── reference/                    # 비운영 참고 문서 (스킬 실행과 무관)
 │   ├── SKILL.md                  # 영어 버전 스킬 (원본 아이디어)
 │   ├── 5RulesForClaudeSkill.md   # Anthropic 스킬 작성 원칙
@@ -94,20 +93,15 @@ LLM이 쓴 글과 한국인의 글쓰기 패턴을 체계적으로 연구한 두
 
 ### 주요 파일 설명
 
-- **`humanizer-kr/SKILL.md`**: 7단계 워크플로 정의
-  - Step 1: 스타일 감지 & 작성 프로필 잠금
-  - Step 2: 패턴 스캔 (23가지)
-  - Step 2.5: 감지 보고 & Rewrite Contract 합의
-  - Step 3: 초안 작성 (Generator/Evaluator 내부 루프 포함: 3.0→3.1→3.2→3.3)
-  - Step 3.5: 변경 브리핑
+- **`humanizer-kr/SKILL.md`**: 오케스트레이터 — 5단계 워크플로 정의 및 각 Step의 출력 템플릿 inline 제공
+  - Step 1: 스타일 감지 & Writing Profile 잠금
+  - Step 2: 패턴 스캔 + Detection Report + Rewrite Contract + Preserve list (사용자 승인 대기)
+  - Step 3: 재작성 (Draft + Change Brief)
   - Step 4: 음성 협의 (에세이만)
-  - Step 5: 재검증 (Auditor 페르소나로 전환)
-  - Step 5.5: 최종 브리핑
-- **`humanizer-kr/references/patterns-kr.md`**: 23가지 AI 패턴 인덱스 (P1–P23), 정량 기준, 스타일별 규칙 테이블, KatFishNet + Park & Kim 연구 데이터, 수사적 관용 표현 치환 테이블 (v2.1), 감사 체크리스트
-- **`humanizer-kr/references/essay-guide.md`**: 에세이/블로그 스타일 패턴별 상세 처리 규칙, 존대법 보존, 음성 협의 프로세스
-- **`humanizer-kr/references/academic-guide.md`**: 학술/보고서 스타일 패턴별 상세 처리 규칙, 객관성 유지
-- **`humanizer-kr/references/output-format.md`**: 감지 리포트, Rewrite Contract, 수정 브리핑, 음성 협의, 재검증 보고서 템플릿
-- **`humanizer-kr/references/scoring-rubric.md`**: 4차원 채점 루브릭 (독창성/일관성/자연스러움/완성도), Step 3.1/3.3 내부 루프 및 Step 5 재검증에서 사용
+  - Step 5: 남은 패턴 확인 → 최종본 + 최종 브리핑
+- **`humanizer-kr/references/patterns-kr.md`**: 23 AI 패턴 Before/After 중심, P1–P23 감지 기준·치환 전략, 스타일별 규칙 테이블, Ending diversification reference
+- **`humanizer-kr/references/essay-guide.md`**: 에세이/블로그 스타일 패턴별 처리, 존대법 보존 규칙, P9 음성 협의 3단계 프로세스, Full Worked Example
+- **`humanizer-kr/references/academic-guide.md`**: 학술/보고서 스타일 패턴별 처리, 객관성 유지 규칙, Full Worked Example
 
 ## 참고 문서
 
