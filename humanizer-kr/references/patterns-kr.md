@@ -366,13 +366,20 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 ## P18. Negative Parallelism
 
 - **Tiered:** 1× Tier 3 허용, 2× Tier 2 수정, 3+× Tier 1 적극 수정.
-- **Detect:** Count "아니라", "아닙니다", "않습니다... 것입니다" carrying "not X — rather Y" reframe.
+- **Detect — STRICT:** Both conditions MUST hold. Keyword alone does NOT qualify.
+  1. **Keyword:** explicit negation marker "아니라", "아닙니다", "~가 아닌"
+  2. **Intent — AI reframing:** the clause devalues A and elevates B to a grander/deeper meaning. The signature move is "small-to-big" reframing ("단순히 X가 아니라 Y", "A 차원이 아니라 B 이야기") that AI uses to inflate stakes.
+- **Exclusions — NOT P18:**
+  - 양보 구문: "A지만 B", "A처럼 들리지만 B", "A이긴 하지만 B" — concessive, not reframing
+  - 단순 대조: "A와 B는 다르다", "A는 X지만 B는 Y" — contrastive compare, not reframing
+  - 문장 간 대조: two sentences joined by 그러나/그런데/하지만 — sentence-level contrast, not P18
+  - 실체적 대립: "몇 시에 자고 일어나느냐가 아니라, 몇 시에 리셋되느냐가" — two concrete alternatives, not reframing. Preserve up to 2 such instances for essay rhythm even at 3+ total count.
 
-**Variants:**
+**Variants (real P18 only):**
 
-- Basic: "A가 아니라 B이다"
-- Extended: "단순히 X만이 아닙니다. ... 이야기입니다"
-- Causal: "A 때문이 아니라 B 때문이다"
+- Basic reframe: "A가 아니라 B이다" (A 부정 + B 의미 격상)
+- Extended: "단순히 X가 아닙니다. ... 이야기입니다" (X 평가절하 + 더 큰 서사로 격상)
+- Causal: "A 때문이 아니라 B 때문이다" (원인 재지정을 통한 의미 격상)
 
 | Before (AI) | After (natural) |
 | --- | --- |
@@ -397,7 +404,11 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 ## P20. Rhetorical Self-Q&A
 
 - **Tier 2 — fix at 2+×.**
-- **Quick test:** If the question can be deleted and the answer stands alone, flag.
+- **Quick test:** If the question can be deleted and the answer stands alone as a complete sentence, flag. P20 applies ONLY to independent Q + independent A across two sentences.
+- **Exclusions — NOT P20:**
+  - 연결 수사구: "이게 얼마나 큰 숫자냐면, ...", "~가 무슨 뜻이냐면, ...", "~하는 이유는, ..." — 질문부와 답부가 한 문장으로 **분리 불가능**한 연결 장치. 블로그 구어체 설명에 자연스럽다. 질문을 지우면 답이 문법적으로 서지 않으면 P20 아님.
+  - 간접화법: "~고 물어 보니", "~고 했더니", "~냐고 답했습니다" — 보고된 대화·인터뷰 서술.
+  - 서술자의 자문: "내가 왜 이걸 하고 있나 싶었다" 같은 내적 독백은 voice, 제거 대상 아님.
 
 | Before (AI) | After (natural) |
 | --- | --- |
