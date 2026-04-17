@@ -10,7 +10,7 @@ when_to_use: >
   patterns from Korean writing. Skip for translation, general editing, or
   non-Korean text.
 metadata:
-  version: "2.6.1"
+  version: "2.7.0"
   author: ilseoppark
 ---
 
