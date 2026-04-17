@@ -266,6 +266,16 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 - **Quick test:** If subject is not a person but the verb describes deliberate human action, flag.
 - **P11+P14 compound:** When inanimate subject is paired with causative 만들다 in the same sentence, flag as stronger compound violation.
 - **Read-as variant:** "~라/로 읽히다·읽힌다·읽힙니다" 형식은 영어 "X reads as Y / X is read as Y"의 직역. '~라 볼 수 있다, ~라 해석할 수 있다, ~로 보인다'로 교정.
+- **Exception — authorial metaphor:** Preserve when the inanimate-subject clause is the author's deliberate figurative language rather than an English-source direct translation. Judgement criteria:
+  1. No obvious English P.P. source ("Research shows", "Analysis points out", "The data reveals") surfaces when back-translating.
+  2. The sentence carries rhythm/voice rather than a flat expository report.
+  3. The same personification is used consistently — an isolated occurrence reads as flourish, not technique.
+
+| 저자 메타포 (preserve) | AI 직역 (fix) |
+| --- | --- |
+| "시간이 토큰을 따라가기 시작합니다" | "이 연구 결과는 현상을 보여준다" |
+| "리셋 주기가 하루를 쪼개고 있습니다" | "분석이 이 문제를 짚었다" |
+| "배에서는 꼬르륵 소리가 나기 시작했습니다" | "환경이 생각을 만든다" |
 
 | English source | AI direct | Natural Korean |
 | --- | --- | --- |
@@ -390,10 +400,14 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 
 ## P19. Invented Concept Labels
 
-- **Tiered:** 1× OK, 2× OK (if different labels), 3+ distinct labels = Tier 2.
+- **Tiered:** 1× OK, 2× OK (if different labels), 3+ distinct labels in the same AI-frame pattern = Tier 2.
 - **Quick test:** If 2+ "~의 역설/함정/딜레마/격차" appear without each being argued, flag.
+- **Exclusions — NOT P19:**
+  - **External citations:** 외부 출처에서 가져온 기존 용어. 인용 부호나 영문 병기가 있거나 특정 기관·저자가 명시된 경우. 예: 메타의 '클로드노믹스(Claudeonomics)', '토큰 전설(Token Legend)', '캐시 마법사(Cache Wizard)' — 실제 사용 사례 인용.
+  - **Authorial coinages (marked):** 저자가 자기 조어임을 명시하는 경우. 예: "저는 이걸 '사용량 문화'라고 부르겠습니다".
+  - Tier 3 재확인: 서로 다른 개념을 가리키는 2개까지는 허용. 3개+가 같은 AI frame("~의 역설", "~의 함정", "~의 딜레마")으로 몰릴 때만 Tier 2.
 
-**AI-generated labels:** "감독의 역설", "가속화의 함정", "업무량 크리프", "자동화의 딜레마"
+**AI-generated labels (real P19):** "감독의 역설", "가속화의 함정", "업무량 크리프", "자동화의 딜레마"
 
 | Before (AI) | After (natural) |
 | --- | --- |
@@ -435,11 +449,12 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 ## P22. Repetitive Rhetoric
 
 - **Tier 2 — fix based on density.**
+- **Exception — thematic anchor nouns:** Apply P2's anchor rule (§P2) to P22 dead-metaphor and anaphora counts. A noun that (1) appears in title/heading, or (2) is the central subject of the section, is an anchor — exempt from repetition counts. Only non-anchor repetition is P22. Example: 섹션 "쉬는 시간까지 따라오는 한도" 내에서 "리셋/한도"는 anchor이므로 8회 반복도 보존.
 
 | Subpattern | Threshold | Fix |
 | --- | --- | --- |
 | Anaphora | 3+ consecutive same openings | Vary openings; merge some |
-| Dead metaphor | Same metaphor 5+× | Use once for intro, then direct description |
+| Dead metaphor | Same metaphor 5+× (non-anchor) | Use once for intro, then direct description |
 | Historical analogy stacking | 3+ rapid-fire | Keep single strongest; argue in depth |
 | Em-dash overuse | 5+× `—` | Replace with commas/parentheses |
 
