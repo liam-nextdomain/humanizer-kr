@@ -79,8 +79,8 @@
 - **Detect:** Count lemma occurrences across entire text. Different collocations of same lemma still count ("비슷한 구조", "비슷한 심리", "비슷한 이야기" = "비슷한" × 3).
 - **Exception — thematic anchor nouns:** A noun is exempt if it (1) appears in title/heading, (2) is the subject of a definitional sentence ("X란 ~이다"), or (3) names the central concept. Anchor nouns MUST NOT be diversified.
 
-**Before:** "**다양한** 분야에서 **다양한** 시도가 이루어지며 **다양한** 결과를 낳고 있다."
-**After:** "**여러** 분야에서 **갖가지** 시도가 이루어지며 **폭넓은** 결과를 낳고 있다."
+**Before:** "**다양한** 분야에서 **다양한** 시도가 벌어지며 **다양한** 결과를 낳고 있다."
+**After:** "**여러** 분야에서 **갖가지** 시도가 벌어지며 **폭넓은** 결과를 낳고 있다."
 
 **Anchor example:** Title "질문에 가격표가 붙으면 생기는 일" → "질문" = anchor → 15+ occurrences allowed.
 
@@ -127,8 +127,8 @@
 - **Detect:** Same-type filler 2+× = target. 4+× total across types = aggressive treatment.
 - **Treatment:** Delete or replace with specifics.
 
-**Before:** "이 기술은 **매우 중요한** 역할을 하며 **다양한 측면에서 효과적으로 활용**된다."
-**After:** "이 기술은 처리 속도를 3배 높이고 저전력 기기에서도 구동된다."
+**Before:** "**특히** 이 기술은 **효과적으로** 쓰이며, **예를 들어 다양한** 분야에 적용된다."
+**After:** "이 기술은 의료 영상 판독과 교육용 튜터링에 적용된다."
 
 ### Intensifier treatment
 
@@ -171,7 +171,7 @@
 - **Treatment:** Delete at least 1 unless the chain is a required causal/argumentative link ("하지만...그래서...따라서...").
 
 **Before:** "AI는 빠르다. 또한 정확하다. 그러나 비싸다. 따라서 선택적으로 써야 한다."
-**After:** "AI는 빠르고 정확하지만 비용이 높아 선택적으로 써야 한다."
+**After:** "AI는 빠르고 정확하지만 비용이 높아 꼭 필요한 곳에만 써야 한다."
 
 ### Conjunction treatment
 
@@ -263,7 +263,7 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 
 | English source | AI direct | Natural Korean |
 | --- | --- | --- |
-| "Research shows this." | "연구 하나가 이걸 잘 보여줍니다." | "연구 결과에서 그 차이가 뚜렷이 드러납니다." |
+| "Research shows this." | "이 연구 결과는 해당 현상을 명확히 보여준다." | "이 연구 결과에서 해당 현상이 뚜렷이 드러난다." |
 | "The analysis points out this issue." | "분석에서 이 문제를 직접 짚었습니다." | "분석 결과, 이 문제점이 드러났습니다." |
 | "The environment creates thoughts." | "환경이 생각을 만든다." | "환경에 따라 생각이 바뀐다." |
 
@@ -273,12 +273,12 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 
 - **Definition:** English P.P. translated as 되다/어지다 (학습된, 선택되는, 공유된).
 - **Quick test:** If 되다/어지다 can be replaced by an active verb without losing meaning, flag.
-- **Exclusions — NOT P12:** -ㄹ 수 있다/없다 (ability), -게 되다 (change of state), native Korean passives (-이/-히/-리/-기), double passives like 보여지다/쓰여지다 (redundancy errors, not translation passives).
+- **Exclusions — NOT P12:** -ㄹ 수 있다/없다 (ability), -게 되다 (change of state), native Korean passives (-이/-히/-리/-기), double passives like 보여지다/쓰여지다 (redundancy errors, not translation passives), `-된 + 명사` modifiers where the form reflects a genuine result/patient state and active rewriting would shift meaning (e.g., 학습된 모델, 검증된 자료).
 - **Priority:** Inside a P3 three-item list, address list structure first. Items like `-ㄹ 수 있는` are NOT passive.
 
 | English source | AI direct | Natural Korean |
 | --- | --- | --- |
-| "Models trained on..." | "서양 중심으로 학습된 모델이" | "서양 중심으로 데이터를 익힌 모델이" |
+| "Research is conducted on..." | "~에 관한 연구가 수행되고 있다" | "~에 관한 연구를 진행하고 있다" |
 | "Expressions that are selected" | "선택되는 표현" | "자주 쓰는 표현" / "선택하는 표현" |
 | "Shared algorithm" | "공유된 알고리즘" | "함께 사용하는 알고리즘" |
 
@@ -295,6 +295,8 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 | "There is a need to ask." | "물어볼 필요가 있습니다." | "의문을 가져야 합니다." |
 | "It was also a process of..." | "이것은 배우는 과정이기도 했습니다." | "시행착오는 배우는 과정이기도 합니다." |
 
+> **MUST NOT** invent reasons not present in the source text. Replace ~이유가 있다 / ~필요가 있다 using the actual cause from context; if no specific cause exists, rewrite the claim itself rather than fabricate one.
+
 ---
 
 ## P14. Causative 만들다
@@ -305,7 +307,7 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 | English source | AI direct | Natural Korean |
 | --- | --- | --- |
 | "Makes this point clearer." | "이 지점을 더 선명하게 만들어줍니다." | "이 지점이 더 선명해집니다." |
-| "Makes thinking easy." | "어떤 사고방식을 쉽게 만들고" | "어떤 사고방식에 익숙해지게 하고" |
+| "Makes thinking easy." | "어떤 사고방식을 쉽게 만들고" | "어떤 사고방식이 쉬워지고" |
 
 ---
 
@@ -348,7 +350,7 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 | --- | --- |
 | "이것은 핵심 도구로서 기능한다" | "이것은 핵심 도구다" |
 | "이 지표는 성과의 척도 역할을 한다" | "이 지표는 성과 척도다" |
-| "이 프레임워크는 기반을 제공한다" | "이 프레임워크가 기반이다" |
+| "이 프레임워크는 기반을 제공한다" | "이 프레임워크는 기반이다" |
 
 **Detection keywords:** ~로서 기능하다, ~의 역할을 하다, ~을 상징하다, ~을 대변하다, ~으로 자리 잡다, ~을 제공하다 (when simple copula suffices).
 
@@ -367,7 +369,7 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 
 | Before (AI) | After (natural) |
 | --- | --- |
-| "착해서가 아니라 그게 더 쌌기 때문이죠." | "사실 조직 형성의 동기는 선의보다 경제적 비용 절감이었습니다." |
+| "착해서가 아니라 그게 더 쌌기 때문이죠." | "조직이 생긴 건 착해서라기보다 그게 더 쌌기 때문이었죠." |
 | "단순히 효율이 올라갔다는 이야기가 아닙니다. ... 이야기입니다." | "이는 단순한 효율 개선을 넘어, '협력의 필수성' 자체를 재검토할 수 있게 된 셈입니다." |
 
 ---
@@ -451,6 +453,8 @@ Merging to remove a conjunction must not create a new comma (P1 violation).
 | --- | --- |
 | "전문가들은 이 기술이 혁명적이라고 평가합니다" | "이 기술은 기존 방식보다 처리 속도가 3배 빠릅니다" |
 | "교육부터 의료까지 모든 분야를 변화시킬 것입니다" | "교육과 의료 분야에서 활용 가능성이 높습니다" |
+
+> **MUST NOT** fabricate statistics or sources to replace vague attributions. If no verifiable number or source exists, delete the claim rather than substitute invented figures (the "3배 빠릅니다" above assumes a real measurement; without one, drop the claim entirely).
 
 ---
 
